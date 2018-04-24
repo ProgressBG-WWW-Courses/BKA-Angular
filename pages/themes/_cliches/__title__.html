@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
   <title>__title__</title>
+  <link rel="shortcut icon" href="/BKA-Angular/favicon.ico">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <!-- css & themes include -->
-  <link rel="stylesheet" href="../../../lib/reveal.js/css/reveal.css">
-  <link rel="stylesheet" href="../../../outfit/css/themes/projector.css" id="theme">
+  <link rel="stylesheet" href="/BKA-Angular/lib/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="/BKA-Angular/outfit/css/themes/projector.css" id="theme">
   <!-- Printing and PDF exports -->
   <script>
     var link = document.createElement( 'link' );
     link.rel = 'stylesheet';
     link.type = 'text/css';
-    link.href = window.location.search.match( /print-pdf/gi ) ? '../../../lib/reveal.js/css/print/pdf.css' : '../../../lib/reveal.js/css/print/paper.css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/BKA-Angular/lib/reveal.js/css/print/pdf.css' : '/BKA-Angular/lib/reveal.js/css/print/paper.css';
     document.getElementsByTagName( 'head' )[0].appendChild( link );
   </script>
   <!--[if lt IE 9]>
@@ -26,7 +27,7 @@
 <body>
   <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
     <div class="top_links">
-      <a class="home_link" href="/index.html#Course_Intro" target="_top"><i class="fa fa-home"></i></a>
+      <a class="home_link" href="/index.html#__title__" target="_top"><i class="fa fa-home"></i></a>
       <span class="help_link" href="#"><i class="fa fa-question"></i></span>
       <div class="help_text">
         <div><span>N/Space</span><span>Next Slide</span></div>
@@ -36,9 +37,9 @@
       </div>
     </div>
     <div class="footer theme_switch">
-      <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../outfit/css/themes/dark.css'); return false;">Dark</a>
-      <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../outfit/css/themes/light.css'); return false;">Light</a>
-      <a href="#" onclick="document.getElementById('theme').setAttribute('href','../../../outfit/css/themes/projector.css'); return false;">Projector</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/dark.css'); return false;">Dark</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/light.css'); return false;">Light</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/projector.css'); return false;">Projector</a>
     </div>
     <div class="slides">
 <!--
@@ -54,7 +55,7 @@
     </div>
     <div class="company">
       <a href="http://progressbg.net/kurs-po-web-design/">
-      <img style="height:80%" src="../../../outfit/images/logos/ProgressBG_logo_529_127.png">
+      <img style="height:80%" src="/BKA-Angular/outfit/images/logos/ProgressBG_logo_529_127.png">
       </a>
     </div>
     <div class="author">
@@ -92,7 +93,7 @@
 </section>
 
 
-<section class="disclaimer" data-background="../../../outfit/images/for_slides/the_end_on_sand.jpg">
+<section class="disclaimer" data-background="/BKA-Angular/outfit/images/for_slides/the_end_on_sand.jpg">
   <p>These slides are based on</p>
   <p>customised version of </p>
   <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
@@ -106,10 +107,10 @@
     </div>
   </div>
   <!-- Custom processing -->
-  <script src="../../../outfit/js/slides.js"></script>
+  <script src="/BKA-Angular/outfit/js/slides.js"></script>
   <!-- external scripts -->
-  <script src="../../../lib/reveal.js/lib/js/head.min.js"></script>
-  <script src="../../../lib/reveal.js/js/reveal.js"></script>
+  <script src="/BKA-Angular/lib/reveal.js/lib/js/head.min.js"></script>
+  <script src="/BKA-Angular/lib/reveal.js/js/reveal.js"></script>
 
   <!-- init reveal -->
   <script>
@@ -151,12 +152,12 @@
       // transition: Reveal.getQueryHash().transition || 'default'
       // Optional reveal.js plugins
       dependencies: [
-        { src: '../../../lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-        { src: '../../../lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: '../../../lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: '../../../lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
-        { src: '../../../lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-        { src: '../../../lib/reveal.js/plugin/notes/notes.js', async: true }
+        { src: '/BKA-Angular/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/notes/notes.js', async: true }
       ]
     });
   </script>

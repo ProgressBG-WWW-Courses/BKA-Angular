@@ -1,6 +1,6 @@
 "use strict";
 
-var hours_per_day = 4;
+var hours_per_day = 6;
 var themesNodes = document.querySelectorAll('.themes>article>section');
 themesNodes.shown = true;
 var subThemesNodes = document.getElementsByClassName('sub_themes');
@@ -12,7 +12,7 @@ window.onload = function(){
 }
 function init(){
     attachEvents();
-    setHours();
+    setThemeHours();
     calcTotalHours();
     calcTotalDays();
     calcSectionHours();
@@ -57,17 +57,28 @@ function attachEvents(){
         });
     };
 }
-function setHours(){
-    // get sections:
-    var sections = document.querySelectorAll(".themes>article");
 
-    // insert <span class=hours> after each h3
-    for (let i = 0, len = sections.length; i < len ; i++) {
-        console.log(`section: ${sections[i]}`);
-        // create output node:
-        var outNode = document.createElement('span');
-        outNode.className = 'Hours';
-        sections[i].children[0].appendChild(outNode);
+function setThemeHours(){
+    // get main themes:
+    var themes = document.querySelectorAll(".themes>article");
+
+    // insert <span class=hours> after each h3 in each section:
+    for (let i = 0, len = themes.length; i < len ; i++) {
+        // console.dir(themes[i]);
+
+        // get topic nodes for each theme:
+        var topics = themes[i].querySelectorAll("section[data-hours]");
+
+        for(let i=0, len=topics.length; i<len; i++){
+            // get topic hours from "data-hours" attribute:
+            let hours = topics[i].getAttribute("data-hours");
+
+            // create output node:
+            var outNode = document.createElement('span');
+            outNode.className = 'hours';
+            outNode.innerHTML = hours;
+            topics[i].children[0].appendChild(outNode);
+        }
     }
 
 }
@@ -139,6 +150,7 @@ function calcTotalDays(){
     // calculate total days
     out_node.innerHTML = total_days;
 }
+
 
 function showHideAll( clicked_node, effected_nodes ){
     // console.log("BEFORE: effected_nodes.shown: ", effected_nodes.shown);
