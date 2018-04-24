@@ -1,0 +1,28 @@
+tmp/**
+**/*.tmp
+**/*.old
+**/.tags*
+**/*fuse*
+**/*.log
+logs/**
+nohup*
+subl_*
+
+# shell files
+*.sh
+
+node_modules/
+**/node_modules/
+.sass-cache
+
+*.sublime-workspace
+*.sublime-project
+
+### folders
+# all hidden folders:
+.*/**
+students/**
+
+# all hidden files
+.*
+!.gitignore
