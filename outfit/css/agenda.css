@@ -53,7 +53,7 @@ main{
 }
 .syllabus .toggleButtons>.toggleSubThemes{
     margin: 0 0em 0 0;
-    color: ##CD0027;
+    color: #CD0027;
 }
 .syllabus .toggleButtons>span:hover{
     /*font-size:.9em;*/
@@ -114,7 +114,7 @@ main{
     font-family: FontAwesome;
     text-decoration: none;
     font-size: .9em;
-    color: ##CD0027;
+    color: #CD0027;
 }
 .themes>article h3.arrow_down:after{
 	content: "\f0d7";
@@ -134,7 +134,7 @@ main{
     font-family: FontAwesome;
     text-decoration: none;
     font-size: 1.3em;
-    color: ##CD0027;
+    color: #CD0027;
 }*/
 .themes>article h3>a:hover{
 	background: none;
@@ -157,7 +157,7 @@ main{
 	margin: 0.1em 0 0.6em 1.4em;
 }
 
-.sub_themes>li>ol{
+.themes>article>section>ol>li>ol{
 	/*list-style-type: disc;*/
 	margin: 0 0 0 2em;
 }

@@ -1,10 +1,14 @@
 "use strict";
 
 var hours_per_day = 6;
-var themesNodes = document.querySelectorAll('.themes>article>section');
-themesNodes.shown = true;
-var subThemesNodes = document.getElementsByClassName('sub_themes');
-subThemesNodes.shown = true;
+
+// DOM cache
+var articles = document.querySelectorAll(".themes>article")
+var themes = document.querySelectorAll('.themes>article>section');
+var subThemes = document.querySelectorAll('.themes>article>section>ol');
+
+themes.shown = true;
+subThemes.shown = true;
 
 
 window.onload = function(){
@@ -12,6 +16,7 @@ window.onload = function(){
 }
 function init(){
     attachEvents();
+    setThemeURL();
     setThemeHours();
     calcTotalHours();
     calcTotalDays();
@@ -38,67 +43,84 @@ function attachEvents(){
         let element = toggleThemesNodes[i];
         element.addEventListener( "click", function(){
             // showHideNodes(this.nextElementSibling)
-            // console.log("themesNodes type", typeof themesNodes);
-            showHideAll( element, themesNodes );
+            // console.log("themes type", typeof themes);
+            showHideAll( element, themes );
             // alert("Clicked");
         });
     };
 
     // onclick to toggleThemes
-    var toggleSubThemesNodes = document.querySelectorAll('.toggleSubThemes');
-    // console.log("toggleSubThemesNodes:", toggleSubThemesNodes);
-    for (let i = 0; i < toggleSubThemesNodes.length; i++) {
-        let element = toggleSubThemesNodes[i];
+    var togglesubThemes = document.querySelectorAll('.toggleSubThemes');
+    // console.log("togglesubThemes:", togglesubThemes);
+    for (let i = 0; i < togglesubThemes.length; i++) {
+        let element = togglesubThemes[i];
         element.addEventListener( "click", function(){
             // showHideNodes(this.nextElementSibling)
             // console.log("THIS:", this);
-            showHideAll( element, subThemesNodes );
+            showHideAll( element, subThemes );
             // alert("Clicked");
         });
     };
 }
 
-function setThemeHours(){
-    // get main themes:
-    var themes = document.querySelectorAll(".themes>article");
+function setThemeURL(){
+    // wrap H3 text into link, with href == section.id path
+        // <h3 data-wip>__themeTitle__</h3> =>
+        // <h3><a title="slides" href="/BKA-Angular/pages/themes/__themeTitle__/__themeTitle__.html">__themeTitle__</a></h3>
 
-    // insert <span class=hours> after each h3 in each section:
-    for (let i = 0, len = themes.length; i < len ; i++) {
-        // console.dir(themes[i]);
-
-        // get topic nodes for each theme:
-        var topics = themes[i].querySelectorAll("section[data-hours]");
-
-        for(let i=0, len=topics.length; i<len; i++){
-            // get topic hours from "data-hours" attribute:
-            let hours = topics[i].getAttribute("data-hours");
-
-            // create output node:
-            var outNode = document.createElement('span');
-            outNode.className = 'hours';
-            outNode.innerHTML = hours;
-            topics[i].children[0].appendChild(outNode);
+    for (let i = 0, len = themes.length; i < len ; i++){
+        // do not set link for elements in WIP mode:
+        if( themes[i].hasAttribute("data-wip") ){
+            continue
         }
+
+        let h3Node = themes[i].querySelector("h3");
+        let h3_content = h3Node.innerHTML;
+
+        // get section.id
+        let themeTitle = themes[i].id;
+
+        // create link node:
+        let aNode = document.createElement('a');
+        aNode.setAttribute("title", "slides");
+        aNode.href = `/BKA-Angular/pages/themes/${themeTitle}/${themeTitle}.html`;
+        aNode.innerHTML = h3_content;
+
+        // append it into h3 node
+        h3Node.innerHTML = "";
+        h3Node.appendChild(aNode);
+    }
+}
+
+function setThemeHours(){
+    // insert <span class=hours> after each h3 in each section:
+    for(let i=0, len=themes.length; i<len; i++){
+        // get themes hours from "data-hours" attribute:
+        let hours = themes[i].getAttribute("data-hours");
+
+        // create output node:
+        var outNode = document.createElement('span');
+        outNode.className = 'hours';
+        outNode.innerHTML = hours;
+        themes[i].children[0].appendChild(outNode);
     }
 
 }
 function calcSectionHours(){
-    // get sections:
-    var sections = document.querySelectorAll(".themes>article");
-
     var currentSectionHours = 0;
-    for (let i = 0, len = sections.length; i < len ; i++) {
+    for (let i = 0, len = articles.length; i < len ; i++) {
         let sectionHours = 0;
 
         // create output node:
         var outNode = document.createElement('span');
         outNode.className = 'sectionHours';
-        sections[i].children[0].appendChild(outNode);
+        articles[i].children[0].appendChild(outNode);
 
         // calculate hours per section:
-        var topicHoursNodes = sections[i].querySelectorAll(".hours");
+        var topicHoursNodes = articles[i].querySelectorAll(".hours");
+
         for (let i = 0, len = topicHoursNodes.length; i < len; i++) {
-            sectionHours += topicHoursNodes[i].childNodes[0].nodeValue*1;
+            sectionHours += topicHoursNodes[i].innerHTML*1;
         }
 
         currentSectionHours += sectionHours;
