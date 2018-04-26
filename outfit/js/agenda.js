@@ -20,7 +20,7 @@ function init(){
     setThemeHours();
     calcTotalHours();
     calcTotalDays();
-    calcSectionHours();
+    // calcSectionHours();
 }
 function attachEvents(){
     // onclick to themes/sub-themes titles:
@@ -36,18 +36,18 @@ function attachEvents(){
     };
 
 
-    // onclick to toggleThemes
-    var toggleThemesNodes = document.querySelectorAll('.toggleThemes');
-    // console.log("toggleThemesNodes:", toggleThemesNodes);
-    for (let i = 0; i < toggleThemesNodes.length; i++) {
-        let element = toggleThemesNodes[i];
-        element.addEventListener( "click", function(){
-            // showHideNodes(this.nextElementSibling)
-            // console.log("themes type", typeof themes);
-            showHideAll( element, themes );
-            // alert("Clicked");
-        });
-    };
+    // // onclick to toggleThemes
+    // var toggleThemesNodes = document.querySelectorAll('.toggleThemes');
+    // // console.log("toggleThemesNodes:", toggleThemesNodes);
+    // for (let i = 0; i < toggleThemesNodes.length; i++) {
+    //     let element = toggleThemesNodes[i];
+    //     element.addEventListener( "click", function(){
+    //         // showHideNodes(this.nextElementSibling)
+    //         // console.log("themes type", typeof themes);
+    //         showHideAll( element, themes );
+    //         // alert("Clicked");
+    //     });
+    // };
 
     // onclick to toggleThemes
     var togglesubThemes = document.querySelectorAll('.toggleSubThemes');
