@@ -91,6 +91,7 @@ footer{
 }
 /*~~~~~~~~~~ images  ~~~~~~~~~~*/
 .license img{
+    margin-left: .5em;
     border: none;
     height: 1em;
     vertical-align: middle;
