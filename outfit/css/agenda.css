@@ -90,7 +90,7 @@ body{
 .themes>article h3{
 	display: inline-block;
   width: 100%;
-  margin: .5em 0;
+  margin: 0.8em 0 .5em 0;
   font-size: 1.1em;
   font-weight: normal;
   color: #333;
@@ -101,6 +101,11 @@ body{
 .themes>article h3:before{
 	counter-increment: topics;
 	content: counter(topics) ". ";
+  display: inline-block;
+  width: 1.6em;
+  text-align: right;
+  margin-right: .3em;
+  /*border: 1px solid red;*/
 	color: #EEA6B4;
 }
 .themes>article h3:after{
@@ -149,7 +154,7 @@ body{
     border: none;
 }
 .themes>article>section>ol{
-	margin: 0.1em 0 0.6em 1.4em;
+	margin: 0.1em 0 0.6em 2.4em;
 }
 
 .themes>article>section>ol>li>ol{
