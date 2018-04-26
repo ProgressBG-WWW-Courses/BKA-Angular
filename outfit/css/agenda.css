@@ -31,7 +31,7 @@ body{
 }
 .syllabus .toggleButtons{
     position: sticky;
-    top:.5em;
+    top:1em;
     z-index: 999;
     margin: 0 0 3em 0;
     padding: 0;
@@ -46,8 +46,16 @@ body{
     color: #718EBA;
 }
 .syllabus .toggleButtons>.toggleSubThemes{
-    margin: 0 0em 0 0;
+    /*display: block;
+    height: 2em;*/
+    text-align: center;
+    margin: 0 auto;
+    padding: .3em 1em;
+    border-radius: 40%;
+    /*color: #718EBA;*/
     color: #CD0027;
+    /*background: #E8D0D033;*/
+    /*font-weight: bold;*/
 }
 .syllabus .toggleButtons>span:hover{
     /*font-size:.9em;*/
