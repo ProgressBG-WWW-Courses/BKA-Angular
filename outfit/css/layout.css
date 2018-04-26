@@ -2,10 +2,8 @@ header{
     position: relative;
     width: 80%;
     min-height: 6em;
-    margin: 1em auto 2em auto;
-    line-height: 1.5em;
-    text-align: center;
     font-size: 1.5em;
+    margin: 1em auto 2em auto;
     background-color: #333;
     color: #999;
     box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
@@ -13,37 +11,23 @@ header{
 }
 header>h1{
     position: absolute;
-    top:30%;left: 0%;right: 0;
+    font-size: 1.5em;
+    top:1.5em;left: 0%;right: 0;
     text-align: center;
     font-family: 'Modern Antiqua', sans-serif;
-    font-size: 1.5em;
     line-height: 1.3em;
     color: #CD0027;
 }
 header>h2{
     position: absolute;
-    top:.5em;left: .5em;
+    font-size: 1.2em;
+    top:1em;left: .8em;
     color: #718EBA;
 }
 header>h3{
     position: absolute;
-    bottom: .5em; right:.8em;
-    justify-content: center;
-    text-align: left;
+    bottom: 1em; right:.8em;
     color: #CDCDCD;
-    overflow: hidden;
-}
-header>h4{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 0 .9em .4em 0;
-    overflow: hidden;
-    color: #718EBA;
-}
-header>h2>span{
-    font-weight: bold;
-    overflow: hidden;
 }
 
 header a{
