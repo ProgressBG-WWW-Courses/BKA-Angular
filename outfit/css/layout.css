@@ -66,12 +66,12 @@ footer{
     left: 0; right: 0; bottom: 0;*/
     /*display: inline-block;*/
     margin: 5em 0 0 0;
+    padding: .4em 0 0 0;
     height: 5em;
     vertical-align: middle;
     text-align: center;
     border-top: 1px solid #AAA;
-    /*border: 2px solid red;*/
-    color: #999;
+    color: #718EBA;
 }
  .license a{
     font-size: 1em;
