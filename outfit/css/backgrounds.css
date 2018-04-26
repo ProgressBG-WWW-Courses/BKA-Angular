@@ -31,3 +31,19 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#ffffff', GradientType=1 );
 }
 
+.dark_centered_background_gradient{
+    background: rgba(225,225,225,1);
+    background: -moz-linear-gradient(left, rgba(225,225,225,1) 0%, rgba(246,246,246,1) 53%, rgba(255,255,255,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(225,225,225,1)), color-stop(53%, rgba(246,246,246,1)), color-stop(100%, rgba(255,255,255,1)));
+    background: -webkit-linear-gradient(left, rgba(225,225,225,1) 0%, rgba(246,246,246,1) 53%, rgba(255,255,255,1) 100%);
+    background: -o-linear-gradient(left, rgba(225,225,225,1) 0%, rgba(246,246,246,1) 53%, rgba(255,255,255,1) 100%);
+    background: -ms-linear-gradient(left, rgba(225,225,225,1) 0%, rgba(246,246,246,1) 53%, rgba(255,255,255,1) 100%);
+    /*background: linear-gradient(to left, rgba(225,225,225,1) 0%, rgba(246,246,246,1) 53%, rgba(255,255,255,1) 100%);*/
+    background: linear-gradient(rgba(225,225,225,1), white, rgba(225,225,225,1));
+
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#ffffff', GradientType=1 );
+}
+
+
+
+

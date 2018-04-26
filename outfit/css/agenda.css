@@ -15,13 +15,6 @@ body{
 }
 
 
-/*MAIN*/
-main{
-	width: 50rem;
-	min-height: 59vh;
-	margin: 0 auto;
-	/*border: 1px solid #888;*/
-}
 
 /*SYLLABUS TITLE*/
 .syllabus>h1{
@@ -95,19 +88,19 @@ main{
 }
 .themes>article h3{
 	display: inline-block;
-    width: 100%;
-    margin: .3em 0;
-    font-size: 1.1em;
-    font-weight: normal;
-    color: #333;
-    line-height: 1.5em;
-    letter-spacing: .1em;
-    border-bottom: .05em solid #C99C9C;
+  width: 100%;
+  margin: .5em 0;
+  font-size: 1.1em;
+  font-weight: normal;
+  color: #333;
+  line-height: 1.5em;
+  letter-spacing: .1em;
+  border-bottom: .05em solid #C99C9C;
 }
 .themes>article h3:before{
 	counter-increment: topics;
 	content: counter(topics) ". ";
-	color: #CD0027;
+	color: #EEA6B4;
 }
 .themes>article h3:after{
     margin-left: .5em;
@@ -121,6 +114,7 @@ main{
 }
 .themes>article h3.arrow_up:after{
 	content: "\f0d8";
+  color: #EEA6B4;
 }
 .themes>article h3>a{
 	text-decoration: none;

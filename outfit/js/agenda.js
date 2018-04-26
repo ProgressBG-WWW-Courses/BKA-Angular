@@ -17,9 +17,9 @@ window.onload = function(){
 function init(){
     attachEvents();
     setThemeURL();
-    setThemeHours();
-    calcTotalHours();
-    calcTotalDays();
+    // setThemeHours();
+    // calcTotalHours();
+    // calcTotalDays();
     // calcSectionHours();
 }
 function attachEvents(){

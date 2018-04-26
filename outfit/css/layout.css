@@ -1,32 +1,34 @@
 header{
     position: relative;
-    width: 100%;
+    width: 80%;
     min-height: 6em;
-    margin: 1em 0 2em 0;
+    margin: 1em auto 2em auto;
     line-height: 1.5em;
     text-align: center;
     font-size: 1.5em;
-    background-color: #454547;
+    background-color: #333;
     color: #999;
-    box-shadow: 4px 4px 10px rgba(0,0,0,0.8);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
     overflow: hidden;
 }
 header>h1{
+    position: absolute;
+    top:30%;left: 0%;right: 0;
+    text-align: center;
     font-family: 'Modern Antiqua', sans-serif;
     font-size: 1.5em;
     line-height: 1.3em;
     color: #CD0027;
 }
 header>h2{
-    margin: .5em 0 .5em 0;
+    position: absolute;
+    top:.5em;left: .5em;
     color: #718EBA;
 }
 header>h3{
     position: absolute;
-    top: 2em;
-    display: flex;
+    bottom: .5em; right:.8em;
     justify-content: center;
-    width: 100%;
     text-align: left;
     color: #CDCDCD;
     overflow: hidden;
@@ -69,6 +71,7 @@ header a.nonactive{
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 main{
     margin: 0 auto;
+    min-height: 59vh;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
