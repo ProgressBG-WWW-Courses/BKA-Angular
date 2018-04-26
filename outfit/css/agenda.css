@@ -96,7 +96,7 @@ body{
   color: #333;
   line-height: 1.5em;
   letter-spacing: .1em;
-  border-bottom: .05em solid #C99C9C;
+  border-bottom: .05em solid #EED6DB;
 }
 .themes>article h3:before{
 	counter-increment: topics;
