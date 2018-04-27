@@ -1,14 +1,13 @@
 "use strict";
 
-var hours_per_day = 6;
-
 // DOM cache
 var articles = document.querySelectorAll(".themes>article")
 var themes = document.querySelectorAll('.themes>article>section');
 var subThemes = document.querySelectorAll('.themes>article>section>ol');
 
-themes.shown = true;
-subThemes.shown = true;
+var hours_per_day = 6;
+ // themes.shown = false;
+subThemes.shown = false;
 
 
 window.onload = function(){
@@ -17,9 +16,10 @@ window.onload = function(){
 function init(){
     attachEvents();
     setThemeURL();
-    // setThemeHours();
-    // calcTotalHours();
-    // calcTotalDays();
+    setThemeHours();
+    calcTotalHours();
+    calcTotalDays();
+    hideAllNodes(subThemes);
     // calcSectionHours();
 }
 function attachEvents(){
@@ -29,25 +29,9 @@ function attachEvents(){
     for (let i = 0; i < titleNodes.length; i++) {
         let element = titleNodes[i];
         element.addEventListener( "click", function(){
-            // showHideNodes(this.nextElementSibling)
-            // console.log("THIS:", this);
             showHideNodes(getNextSiblings(this));
         });
     };
-
-
-    // // onclick to toggleThemes
-    // var toggleThemesNodes = document.querySelectorAll('.toggleThemes');
-    // // console.log("toggleThemesNodes:", toggleThemesNodes);
-    // for (let i = 0; i < toggleThemesNodes.length; i++) {
-    //     let element = toggleThemesNodes[i];
-    //     element.addEventListener( "click", function(){
-    //         // showHideNodes(this.nextElementSibling)
-    //         // console.log("themes type", typeof themes);
-    //         showHideAll( element, themes );
-    //         // alert("Clicked");
-    //     });
-    // };
 
     // onclick to toggleThemes
     var togglesubThemes = document.querySelectorAll('.toggleSubThemes');
@@ -55,10 +39,7 @@ function attachEvents(){
     for (let i = 0; i < togglesubThemes.length; i++) {
         let element = togglesubThemes[i];
         element.addEventListener( "click", function(){
-            // showHideNodes(this.nextElementSibling)
-            // console.log("THIS:", this);
             showHideAll( element, subThemes );
-            // alert("Clicked");
         });
     };
 }
@@ -154,14 +135,9 @@ function calcTotalDays(){
 
         // calculate current days and show it as tooltip
         var current_days;
-        // if ( current_hours % hours_per_day > 0){
-        //     current_days = Math.floor( current_hours / hours_per_day) + 1;
-        // }else{
-        //     current_days = Math.floor( current_hours / hours_per_day);
-        // }
 
-        // do not round:
         current_days = current_hours / hours_per_day;
+        current_days = Math.round(current_days * 10)/10
 
         // output
         hours_nodes[i].title = "hours:" + current_hours;
@@ -227,9 +203,6 @@ function showNode(effected_node){
     changeArrow( arr_node, 'up');
 };
 function hideNode (effected_node) {
-    // console.log("hideNode IN: effected_node", effected_node);
-    // hide node
-    // effected_node.style.display = 'none';
     effected_node.classList.add("hidden");
 
     // change title of the H3 element
