@@ -6,7 +6,6 @@ var themes = document.querySelectorAll('.themes>article>section');
 var subThemes = document.querySelectorAll('.themes>article>section>ol');
 
 var hours_per_day = 6;
- // themes.shown = false;
 subThemes.shown = false;
 
 
@@ -85,7 +84,6 @@ function setThemeHours(){
         outNode.innerHTML = hours;
         themes[i].children[0].appendChild(outNode);
     }
-
 }
 function calcSectionHours(){
     var currentSectionHours = 0;
@@ -129,12 +127,17 @@ function calcTotalDays(){
     var out_node = document.getElementById("total_days");
     var current_hours = 0;
     var total_days = 0;
-    for (var i = 0; i < hours_nodes.length; i++) {
+    for (var i = 0,len=hours_nodes.length; i < len ; i++) {
         var theme_hours = hours_nodes[i].innerHTML*1 || 0; // cause of NaN
         current_hours += theme_hours;
 
         // calculate current days and show it as tooltip
         var current_days;
+
+        // note: last 2 days are 4 hours each:
+        if(i >= len-2){
+            // hours_per_day = 4
+        }
 
         current_days = current_hours / hours_per_day;
         current_days = Math.round(current_days * 10)/10
@@ -145,10 +148,10 @@ function calcTotalDays(){
 
         total_days = current_days;
     };
+
     // calculate total days
     out_node.innerHTML = total_days;
 }
-
 
 function showHideAll( clicked_node, effected_nodes ){
     // console.log("BEFORE: effected_nodes.shown: ", effected_nodes.shown);
