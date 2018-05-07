@@ -227,9 +227,7 @@ a.home_link{
 .theme_switch a:hover{
   opacity: 1;
 }
-/*********************************************
- * CUSTOM .copyright
- *********************************************/
+
 .footer{
    position: fixed;
    bottom: .7em;
@@ -237,6 +235,12 @@ a.home_link{
    z-index: 200;
    text-align: center;
 }
+
+
+
+/*********************************************
+ * CUSTOM .copyright
+ *********************************************/
 .reveal .copyright{
     margin: 0 0 0 0;
     font-size: .7em;
@@ -257,25 +261,29 @@ a.home_link{
     /*border: 1px solid red;*/
 }
 .copyright>.company img{
-    /*height: 3em;*/
     margin: 0;
     background: none;
     vertical-align: middle;
     border: none;
+    border-radius: 10%;
+    padding: 1em;
     box-shadow: none;
-    /*margin-bottom: -1px;*/
 }
 section.copyright>.author{
     text-align: center;
+    vertical-align: middle;
     margin: 1em 0em 0.5em 0;
-    font-size: 3em;
-    /*font-size: 14px;*/
-    /*border: 1px solid red;*/
+    font-size: 1.2em;
 }
-div.copyright>.author{
-  text-align: center;
-  margin: 8em 0em 0.5em 0;
-  font-size: 1em;
+section.copyright>.author a{
+  vertical-align: middle;
+}
+section.copyright>.author img{
+  margin: 0;
+}
+
+section.copyright .LI-profile-badge{
+  font-size: 2em;
 }
 section.copyright>.contacts{
   font-size: 3em;
@@ -293,12 +301,14 @@ section.copyright>.license{
   cursor: pointer;
   /*border: 2px solid red;*/
 }
+
+
 .reveal section iframe{
   display: block;
-  margin: 1em 0 1em 0;
   width: 80%;
-  height: 40vh;
-  /*height: auto;*/
+  height: 70vh;
+  margin: 0 auto;
+  text-align: center;
 }
 .reveal section iframe.resultFrame{
   display: inline-block;
