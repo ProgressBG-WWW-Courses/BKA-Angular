@@ -66,45 +66,158 @@
 </section>
 
 
+<section data-min="10"><h1>HTTP Client-Server Communication</h1></section>
+<section><h2>HTTP Client-Server Communication</h2>
+  <section><h3>Basic Concepts</h3>
+    <a href="images/Client-Server_Communication.png"><img src="images/Client-Server_Communication.png"></a>
+    <dl class="fa">
+      <dt>Clients and Servers communicate using HTTP (HyperText Transfer Protocol).</dt>
+      <dt>The client sends a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods">Request message</a> to the server</dt>Response message</a>, which can include the requested resource and/or some other status information (like "404 Not Found") </dt>
+    </dl>
+  </section>
+</section>
+
 <section data-min="20"><h1>Client-Side vs Server-Side Rendering</h1></section>
 <section><h2>Client-Side vs Server-Side Rendering</h2>
-  <section><h3>___SubSectionTitle___</h3>
-
+  <section><h3>Overview</h3>
+    <a href="images/SSRvsCSR_Overview.png"><img src="images/SSRvsCSR_Overview.png"></a>
+    <p>The Client-Side Rendering is based on AJAX</p>
   </section>
+  <!-- <section><h3>Server-Side Rendering (SSR)</h3></section> -->
 </section>
 
 <section data-min="20"><h1>AJAX basics</h1></section>
 <section><h2>AJAX basics</h2>
-  <section><h3>___SubSectionTitle___</h3>
+  <section><h3>What is AJAX?</h3>
+    <div style="text-align: center">
+      <p><span class="note">A</span>synchronous</p>
+      <p><span class="note">J</span>avaScript</p>
+      <p><span class="note">A</span>nd</p>
+      <p><span class="note">X</span>ML</p>
+    </div>
+    <p><em>In reality, these days, the use of JSON prevails over XML, but for backward compatibility we do not say AJAJ</em></p>
+  </section>
+  <section><h3>What is AJAX?</h3>
+    <dl class="fa">
+      <dt>AJAX is just the name for combination of technologies:</dt>
+      <dd>the use of the built-in <span class="note">XMLHttpRequest</span> object to request data from a web server</dd>
+      <dd>the use of JavaScript and HTML DOM (to display or use the data)</dd>
+    </dl>
+  </section>
+  <section>
+    <p>With AJAX, Web applications can send and retrieve data from a Web server <span class="note">asynchronously</span> (in the background)  without refreshing the existent page </p>
+  </section>
+  <section>
+    <p>With AJAX we can:</p>
+    <dl class="fa">
+      <dt>Update a web page without reloading the page</dt>
+      <dt>Request data from a server - after the page has loaded</dt>
+      <dt>Receive data from a server - after the page has loaded</dt>
+      <dt>Send data to a server - in the background</dt>
+    </dl>
+  </section>
+  <section>
+    <a href="images/Ajax_vs_Conventinal_Model.png"><img src="images/Ajax_vs_Conventinal_Model.png"></a>
+  </section>
+  <section><h3>XMLHttpRequest Overview</h3>
+    <a href="https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest">XMLHttpRequest at MDN</a>
+  </section>
+  <section><h3>XMLHttpRequest - Simple example</h3>
+    <pre><code rel="HTML" class="html">
+      <div class="output"></div>
+      <button class="getDataBtn">Get data</button>
+    </code></pre>
+    <dl class="fa">
+      <dt>An empty DIV in which the data will be load after the button click.</dt>
+      <dt>Note, that only the DIV content will be updated!</dt>
+      <dt><a href="examples/slides/XMLHttpRequest/index.html">test it!</a></dt>
+    </dl>
+  </section>
+  <section><h3>XMLHttpRequest - Simple example</h3>
+    <pre><code rel="JS" class="js">
+      var nodes={
+        output:  document.getElementsByClassName('output')[0],
+        getDataBtn: document.getElementsByClassName('getDataBtn')[0],
+      };
 
+      var dataURL = 'loremIpsum.txt';
+
+      var AJAXcall = function(){
+        // create a XMLHttpRequest object
+        var xhr = window.XMLHttpRequest ? new XMLHttpRequest() :
+                new ActiveXObject("Microsoft.XMLHTTP");
+
+        // initializes the request:
+        xhr.open("GET", dataURL, true);
+
+        // EventHandler, that will be fired each time when the xhr state changes
+        xhr.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            // finally do something with content:
+            nodes.output.innerHTML = this.responseText;
+          };
+        };
+
+        // sends the request:
+        xhr.send();
+      };
+
+      nodes.getDataBtn.addEventListener('click', function(){
+        AJAXcall();
+      });
+    </code></pre>
+    <p>Of course, in real world, we use libraries and frameworks to make the AJAX cal for us.</p>
   </section>
 </section>
 
+<!--
 <section data-min="20"><h1>Routings, event handling, validation</h1></section>
 <section><h2>Routings, event handling, validation</h2>
   <section><h3>___SubSectionTitle___</h3>
 
   </section>
-</section>
+</section> -->
 
-<section data-min="20"><h1>Client-Side libraries and frameworks</h1></section>
-<section><h2>Client-Side libraries and frameworks</h2>
-  <section><h3>___SubSectionTitle___</h3>
-
+<section data-min="20"><h1>Client-Side vs Server-Side libraries and frameworks</h1></section>
+<section><h2>Client-Side vs Server-Side Rendering libraries and frameworks</h2>
+  <section>
+    <dl class="fa" style="font-size: .9em">
+      <dt>Ember</dt>
+      <dd><a href="https://www.emberjs.com/">Ember</a> - Client-Side rendering</dd>
+      <dd><a href="https://ember-fastboot.com/">Ember-Fastboot</a> - Server-Side rendering</dd>
+      <dt>Vue</dt>
+      <dd><a href="https://vuejs.org/">vue.js</a> - Client-Side rendering</dd>
+      <dd><a href="https://nuxtjs.org/">nuxt.js</a> - Server-Side rendering for vue.js</dd>
+      <dt><a href="https://reactjs.org/">React</a> - it can render on the client-side and on the server-side</dt>
+      <dt>Angular</dt>
+      <dd><a href="https://angular.io/">Angular</a> - - Client-Side rendering</dd>
+      <dd><a href="https://angular.io/guide/universal">Angular Universal</a> - Server-Side rendering</dd>
+    </dl>
   </section>
 </section>
 
-<section data-min="10"><h1>Why use Angular for SPA?</h1></section>
+<!-- <section data-min="10"><h1>Why use Angular for SPA?</h1></section>
 <section><h2>Why use Angular for SPA?</h2>
   <section><h3>___SubSectionTitle___</h3>
 
   </section>
-</section>
+</section> -->
 
-<section data-min="5"><h1>live demo</h1></section>
+<!-- <section data-min="5"><h1>live demo</h1></section>
 <section><h2>live demo</h2>
   <section><h3>___SubSectionTitle___</h3>
 
+  </section>
+</section> -->
+
+
+<!-- <section data-min="1"><h1>References</h1></section>
+<section><h2>References</h2>
+  <section><h3>Readings</h3>
+    <dl class="fa">
+      <dt><a href="https://github.com/angular/angular-cli/wiki">Angular CLI wiki</a></dt>
+      <dt><a href="https://www.sitepoint.com/ultimate-angular-cli-reference/">The Ultimate Angular CLI Reference Guide</a></dt>
+    </dl>
   </section>
 </section>
 
@@ -123,7 +236,7 @@
     <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
     <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=_SPA_DevelopmentMainConcepts_">ProgressBG.WWW.Courses@gmail.com</a></dt>
   </dl>
-</section>
+</section> -->
 
 
 <section class="disclaimer" data-background="/BKA-Angular/outfit/images/for_slides/the_end_on_sand.jpg">
