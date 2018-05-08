@@ -127,7 +127,7 @@
       <dt>HTML (<a href="https://www.w3schools.com/html/">HTML5 Tutorial @w3schools</a>)</dt>
       <dt>CSS (<a href="https://www.w3schools.com/css/">HTML5 Tutorial @w3schools</a>)</dt>
       <dt>JavaScript (<a href="https://www.w3schools.com/js/">JavaScript Tutorial @w3schools</a>)</dt>
-      <dt>Basic </dt>
+      <dt>Basic understanding of client-server communication (HTTP basics )</dt>
     </dl>
   </section>
   <section><h3>what you'll learn</h3>
@@ -185,20 +185,20 @@
       npm install -g node
 
       #check version installation,
-      node --version
       node -v
+      npm -v
     </code></pre>
   </section>
   <section><h3>Angular CLI</h3>
     <dl class="fa">
-      <dt>e Angular CLI is a command-line tool, developed by Angular team, that helps in generating Angular projects with required configurations, boilerplate code, and also downloads the required node packages with one simple command</dt>
+      <dt>Angular CLI is a command-line tool, developed by Angular team, that helps in generating Angular projects with required configurations, boilerplate code, and also downloads the required node packages with one simple command</dt>
     </dl>
   </section>
   <section><h3>Angular CLI  - install</h3>
     <dl class="fa">
       <dt>Installation: <a href="https://github.com/angular/angular-cli#installation">angular-cli</a></dt>
       <dt>As of 03.05.2018 the Angular6 version was officially released and the angular-cli is update to that version.</dt>
-      <dt class="note">There are some unresolved bugs in it, like <a href="https://github.com/angular/angular-cli/issues/10652">ng completion no longer exists</a>, so if you prefer the latest angular-cli (1.7.X) version for Angular5</dt>
+      <dt class="note">There are some unresolved bugs in it, like <a href="https://github.com/angular/angular-cli/issues/10652">ng completion no longer exists</a>, so if you prefer, you can use the latest angular-cli (1.7.X) version for Angular5</dt>
       <dt>Or you can <a href="https://pastebin.com/r4NKayUP">download the angular-cli bash completion</a></dt>
     </dl>
   </section>
@@ -246,7 +246,7 @@
     <p>More on that: <a href="https://www.icicletech.com/blog/angular-2-ecosystem-review-top-angular-code-editors">Angular 2 Ecosystem Review: Top Angular Code Editors</a></p>
   </section>
   <section><h3>Sublime Text packages for Angular development</h3>
-    <dl class="fa">
+    <dl class="fa" style="font-size: .9em">
       <dt><a href="https://packagecontrol.io/packages/TypeScript">TypeScript</a></dt>
       <dd>The Microsoft's IO wrapper around TypeScript language services, allowing for easy consumption by editor plugins</dd>
       <dt><a href="https://packagecontrol.io/packages/Angular%20CLI">Angular CLI</a></dt>
@@ -257,8 +257,8 @@
       <dd>Ngx (Angular2+) HTML Syntax and JS highlights</dd>
     </dl>
   </section>
-  <section ><h3>VS Code extensions for for Angular development</h3>
-    <dl class="fa" style="font-size: .9em">
+  <section><h3>VS Code extensions for for Angular development</h3>
+    <dl class="fa" style="font-size: .8em">
       <dt><a href="https://marketplace.visualstudio.com/items?itemName=eg2.tslint">TSLint</a> - Integrates the <a href="https://github.com/palantir/tslint">tslint</a> linter for the TypeScript language into VS Code.</dt>
       <dt><a href="https://marketplace.visualstudio.com/items?itemName=steoates.autoimport">Auto Import</a> - Automatically finds, parses and provides code actions and code completion for all available imports. Works with Typescript and TSX</dt>
       <dt><a href="https://marketplace.visualstudio.com/items?itemName=Mikael.Angular-BeastCode">Angular 6 Snippets - TypeScript, Html...</a> - Visual Studio Code TypeScript and Html snippets and code examples for Angular 2,4,5 & 6.</dt>
@@ -267,18 +267,24 @@
     </dl>
   </section>
   <section><h3>VS Code extensions for for Angular development</h3>
-    <p>You can easy install the above extensions by saving next code in a <code>extensions.json</code> in the root folder of your project workspace</p>
-    <pre><code rel="extensions.json" class="js">
+    <dl class="fa">
+      <dt>You can easy install the above extensions by saving next code in a <code>extensions.json</code> file in the workspace .vscode folder (as shown in the image given in next slide)</dt>
+    </dl>
+    <pre><code rel=".vscode/extensions.json" class="js">
       {
-        "recommendations": [
-          "eg2.tslint",
-          "steoates.autoimport",
-          "Mikael.angular-beastcode",
-          "Angular.ng-template",
-          "pmneo.tsimporter",
-        ]
+          "recommendations": [
+              "eg2.tslint",
+              "steoates.autoimport",
+              "Mikael.angular-beastcode",
+              "Angular.ng-template",
+              "pmneo.tsimporter"
+          ]
       }
     </code></pre>
+  </section>
+  <section><h3>VS Code extensions for for Angular development</h3>
+    <a href="images/setup_extensions.json.png"><img src="images/setup_extensions.json.png"></a>
+    <p class="note">After VS Code restart, the editor will prompt you to install the given recommended packages</p>
   </section>
 </section>
 

@@ -6,14 +6,5 @@
 	],
 	"settings": {
 		"workbench.colorTheme": "Solarized Light"
-	},
-	"extensions": {
-		"recommendations": [
-			"eg2.tslint",
-			"steoates.autoimport",
-			"Mikael.angular-beastcode",
-			"Angular.ng-template",
-			"pmneo.tsimporter",
-		]
 	}
 }
