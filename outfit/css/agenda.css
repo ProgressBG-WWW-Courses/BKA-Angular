@@ -158,14 +158,12 @@ body{
 .themes>article h3>a:hover{
 	background: none;
     font-weight: bold;
-    font-size: 1.3em;
-    color: #EEE;
-    text-shadow:
+    font-size: 1.1em;
+    color: #890E0E;
+    /*text-shadow:
         1px 1px 1px #A85959,
-        2px 2px 0px #B74F4F,
-        3px 3px 0px #9B2323,
-        4px 4px 1px #661212
-       ;
+        2px 2px 0px #B74F4F
+       ;*/
   padding: .5em .3em;
   /*box-shadow:
     0 4px 4px rgba(163,1,67,.24),
