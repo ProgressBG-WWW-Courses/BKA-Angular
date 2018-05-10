@@ -41,6 +41,8 @@ a.nonready{
 	line-height: 0;
 	visibility: hidden;
 	height: 0;
+    max-height: 0;
+    display: none;
 }
 code.kw:before, code.kw:after{content: "'"}
 

@@ -194,8 +194,6 @@ function showHideNodes(effected_nodes){
 }
 function showNode(effected_node){
     // console.log("showNode IN: effected_node", effected_node);
-    // show node
-    // effected_node.style.display = 'block';
     effected_node.classList.remove("hidden");
 
     // change title of the H3 element

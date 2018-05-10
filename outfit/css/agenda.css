@@ -95,6 +95,28 @@ body{
 	position: relative;
 	margin: 0 0 0 1em;
 }
+
+/*.themes>article>section:hover{
+    width: 100%;
+    margin: 0 auto;
+    padding: .5em .5em 1em .5em;
+    font-size: 1.2em;
+    border-color: #2b85e7;
+    border-radius: 4px;
+    box-shadow:
+    0 4px 4px rgba(163,1,67,.24),
+    0 0 4px rgba(163,1,67,.12),
+    0 6px 18px rgba(231,43,133,.12);
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px)
+}
+.themes>article>section:hover>h3+ol{
+  visibility: visible;
+  max-height: 15em;
+  transition: visibility 5s;
+}*/
+
+
 .themes>article h3{
 	display: inline-block;
   width: 100%;
@@ -133,33 +155,27 @@ body{
 .themes>article h3>a{
 	text-decoration: none;
 }
-/*powerpoint icon*/
-/*.themes>article h3>a:before{
-	position: relative;
-	z-index: -4;
-	content: "\f1c4";
-	margin: 5em .5em 0 -1.3em;
-    font-family: FontAwesome;
-    text-decoration: none;
-    font-size: 1.3em;
-    color: #CD0027;
-}*/
 .themes>article h3>a:hover{
 	background: none;
     font-weight: bold;
-    /*important - because of strange chrome bug: depending on href value not always work !!!;*/
-    color: #FFF;
+    font-size: 1.3em;
+    color: #EEE;
     text-shadow:
-        1px 1px 1px #B30000,
-        -1px -1px 1px #B30000,
-        2px 2px 2px #B74242,
-        -2px -2px 2px #B74242,
-        3px 3px 3px #B74242,
-        -3px -3px 3px #B74242,
-        4px 4px 4px #BC6666,
-        -4px -4px 4px #BC6666;
+        1px 1px 1px #A85959,
+        2px 2px 0px #B74F4F,
+        3px 3px 0px #9B2323,
+        4px 4px 1px #661212
+       ;
+  padding: .5em .3em;
+  /*box-shadow:
+    0 4px 4px rgba(163,1,67,.24),
+    0 0 4px rgba(163,1,67,.12),
+    0 6px 18px rgba(231,43,133,.12);
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);*/
     animation: shake .5s ease-in-out 1;
     border: none;
+    border-radius: 15%;
 }
 .themes>article>section>ol{
 	margin: 0.1em 0 0.6em 2.4em;
