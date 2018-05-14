@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>AngularOverview</title>
+  <title>HowAnAngularAppWorks</title>
   <link rel="shortcut icon" href="/BKA-Angular/favicon.ico">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -27,7 +27,7 @@
 <body>
   <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
     <div class="top_links">
-      <a class="home_link" href="/index.html#AngularOverview" target="_top"><i class="fa fa-home"></i></a>
+      <a class="home_link" href="/index.html#HowAnAngularAppWorks" target="_top"><i class="fa fa-home"></i></a>
       <span class="help_link" href="#"><i class="fa fa-question"></i></span>
       <div class="help_text">
         <div><span>N/Space</span><span>Next Slide</span></div>
@@ -47,7 +47,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section data-min-total="80"><h1>Angular Overview</h1></section>
+<section data-min-total="80"><h1>How An Angular App Works</h1></section>
 <section data-transition="zoom">
   <div class="copyright">
     <div class="note">
@@ -65,29 +65,30 @@
   </div>
 </section>
 
-
-<section data-min="15"><h1>What is Angular (and what is not)?</h1></section>
-<section><h2>What is Angular (and what is not)?</h2>
+<section data-min="20"><h1>Overview</h1></section>
+<section><h2>Overview</h2>
   <section><h3>___SubSectionTitle___</h3>
 
   </section>
 </section>
 
-<section data-min="5"><h1>Angular's Versioning</h1></section>
-<section><h2>Angular's Versioning</h2>
+<section data-min="30"><h1>Frame our Demo Project in Angular terms</h1></section>
+<section><h2>Frame our Demo Project in Angular terms</h2>
   <section><h3>___SubSectionTitle___</h3>
 
   </section>
 </section>
 
-<section data-min="15"><h1>Get familiar with Angular CLI</h1></section>
-<section><h2>Get familiar with Angular CLI</h2>
-  <section><h3>Turn on auto completion</h3>
-    <dl class="fa">
-      <dt><a href="https://github.com/angular/angular-cli/wiki/stories-autocompletion">stories autocompletion</a></dt>
-    </dl>
+<section data-min="30"><h1>Hands on the Demo Project</h1></section>
+<section><h2>Hands on the Demo Project</h2>
+  <section><h3>___SubSectionTitle___</h3>
+
   </section>
-  <section><h3>References</h3>
+</section>
+
+<section data-min="1"><h1>References</h1></section>
+<section><h2>References</h2>
+  <section><h3>Readings</h3>
     <dl class="fa">
       <dt><a href="https://github.com/angular/angular-cli/wiki">Angular CLI wiki</a></dt>
       <dt><a href="https://www.sitepoint.com/ultimate-angular-cli-reference/">The Ultimate Angular CLI Reference Guide</a></dt>
@@ -95,81 +96,8 @@
   </section>
 </section>
 
-<!-- <section data-min="5"><h1><code>ng new</code> - bootstrap a new Angular5 project</h1></section>
-<section><h2><code>ng new</code> - bootstrap a new Angular5 project</h2>
-  <section><h3>___SubSectionTitle___</h3>
 
-  </section>
-</section> -->
-
-<!-- <section data-min="40"><h1>Angular5 Architecure Overview</h1></section>
-<section><h2>Angular5 Architecure Overview</h2>
-  <section><h3>___SubSectionTitle___</h3>
-
-  </section>
-</section> -->
-
-<section data-min="10"><h1>Update project in Angular5 to Angular6</h1></section>
-<section><h2>Update Angular5 to Angular6</h2>
-  <section><h3>Prerequisites</h3>
-    <dl class="fa">
-      <dt>Node version should be > 8.9</dt>
-      <dt>Update to the latest @angular/cli version</dt>
-      <dd><a href="https://github.com/angular/angular-cli#updating-angular-cli">Updating Angular CLI</a></dd>
-    </dl>
-  </section>
-  <section><h3>update CLI</h3>
-    <dl class="fa">
-      <dt>Update your Angular CLI globally and locally, and migrate the configuration to the new angular.json format by running the following</dt>
-    </dl>
-    <pre><code rel="Terminal" class="bash" data-noescape>
-      npm install -g @angular/cli
-
-      cd path/to/project
-      npm install @angular/cli
-      ng update @angular/cli
-    </code></pre>
-  </section>
-  <section><h3>update packages</h3>
-    <dl class="fa">
-      <dt>Update all of your Angular framework packages to v6, and the correct version of RxJS and TypeScript.</dt>
-    </dl>
-    <pre><code rel="Terminal" class="bash" data-noescape>
-      ng update @angular/core
-
-      # update Angular Material to the latest version:
-      ng update @angular/material
-
-      # check for other dependencies that might need update:
-      ng update
-    </code></pre>
-  </section>
-  <section><h3>update to RxJS 6 </h3>
-    <dl class="fa">
-      <dt>Remove deprecated RxJS 6 features using <a href="https://github.com/ReactiveX/rxjs-tslint">rxjs-tslint</a> auto update rules</dt>
-      <pre><code rel="Terminal" class="bash" data-noescape>
-      npm install -g rxjs-tslint
-    </code></pre>
-    <dd style="font-size: .7em">If you have npm errors, downgrade to npm@5.6.0 (<a href="https://github.com/npm/npm/issues/19989">npm issues #19989</a>)</dd>
-    <pre style="width: 80%;font-size: .8em;"><code rel="Terminal - Optional Step" class="bash" data-noescape>
-      npm i -g npm@5.6.0
-    </code></pre>
-    <dt>After successful installation of rxjs-tslint:</dt>
-     <pre><code rel="Terminal" class="bash" data-noescape>
-      # automatically migrate your project:
-      rxjs-5-to-6-migrate -p src/tsconfig.app.json
-    </code></pre>
-    </dl>
-  </section>
-  <section><h3>References</h3>
-    <dl class="fa">
-      <dt><a href="https://update.angular.io/">Angular Update Guide</a></dt>
-    </dl>
-  </section>
-</section>
-
-
-<!-- <section id="hw"><h1>Exercises</h1></section>
+<section id="hw" data-min="4"><h1>Exercises</h1></section>
 <section><h2>Task1: Task1Title</h2>
   <section><h3>The Task</h3>
     <dl class="fa">
@@ -182,9 +110,9 @@
   <dl class="fa">
     <dt>PLease, prefix your filenames/archive with your name initials, before sending.</dt>
     <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
-    <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=_AngularOverview_">ProgressBG.WWW.Courses@gmail.com</a></dt>
+    <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=_HowAnAngularAppWorks_">ProgressBG.WWW.Courses@gmail.com</a></dt>
   </dl>
-</section> -->
+</section>
 
 
 <section class="disclaimer" data-background="/BKA-Angular/outfit/images/for_slides/the_end_on_sand.jpg">
