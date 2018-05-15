@@ -11,6 +11,17 @@ subl_*
 # shell files
 *.sh
 
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# System Files
+.DS_Store
+Thumbs.db
+
 node_modules/
 **/node_modules/
 .sass-cache
@@ -22,7 +33,3 @@ node_modules/
 # all hidden folders:
 .*/**
 students/**
-
-# all hidden files
-.*
-!.gitignore

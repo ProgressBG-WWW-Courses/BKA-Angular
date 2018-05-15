@@ -373,7 +373,11 @@ section.copyright>.license{
 }
 .reveal .inline code{
   display: inline-block;
+  white-space: nowrap;
   width: 100%;
+}
+.reveal dt>code, .reveal p>code, .reveal dd>code{
+  white-space: nowrap;
 }
 .text_left{
   text-align: left;

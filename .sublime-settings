@@ -1,0 +1,16 @@
+{
+	"ignored_packages":
+	[
+		"Vintage",
+		// "Virtualenv",
+		// "Python Completions",
+		"Python Debugger",
+		"rsub",
+		"sublime-text-2-buildview",
+		"AdvancedNewFile",
+		// "AutoDocstring",
+		// "Fold Python Docstrings",
+		"Hermes"
+	],
+	"font_size": 13
+}

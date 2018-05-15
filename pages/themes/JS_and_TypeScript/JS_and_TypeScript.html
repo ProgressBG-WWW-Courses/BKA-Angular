@@ -1035,8 +1035,6 @@
   </section>
 </section>
 
-
-
 <section data-min="10"><h1>Working with modules</h1></section>
 <section><h2>Working with modules</h2>
   <section><h3>Overview</h3>
@@ -1119,6 +1117,9 @@
 <section data-min="10"><h1>TypeScript</h1></section>
 <section><h2>TypeScript</h2>
   <section><h3>Overview</h3>
+    <a href="images/ES5-ES6-TS.png"><img src="images/ES5-ES6-TS.png"></a>
+  </section>
+  <section><h3>Overview</h3>
     <dl class="fa">
       <dl class="fa">
         <dt>TypeScript is a superset of JavaScript, which means each valid JavaScript program is automatically a valid TypeScript programme.</dt>
@@ -1137,10 +1138,60 @@
         Version 2.8.1
     </code></pre>
   </section>
+  <section style="font-size: .8em"><h3>Usage</h3>
+    <dl class="fa">
+      <dt>We can transpile TypeScript (or ES6) to ES5 using the TypeSctipt compiler</dt>
+      <dt>Let's have a valid ES6 file:</dt>
+    </dl>
+    <pre><code rel="ES6toES5.js" class="js" style="height: 30vh;">
+      "use strict";
+
+      class Animal {
+        constructor(name) {
+          this.name = name;
+        }
+
+        eat(){
+          console.log(`${this.name} is eating`);
+        }
+
+        speak() {
+          console.log(`${this.name} makes an animal noise`);
+        }
+      }
+
+      class Dog extends Animal {
+        constructor(name) {
+          super(name);
+        }
+
+        speak() {
+          console.log(`${this.name} barks`);
+        }
+      }
+
+      var pluto = new Dog('Pluto');
+      pluto.speak();
+      pluto.eat();
+    </code></pre>
+    <dl class="fa">
+      <dt>We can transpile it to ES5 just by changing its extension to <span class="note">.ts</span> and:</dt>
+    </dl>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      tsc ES6toES5.ts
+    </code></pre>
+  </section>
+  <section><h3>TypeScript Features</h3>
+    <dl class="fa">
+      <dt>Types</dt>
+      <dt>Interfaces</dt>
+      <dt>Shapes</dt>
+      <dt>Decorators</dt>
+    </dl>
+  </section>
 </section>
 
-<section data-min="10"><h1>Types in TypeScript</h1></section>
-<section><h2>What is static typing?</h2>
+<section data-min="10"><h2>Static Typing with TypeScript</h2>
   <section><h3>Static Typing vs Dynamic typing</h3>
     <dl class="fa">
       <dt>In dynamically typed languages(JavaScript, Python, PHP, Ruby...) types of variables are generally not known at compile time.</dt>
@@ -1150,7 +1201,7 @@
     <dl class="fa">
       <dt>In a statically typed language, variables, parameters, and objects members (i.e properties) have types that the compiler knows at compile time.</dt>
       <dt>The compiler use that information to perform type checks and to optimize the compiled code.</dt>
-      <dt>TypeScript introduces static types into JavaScript!</dt>
+      <dt class="note">TypeScript introduces static types into JavaScript!</dt>
     </dl>
   </section>
   <section><h3>The Benefits of Static Typing</h3>
@@ -1159,16 +1210,6 @@
       <dt>It helps IDEs with auto-completion</dt>
       <dt>Type annotations are useful for documentation, which helps large teams to collaborate</dt>
       <dt>Static Typing in JavaScript makes it less "ugly" for developers coming from Java, #C, and so on.</dt>
-    </dl>
-  </section>
-</section>
-<section><h2>Static Typing with TypeScript</h2>
-  <section><h3>TypeScript Features</h3>
-    <dl class="fa">
-      <dt>Types</dt>
-      <dt>Interfaces</dt>
-      <dt>Shapes</dt>
-      <dt>Decorators</dt>
     </dl>
   </section>
   <section><h3>JS Types</h3>
@@ -1185,7 +1226,7 @@
       <dd><span class="note">void</span> - nothing</dd>
     </dl>
   </section>
-  <section><h3>examples</h3>
+  <section><h3>Typing - examples</h3>
     <pre><code rel="TS" class="ts" style="font-size: 1em; min-height: 50vh;">
       let start: boolean = false;
       let age: number = 16;
@@ -1205,20 +1246,49 @@
       showMessage('Howdy!');
     </code></pre>
   </section>
-  <section><h3>Types in functions</h3>
+  <section><h3>Early errors/bug finding</h3>
     <dl class="fa">
-      <dt>TypeScript compiler requires the number of arguments given to a function to match the number of parameters the function expects</dt>
+      <dt>TypeScript can help us to discover errors and bug-candidates while we write the program:</dt>
     </dl>
+    <pre><code rel="JS" class="js">
+      let add = function(x,y) {
+        console.log(x+y)
+      }
+
+      # this is legal JS call, but TypScript will raise an error:
+      add(3);
+
+      #test.ts(5,1): error TS2554: Expected 2 arguments, but got 1.
+    </code></pre>
   </section>
-  <section><h3>Interfaces</h3>
+</section>
+
+<section data-min="5"><h2>Interfaces</h2>
+  <section><h3>Overview</h3>
     <dl class="fa">
-      <dt><span class="note">Interface = Obligation</span></dt>
-      <dt>An interface is a way to define a contract on a function with respect to the arguments and their type.</dt>
-      <dt>An interface can also be used with a Class to define custom types.</dt>
       <dt>An interface is an abstract type, i.e. it does not contain any executable code as a class does. It only defines the 'signature' or shape of the objects.</dt>
+      <dt>An interface is a way to define a contract on a function with respect to the arguments and their type.</dt>
+      <dt>Interface = Obligation</dt>
+      <dt>An interface can also be used with a Class to define custom types.</dt>
     </dl>
   </section>
-  <section><h3>Interfaces - example</h3>
+  <section><h3>Interfaces - example 1</h3>
+    <pre><code rel="TS" class="js">
+      "use strict";
+      interface IDog{
+        name: string,
+        speak: ()=>void
+      }
+
+      var pluto: IDog = {
+        name:"Pluto",
+        speak: ()=>console.log("I'm "+pluto.name)
+      }
+
+      pluto.speak();
+    </code></pre>
+  </section>
+  <section><h3>Interfaces - example 2</h3>
     <pre><code rel="TS" class="ts">
       interface Callback {
         (data: any): void;
@@ -1232,6 +1302,58 @@
 
       getData("Do something else with data")
       // error TS2345: Argument of type '"Do something else with data"' is not assignable to parameter of type 'Callback'
+    </code></pre>
+  </section>
+</section>
+
+<section data-min="5"><h2>Classes</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt>In TypeScript we define classes similarly to the ES6 class syntax.</dt>
+      <dt>But in TypeScript public parameters in a constructor is a shorthand to automatically create properties with that name.</dt>
+    </dl>
+    <pre><code rel="TS" class="typescript">
+      class Person {
+        constructor(public firstName: string, public surName: string) {
+          // no need for: this.firstName = firstName
+          this.name = `${this.firstName} ${this.surName}`
+        }
+      }
+    </code></pre>
+  </section>
+  <section><h3>Inheritance</h3>
+    <dl class="fa">
+      <dt>TypeScrip makes inheritance easy and looking like classical class-based inheritance</dt>
+    </dl>
+    <pre><code rel="TS" class="typescript" style="font-size: .8em">
+      class Person {
+        name: string;
+
+        constructor(public firstName: string, public surName: string) {
+          this.name = `${this.firstName} ${this.surName}`;
+        }
+
+        greet(){
+          console.log(`Hello, my name is ${this.name}.`)
+        }
+      }
+
+      class Student extends Person{
+        constructor(firstName: string, surName: string){super(firstName, surName)}
+
+        greet(){
+          // if we want we can reuse even the constructor's greet() method
+          // super.greet();
+          // or just to overwrite it:
+          console.log(`I'm late for school, so see you...`)
+        }
+      }
+
+      let maria = new Person("Maria", "Popova");
+      let ivan = new Student("Ivan", "Ivanov");
+
+      maria.greet();
+      ivan.greet();
     </code></pre>
   </section>
 </section>

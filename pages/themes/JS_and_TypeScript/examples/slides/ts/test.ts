@@ -1,5 +1,5 @@
-var testInt: number;
-testInt = 5;
+let add = function(x,y) {
+	console.log(x+y)
+}
 
-var test: string = "hello world";
-console.log(test);
+add(3);

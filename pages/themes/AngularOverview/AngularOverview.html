@@ -68,46 +68,343 @@
 
 <section data-min="15"><h1>What is Angular (and what is not)?</h1></section>
 <section><h2>What is Angular (and what is not)?</h2>
-  <section><h3>___SubSectionTitle___</h3>
-
-  </section>
-</section>
-
-<section data-min="5"><h1>Angular's Versioning</h1></section>
-<section><h2>Angular's Versioning</h2>
-  <section><h3>___SubSectionTitle___</h3>
-
-  </section>
-</section>
-
-<section data-min="15"><h1>Get familiar with Angular CLI</h1></section>
-<section><h2>Get familiar with Angular CLI</h2>
-  <section><h3>Turn on auto completion</h3>
+  <section style="font-size: .8em">
     <dl class="fa">
-      <dt><a href="https://github.com/angular/angular-cli/wiki/stories-autocompletion">stories autocompletion</a></dt>
+      <dt>A <span class="note">Front-End</span> web application framework</dt>
+      <dd>strongly opinionated, imposing good practictices and cutting-edge Web Technologies</dd>
+      <dd>not a library (like jQuery or React)</dd>
+      <dt>A <span class="note">platform</span> - apps created by Angular runs on:</dt>
+      <dd ><span class="note">Web</span></dd>
+      <dd><span class="note">iOS and Android</span> - using <a href="https://www.nativescript.org/">native script</a> </dd>
+      <dd><span class="note">desktop (Windows, Linux, MacOS)</span> - using <a href="https://electronjs.org/">electron</a></dd>
+      <dt>Created and led by the Angular team at <span class="note">Google</span>.</dt>
+      <dd>the language - <span class="note">TypeScript</span>, created and supported by <span class="note">Microsoft</span>.</dd>
+      <dt><span class="note">Open-source</span> project: <a href="https://github.com/angular/angular">github.com/angular</a></dt>
+    </dl>
+  </section>
+  <section>
+    <dl class="fa">
+      <dt><span class="note">Angular</span> is a total rewrite of the <span class="note">AngularJS</span> framework.</dt>
+      <dd><span class="note">Angular</span> is the official name of all Angular2+ versions</dd>
+      <dd><span class="note">AngularJS</span> is the official name of Angular1 version</dd>
+      <dt>Angular is <span class="note">not an MVC</span>, but a <span class="note">component-based</span> architecture.</dt>
+    </dl>
+  </section>
+  <section>
+    <dl class="fa">
+      <dt>Angular supports the cutting-edge technologies and best practices in Front-End Development:</dt>
+      <dd>Components decoupling, separation of concerns</dd>
+      <dd>Declarative templates</dd>
+      <dd>Services</dd>
+      <dd>Dependency Injection</dd>
+      <dd>Routers</dd>
+      <dd>Observables, RxJS integrated</dd>
+    </dl>
+  </section>
+</section>
+<section data-min="5"><h1>Angular Versioning</h1></section>
+<section><h2>Angular's Versioning</h2>
+  <section><h3>Angular vs AngularJS</h3>
+    <p>There are 2 separated branches of Angular frameworks!</p>
+    <dl class="fa">
+      <dt><b>AngularJS</b> is the name for all v1.x versions of Angular</dt>
+      <dd><a href="https://github.com/angular/angular.js">angular.js on github</a></dd>
+      <dt><b>Angular</b> is the name, under which are developed all version after 2.0</dt>
+      <dd><a href="https://github.com/angular/angular">angular on github</a></dd>
+    </dl>
+  </section>
+  <section><h3>Semantic versioning</h3>
+    <p>From version 2.0, Angular team adopted the<br> <em>semantic versioning:</em></p>
+    <a href="images/AngularSemanticVersioning.png"><img src="images/AngularSemanticVersioning.png"></a>
+  </section>
+</section>
+
+<section data-min="20"><h1>Get familiar with Angular CLI</h1></section>
+<section><h2>Get familiar with Angular CLI</h2>
+  <section><h3>Overview</h3>
+    <div style="font-style: italic;">From <a href="https://github.com/angular/angular-cli/wiki">angular-cli/wiki</a></div>
+    <blockquote cite="https://github.com/angular/angular-cli/wiki">
+
+      The Angular CLI is a tool to initialize, develop, scaffold and maintain Angular applications.
+    </blockquote>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      # Create, build and run(serve with live-reload) an Angular Project:
+      ng new MyApp
+      cd MyApp
+      ng serve --open
+    </code></pre>
+  </section>
+  <section><h3>Main commands</h3>
+    <table style="font-size: .6em">
+      <tr><th>Command</th><th>Action</th></tr>
+      <tr><td>help</td><td>Show help</td></tr>
+      <tr><td>new</td><td>Creates a new directory and a new Angular app.</td></tr>
+      <tr><td>update</td><td>Updates your application and its dependencies.</td></tr>
+      <tr><td>serve</td><td>Builds and serves your app, rebuilding on file changes.</td></tr>
+      <tr><td>build</td><td>Builds your app and places it into the output path (dist/ by default).</td></tr>
+      <tr><td>generate</td><td>Generates and/or modifies files based on a schematic.</td></tr>
+      <tr><td>add</td><td>Add support for a library to your project.</td></tr>
+      <tr><td>test</td><td>Run unit tests in existing project.</td></tr>
+      <tr><td>e2e</td><td>Run e2e tests in existing project.</td></tr>
+      <tr><td>lint</td><td>Lints code in existing project.</td></tr>
+      <!-- <tr><td>xi18n</td><td>Extracts i18n messages from source code.</td></tr> -->
+      <!-- <tr><td>config</td><td>Get/set configuration values.</td></tr> -->
+      <tr><td>doc</td><td>Opens the official Angular API documentation for a given keyword.</td></tr>
+    </table>
+  </section>
+  <section><h3>--help</h3>
+    <p>You can get help for any ng command, if you put at the end of it the option <code>--help</code></p>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      ng new --help
+
+      usage: ng new &lt;name&gt; [options]
+      options:
+        --collection (-c)
+          Schematics collection to use.
+        --dry-run (-d)
+          Run through without making any changes.
+        --force (-f)
+          Forces overwriting of files.
+        --inline-style (-s)
+          Specifies if the style will be in the ts file.
+        --inline-template (-t)
+          Specifies if the template will be in the ts file.
+        --prefix (-p)
+          The prefix to apply to generated selectors.
+        --routing
+          Generates a routing module.
+        --skip-package-json
+          Do not add dependencies to package.json.
+        --skip-tests (-S)
+          Skip creating spec files.
+        --style
+          The file extension to be used for style files.
+        --verbose (-v)
+          Adds more details to output logging.
+        --view-encapsulation
+          Specifies the view encapsulation strategy.
+    </code></pre>
+  </section>
+  <section><h3>--help - example</h3>
+    <p style="font-size: .8em">If we want to check the available options for the command <code>ng generate component</code>, we can get help instantly:</p>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      ng generate component --help
+      usage: ng generate component <name> [options]
+      options:
+        --change-detection (-c)
+          Specifies the change detection strategy.
+        --dry-run (-d)
+          Run through without making any changes.
+        --export
+          Specifies if declaring module exports the component.
+        --flat
+          Flag to indicate if a dir is created.
+        --force (-f)
+          Forces overwriting of files.
+        --inline-style (-s)
+          Specifies if the style will be in the ts file.
+        --inline-template (-t)
+          Specifies if the template will be in the ts file.
+        --module (-m)
+          Allows specification of the declaring module.
+        --prefix (-p)
+          The prefix to apply to generated selectors.
+        --project
+          The name of the project.
+        --selector
+          The selector to use for the component.
+        --skip-import
+          Flag to skip the module import.
+        --spec
+          Specifies if a spec file is generated.
+        --styleext
+          The file extension to be used for style files.
+        --view-encapsulation (-v)
+          Specifies the view encapsulation strategy.
+    </code></pre>
+  </section>
+  <section><h3>--dry-run</h3>
+    <dl class="fa">
+      <dt>Any CLI command can be run with <code>--dry-run</code> option, which will prevent CLI from making any changes to your project.</dt>
+      <dt>Dry-run mode is useful to preview what an ng command will do, especially, if you use it with <code>--verbose</code> option.</dt>
+    </dl>
+  </section>
+  <section><h3>--dry-run - example</h3>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      ng new SimplestApp --dry-run
+      CREATE SimplestApp/README.md (1028 bytes)
+      CREATE SimplestApp/angular.json (3444 bytes)
+      CREATE SimplestApp/package.json (1316 bytes)
+      CREATE SimplestApp/tsconfig.json (384 bytes)
+      CREATE SimplestApp/tslint.json (2805 bytes)
+      CREATE SimplestApp/.editorconfig (245 bytes)
+      CREATE SimplestApp/.gitignore (503 bytes)
+      CREATE SimplestApp/src/environments/environment.prod.ts (51 bytes)
+      CREATE SimplestApp/src/environments/environment.ts (631 bytes)
+      CREATE SimplestApp/src/favicon.ico (5430 bytes)
+      CREATE SimplestApp/src/index.html (298 bytes)
+      CREATE SimplestApp/src/main.ts (370 bytes)
+      CREATE SimplestApp/src/polyfills.ts (3194 bytes)
+      CREATE SimplestApp/src/test.ts (642 bytes)
+      CREATE SimplestApp/src/assets/.gitkeep (0 bytes)
+      CREATE SimplestApp/src/styles.css (80 bytes)
+      CREATE SimplestApp/src/browserslist (375 bytes)
+      CREATE SimplestApp/src/karma.conf.js (964 bytes)
+      CREATE SimplestApp/src/tsconfig.app.json (194 bytes)
+      CREATE SimplestApp/src/tsconfig.spec.json (282 bytes)
+      CREATE SimplestApp/src/tslint.json (314 bytes)
+      CREATE SimplestApp/src/app/app.module.ts (314 bytes)
+      CREATE SimplestApp/src/app/app.component.css (0 bytes)
+      CREATE SimplestApp/src/app/app.component.html (1141 bytes)
+      CREATE SimplestApp/src/app/app.component.spec.ts (986 bytes)
+      CREATE SimplestApp/src/app/app.component.ts (207 bytes)
+      CREATE SimplestApp/e2e/protractor.conf.js (752 bytes)
+      CREATE SimplestApp/e2e/src/app.e2e-spec.ts (299 bytes)
+      CREATE SimplestApp/e2e/src/app.po.ts (208 bytes)
+      CREATE SimplestApp/e2e/tsconfig.e2e.json (213 bytes)
+
+      NOTE: Run with "dry run" no changes were made.
+    </code></pre>
+  </section>
+  <section><h3>--skip-tests</h3>
+    <dl class="fa">
+      <dt>the <code>--skip-tests</code> options instructs Angular to not create spec files used for testing.</dt>
+    </dl>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      ng new SimplestApp --skip-tests --dry-run
+      CREATE SimplestApp/README.md (1028 bytes)
+      CREATE SimplestApp/angular.json (3978 bytes)
+      CREATE SimplestApp/package.json (1316 bytes)
+      CREATE SimplestApp/tsconfig.json (384 bytes)
+      CREATE SimplestApp/tslint.json (2805 bytes)
+      CREATE SimplestApp/.editorconfig (245 bytes)
+      CREATE SimplestApp/.gitignore (503 bytes)
+      CREATE SimplestApp/src/environments/environment.prod.ts (51 bytes)
+      CREATE SimplestApp/src/environments/environment.ts (631 bytes)
+      CREATE SimplestApp/src/favicon.ico (5430 bytes)
+      CREATE SimplestApp/src/index.html (298 bytes)
+      CREATE SimplestApp/src/main.ts (370 bytes)
+      CREATE SimplestApp/src/polyfills.ts (3194 bytes)
+      CREATE SimplestApp/src/test.ts (642 bytes)
+      CREATE SimplestApp/src/assets/.gitkeep (0 bytes)
+      CREATE SimplestApp/src/styles.css (80 bytes)
+      CREATE SimplestApp/src/browserslist (375 bytes)
+      CREATE SimplestApp/src/karma.conf.js (964 bytes)
+      CREATE SimplestApp/src/tsconfig.app.json (194 bytes)
+      CREATE SimplestApp/src/tsconfig.spec.json (282 bytes)
+      CREATE SimplestApp/src/tslint.json (314 bytes)
+      CREATE SimplestApp/src/app/app.module.ts (314 bytes)
+      CREATE SimplestApp/src/app/app.component.css (0 bytes)
+      CREATE SimplestApp/src/app/app.component.html (1141 bytes)
+      CREATE SimplestApp/src/app/app.component.ts (207 bytes)
+      CREATE SimplestApp/e2e/protractor.conf.js (752 bytes)
+      CREATE SimplestApp/e2e/src/app.e2e-spec.ts (299 bytes)
+      CREATE SimplestApp/e2e/src/app.po.ts (208 bytes)
+      CREATE SimplestApp/e2e/tsconfig.e2e.json (213 bytes)
+
+      NOTE: Run with "dry run" no changes were made.
+    </code></pre>
+  </section>
+  <section><h3>--skip-install</h3>
+    <dl class="fa">
+      <dt>Sometime, you may want to skip the installation of node-modules dependencies, when you create the new app (you can always install them after with <code>npm install</code>)</dt>
+      <dt>A common use-case is when you do not want to use npm, but other package manager, like yarn.</dt>
+    </dl>
+  </section>
+  <section><h3>Skip node-modules installation - example</h3>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      ng new SimplestApp --skip-install --skip-tests
+
+      CREATE SimplestApp/README.md (1028 bytes)
+      CREATE SimplestApp/angular.json (3978 bytes)
+      CREATE SimplestApp/package.json (1316 bytes)
+      CREATE SimplestApp/tsconfig.json (384 bytes)
+      CREATE SimplestApp/tslint.json (2805 bytes)
+      CREATE SimplestApp/.editorconfig (245 bytes)
+      CREATE SimplestApp/.gitignore (503 bytes)
+      CREATE SimplestApp/src/environments/environment.prod.ts (51 bytes)
+      CREATE SimplestApp/src/environments/environment.ts (631 bytes)
+      CREATE SimplestApp/src/favicon.ico (5430 bytes)
+      CREATE SimplestApp/src/index.html (298 bytes)
+      CREATE SimplestApp/src/main.ts (370 bytes)
+      CREATE SimplestApp/src/polyfills.ts (3194 bytes)
+      CREATE SimplestApp/src/test.ts (642 bytes)
+      CREATE SimplestApp/src/assets/.gitkeep (0 bytes)
+      CREATE SimplestApp/src/styles.css (80 bytes)
+      CREATE SimplestApp/src/browserslist (375 bytes)
+      CREATE SimplestApp/src/karma.conf.js (964 bytes)
+      CREATE SimplestApp/src/tsconfig.app.json (194 bytes)
+      CREATE SimplestApp/src/tsconfig.spec.json (282 bytes)
+      CREATE SimplestApp/src/tslint.json (314 bytes)
+      CREATE SimplestApp/src/app/app.module.ts (314 bytes)
+      CREATE SimplestApp/src/app/app.component.css (0 bytes)
+      CREATE SimplestApp/src/app/app.component.html (1141 bytes)
+      CREATE SimplestApp/src/app/app.component.ts (207 bytes)
+      CREATE SimplestApp/e2e/protractor.conf.js (752 bytes)
+      CREATE SimplestApp/e2e/src/app.e2e-spec.ts (299 bytes)
+      CREATE SimplestApp/e2e/src/app.po.ts (208 bytes)
+      CREATE SimplestApp/e2e/tsconfig.e2e.json (213 bytes)
+    </code></pre>
+  </section>
+  <section><h3 class="advanced">Turn on auto completion</h3>
+    <dl class="fa">
+      <dt><b>bash</b> (or Git BASH for Windows) and <b>zsh</b> users can turn on Angular CLI auto-completions, following the steps given in: <a href="https://github.com/angular/angular-cli/wiki/stories-autocompletion">stories autocompletion</a></dt>
+      <dt>To get <b>bash on Windows</b>, you can install <a href="https://git-scm.com/downloads">Git for Windows</a>, which includes the GitBash.</dt>
     </dl>
   </section>
   <section><h3>References</h3>
     <dl class="fa">
-      <dt><a href="https://github.com/angular/angular-cli/wiki">Angular CLI wiki</a></dt>
+      <dt><a href="https://github.com/angular/angular-cli/wiki">angular-cli/wiki</a></dt>
+      <dt><a href="https://cli.angular.io/reference.pdf">cli.angular.io/reference.pdf</a></dt>
       <dt><a href="https://www.sitepoint.com/ultimate-angular-cli-reference/">The Ultimate Angular CLI Reference Guide</a></dt>
     </dl>
   </section>
 </section>
 
-<!-- <section data-min="5"><h1><code>ng new</code> - bootstrap a new Angular5 project</h1></section>
-<section><h2><code>ng new</code> - bootstrap a new Angular5 project</h2>
-  <section><h3>___SubSectionTitle___</h3>
-
+<section data-min="5"><h1>Create the HelloWorld project in 5 minutes</h1></section>
+<section><h2>Create the HelloWorld project in 5 minutes</h2>
+  <section><h3>Prerequisites</h3>
+    <dl class="fa">
+      <dt>Make sure, you can open your Terminal and navigate into the folder where you want the Angular Project to be created.</dt>
+      <dt>For VSCode users, check: <a href="https://code.visualstudio.com/docs/editor/integrated-terminal">Integrated Terminal</a> docs.</dt>
+    </dl>
   </section>
-</section> -->
+  <section><h3></h3>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      # create the project
+      ng new HelloWorld
 
-<!-- <section data-min="40"><h1>Angular5 Architecure Overview</h1></section>
-<section><h2>Angular5 Architecure Overview</h2>
-  <section><h3>___SubSectionTitle___</h3>
+      # go to project root folder
+      cd HelloWorld
 
+      # run the HelloWorld, using local server
+      ng serve --open
+    </code></pre>
+    <dl class="fa">
+      <dt>the <code>--open</code> option instructs the serve to open the URL at which the project will be served. The default is : <a href="http://localhost:4200/">http://localhost:4200/</a></dt>
+    </dl>
   </section>
-</section> -->
+</section>
+
+<section data-min="10"><h1>Project Deployment</h1></section>
+<section><h2>Project Deployment</h2>
+  <section><h3>Deploy the HelloWorld App</h3>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      # generate a non-optimised build:
+      ng build
+
+      # the generated files will be quite big:
+      du -sh dist/
+      #6,5M    dist/
+
+      # generate production-optimised build:
+      ng build --prod
+
+      du -sh prod/
+      236K    prod/
+    </code></pre>
+  </section>
+</section>
 
 <section data-min="10"><h1>Update project in Angular5 to Angular6</h1></section>
 <section><h2>Update Angular5 to Angular6</h2>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>cli_commands</title>
+    <link rel="stylesheet" type="text/css" href="cli_commands.css">
+</head>
+<body>
+	<section><h1>Angular CLI Commands</h1>
+		<article><h2>Run new project</h2>
+			<pre><code rel="Terminal" class="bash" data-noescape>
+				# ng new ProjectName
+
+				# run teh surver and open the ProjectName in the browser:
+				cd ProjectName
+				ng serve --open
+			</code></pre>
+		</article>
+		<article><h2>Components</h2>
+			<dl class="fa">
+				<dt>Create</dt>
+				<pre><code rel="Terminal" class="bash" data-noescape>
+					# using full command
+					ng generate component my-new-component
+
+					# using the alias
+					ng g c my-new-component
+
+					# dry-run: will not make any folder changes, useful to preview.
+					ng g c --dry-run test
+				</code></pre>
+			</dl>
+		</article>
+	</section>
+
+</body>
+<script type="text/javascript" src="cli_commands.js"></script>
+</html>

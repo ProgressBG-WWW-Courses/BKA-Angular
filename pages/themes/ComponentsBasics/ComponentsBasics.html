@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>HowAnAngularAppWorks</title>
+  <title>ComponentsBasics</title>
   <link rel="shortcut icon" href="/BKA-Angular/favicon.ico">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -27,7 +27,7 @@
 <body>
   <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
     <div class="top_links">
-      <a class="home_link" href="/index.html#HowAnAngularAppWorks" target="_top"><i class="fa fa-home"></i></a>
+      <a class="home_link" href="/index.html#ComponentsBasics" target="_top"><i class="fa fa-home"></i></a>
       <span class="help_link" href="#"><i class="fa fa-question"></i></span>
       <div class="help_text">
         <div><span>N/Space</span><span>Next Slide</span></div>
@@ -47,7 +47,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section data-min-total="80"><h1>How An Angular App Works</h1></section>
+<section data-min-total="__X__"><h1>Components Basics</h1></section>
 <section data-transition="zoom">
   <div class="copyright">
     <div class="note">
@@ -65,94 +65,111 @@
   </div>
 </section>
 
-<section data-min="15"><h1>Project Directory Structure and Files</h1></section>
-<section><h2>Project Directory Structure and Files</h2>
-  <p><code>ng new</code> creates the following structure:</p>
-  <dl class="fa" style="font-size: .6em; line-height: 90%;">
-    <dt><code>angular.json</code> (<code>.angular-cli.json</code> in angular cli versions < 6.0)</dt>
-    <dd>configuration for Angular CLI</dd>
-    <dt><code>e2e/</code></dt>
-    <dd>for <em>end-to-end</em> (e2e) tests</dd>
-    <dt><code>node_modules/</code></dt>
-    <dd>here are installed project's node modules dependencies</dd>
-    <dt><code class="note">package.json</code></dt>
-    <dd><em>dependencies</em> and <em>devDependencies</em> sections specifies the node modules dependencies</dd>
-    <dt><code>package-lock.json</code></dt>
-    <dd>it is automatically generated for any operations where npm modifies either the node_modules tree, or package.json</dd>
-    <dt><code class="note">src/app/</code></dt>
-    <dd>here is the actual logic of your app</dd>
-    <dt><code>tsconfig.json</code></dt>
-    <dd>TypeScript compiler configuration</dd>
-    <dt><code>tslint.json</code></dt>
-    <dd>tslint configuration</dd>
-  </dl>
-</section>
 
-<section data-min="15"><h1>Angular5 Main Workflow Overview</h1></section>
-<section><h2>Angular5 Main Workflow Overview</h2>
+<section data-min="__Y__"><h1>Overview</h1></section>
+<section><h2>Overview</h2>
   <section>
-    <a href="images/AngularWorkflowOverview.png"><img src="images/AngularWorkflowOverview.png"></a>
+    <pre><code rel="JS" class="js">
+      @Component({
+        selector: 'app-root',
+        templateUrl: './app.component.html',
+        styleUrls: ['./app.component.css']
+      })
+      export class AppComponent {
+        title = 'app';
+      }
+    </code></pre>
+    <a href="images/AngularComponentBox_MY.png"><img src="images/AngularComponentBox_MY.png"></a>
   </section>
 </section>
 
-<section data-min="20"><h1>Angular Architecture Overview</h1></section>
-<section><h2>Angular Architecture Overview</h2>
+<section data-min="10"><h1>The app component tree</h1></section>
+<section><h2>The app component tree</h2>
   <section>
-    <p>The architecture overview as depicted in angular.io docs:</p>
-    <a href="images/overview2byAngTeam.png"><img src="images/overview2byAngTeam.png"></a>
-  </section>
-  <section>
-    <dl class="fa">
-      <dt>Angular app consists of one or more <span class="note">modules</span>.</dt>
-      <dt>Every Angular app has at least one module - the root module (AppModule)</dt>
-      <dt>Each module encompasses <span class="note">components</span> and <span class="note">services</span> </dt>
-      <dt>A component is a unit, containing the UI (HTML + CSS) and the JS code</dt>
-      <dt>Service - code, which is not intrinsic to a single component, i.e. the business logics.</dt>
-    </dl>
-  </section>
-  <section><h3>Components</h3>
-    <dl class="fa">
-      <dt>A component represents a patch of screen called a <em>view</em>, like nav bar, search, footer and etc.</dt>
-      <dt>They are independent, reusable, and are built on the concepts of <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a></dt>
-      <dd>Check the official Web Components repository: <a href="https://www.webcomponents.org/">@webcomponents.org</a></dd>
-    </dl>
-  </section>
-  <section><h3>Components</h3>
-    <dl class="fa">
-      <dt>Each component can consists of many other components (i.e. they form a <em>component tree</em>)</dt>
-      <dt>Components can communicate with each other</dt>
-      <dt>Angular creates, updates, and destroys components as the user moves through the application</dt>
-      <dt>A TypeScript class can become a component if it is decorated with <code>@Component</code> decorator</dt>
-    </dl>
-  </section>
-  <section><h3>Create Components</h3>
-    <dl class="fa">
-      <dt>When creating a new project, Angular creates for us only the main app component <em>app.component.*</em></dt>
-      <dt>We can create other components using the Angular CLI commands:</dt>
-      <pre><code rel="Terminal" class="bash" data-noescape>
-        ng generate component compName
-      </code></pre>
-      <dd>or by the short-hand commands:</dd>
-      <pre><code rel="Terminal" class="bash" data-noescape>
-        ng g c compName
-      </code></pre>
-    </dl>
+    <a href="images/ComponentTree-BookStoreSimple.png"><img src="images/ComponentTree-BookStoreSimple.png"></a>
   </section>
 </section>
 
-<section data-min="30"><h1>Frame our BookStore app in Angular terms</h1></section>
-<section><h2>Frame our BookStore app in Angular terms</h2>
-  <section>
-    <a href="images/BookStoreComponentsOverview.png"><img src="images/BookStoreComponentsOverview.png"></a>
-  </section>
-</section>
-
-<!-- <section data-min="30"><h1>Hands on the BookStore</h1></section>
-<section><h2>Hands on the BookStore</h2>
+<section><h2>Component Declaration</h2>
   <dl class="fa">
-    <dt>Create the main components for the demo BookStore, as show</dt>
+    <dt>When a component A has to use component B in its template, then component B must be made available to the component A. </dt>
+    <dt>Component B has to be declared in the module of the component A.</dt>
+    <dt>If the component B is declared in another module, the module must be imported into the module of the first component. Otherwise, the component won’t be compiled with the template.</dt>
   </dl>
-</section> -->
+</section>
+
+<section data-min="10"><h1>Components Metadata and  Decorators</h1></section>
+<section><h2>Components Decorators</h2>
+  <section>
+    <dl class="fa">
+      <dt>A component is a JavaScript class with a decorator.</dt>
+      <dt>The decorator defines how the component should look on the page, how it has to be used, and the dependencies of the component.</dt>
+      <dt>In decorator, we can specify various component metadata</dt>
+    </dl>
+  </section>
+  <section><h3>Metadata Properties:</h3>
+    <p class="note">The minimum metadata for a component are the ones specifying the selector, template and style:</p>
+    <dl class="fa">
+      <dt><strong>selector</strong> - css selector that identifies this component in a template</dt>
+      <dt><strong>styleUrls</strong> - list of urls to stylesheets to be applied to this component's view</dt>
+      <dt><strong>styles</strong> - inline-defined styles to be applied to this component's view</dt>
+      <dt><strong>template</strong> - inline-defined template for the view</dt>
+      <dt><strong>templateUrl</strong> - url to an external file containing a template for the view</dt>
+    </dl>
+  </section>
+  <section style="font-size: .9em;"><h3>Metadata Properties:</h3>
+    <dl class="fa">
+      <dt><strong>animations</strong> - list of animations of this component</dt>
+      <dt><strong>changeDetection</strong> - change detection strategy used by this component</dt>
+      <dt><strong>encapsulation</strong> - style encapsulation strategy used by this component</dt>
+      <dt><strong>entryComponents</strong> - list of components that are dynamically inserted into the view of this component</dt>
+      <dt><strong>exportAs</strong> - name under which the component instance is exported in a template</dt>
+    </dl>
+  </section>
+  <section style="font-size: .9em;"><h3>Metadata Properties:</h3>
+    <dl class="fa">
+      <dt><strong>inputs</strong> - list of class property names to data-bind as component inputs</dt>
+      <dt><strong>outputs</strong> - list of class property names that expose output events that others can
+      subscribe to</dt>
+      <dt><strong>providers</strong> - list of providers available to this component and its children</dt>
+      <dt><strong>viewProviders</strong> - list of providers available to this component and its view children</dt></dt>
+      <dt><strong>queries</strong> -  configure queries that can be injected into the component</dt>
+    </dl>
+  </section>
+
+</section>
+
+<section data-min="10"><h1>The Selector</h1></section>
+<section><h2>The Selector</h2>
+  <section><h3></h3>
+    <dl class="fa">
+      <dt><span class="note">element-name</span> - select by element name.</dt>
+      <dt><span class="note">.class</span> - select by class name.</dt>
+      <dt><span class="note">[attribute]</span> - select by attribute name.</dt>
+      <dt><span class="note">[attribute=value]</span> - select by attribute name and value.</dt>
+      <dt><span class="note">:not(sub_selector)</span> - select only if the element does not match the sub_selector.</dt>
+      <dt><span class="note">selector1, selector2</span> - select if either selector1 or selector2 matches.</dt>
+    </dl>
+  </section>
+</section>
+
+
+<section data-min="10"><h1>The Template</h1></section>
+<section><h2>The Template</h2>
+  <section>
+
+  </section>
+  <section><h3>Template Reference Variables </h3></section>
+</section>
+
+
+<section data-min="15"><h1>Create the Components of BookStore</h1></section>
+<section><h2>Create the Components of BookStore</h2>
+  <section><h3>___SubSectionTitle___</h3>
+
+  </section>
+</section>
+
 
 <section data-min="1"><h1>References</h1></section>
 <section><h2>References</h2>
@@ -164,7 +181,7 @@
   </section>
 </section>
 
-<!--
+
 <section id="hw" data-min="4"><h1>Exercises</h1></section>
 <section><h2>Task1: Task1Title</h2>
   <section><h3>The Task</h3>
@@ -178,11 +195,11 @@
   <dl class="fa">
     <dt>PLease, prefix your filenames/archive with your name initials, before sending.</dt>
     <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
-    <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=_HowAnAngularAppWorks_">ProgressBG.WWW.Courses@gmail.com</a></dt>
+    <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=_ComponentsBasics_">ProgressBG.WWW.Courses@gmail.com</a></dt>
   </dl>
 </section>
 
- -->
+
 <section class="disclaimer" data-background="/BKA-Angular/outfit/images/for_slides/the_end_on_sand.jpg">
   <p>These slides are based on</p>
   <p>customised version of </p>
