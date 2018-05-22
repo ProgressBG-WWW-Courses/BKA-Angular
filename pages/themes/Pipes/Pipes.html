@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Pipes</title>
+  <link rel="shortcut icon" href="/BKA-Angular/favicon.ico">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <!-- css & themes include -->
+  <link rel="stylesheet" href="/BKA-Angular/lib/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="/BKA-Angular/outfit/css/themes/projector.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/BKA-Angular/lib/reveal.js/css/print/pdf.css' : '/BKA-Angular/lib/reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <!-- CUSTOM -->
+  <base target="_blank">
+</head>
+<body>
+  <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+    <div class="top_links">
+      <a class="home_link" href="/index.html#Pipes" target="_top"><i class="fa fa-home"></i></a>
+      <span class="help_link" href="#"><i class="fa fa-question"></i></span>
+      <div class="help_text">
+        <div><span>N/Space</span><span>Next Slide</span></div>
+        <div><span>P</span><span>Previous Slide</span></div>
+        <div><span>O</span><span>Slides Overview</span></div>
+        <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+      </div>
+    </div>
+    <div class="footer theme_switch">
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/dark.css'); return false;">Dark</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/light.css'); return false;">Light</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/projector.css'); return false;">Projector</a>
+    </div>
+    <div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section data-min-total="80"><h1>Angular Pipes</h1></section>
+<section data-transition="zoom">
+  <div class="copyright">
+    <div class="note">
+      <p>Created for</p>
+    </div>
+    <div class="company">
+      <a href="http://progressbg.net/kurs-po-web-design/">
+      <img style="height:80%" src="/BKA-Angular/outfit/images/logos/ProgressBG_logo_529_127.png">
+      </a>
+    </div>
+    <div class="author">
+      <span>Iva E. Popova, 2016-2018,</span>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+    </div>
+  </div>
+</section>
+
+
+<section data-min="1"><h1>Transform data with pipes, not filters!</h1></section>
+<section><h2>Transform data with pipes, not filters!</h2>
+  <section><h3></h3>
+    <dl class="fa">
+      <dt>AngularJS (Angular 1.X) - uses <span class="note">filters</span> to transform data</dt>
+      <dt>In Angular (Angular2+) the filters are now called <span class="note">pipes</span></dt>
+    </dl>
+  </section>
+  <section>
+    <dl class="fa">
+      <dt>Most of AngularJS filters have their Angular pipes equivalents</dt>
+      <dt class="note">There is no equivalent for filtering or sorting lists <a href="https://angular.io/guide/pipes#no-filter-pipe">No FilterPipe or OrderByPipe</a> @angular docs</dt>
+    </dl>
+  </section>
+</section>
+
+<section data-min="10"><h1>How to use Pipes</h1></section>
+<section><h2>How to use Pipes</h2>
+  <section>
+    <dl class="fa">
+      <dt>A pipe takes in data as input and transforms it to a desired output</dt>
+      <dt>Angular includes several pipes to add to your template.</dt>
+      <dt>There is no need to import them or add them as directives or anything—just start using them.</dt>
+      <dt>A pipe is denoted with the pipe symbol : <code><b>|</b></code></dt>
+    </dl>
+  </section>
+  <section><h3>Syntax</h3>
+    <pre><code rel="Syntax" class="bash" data-noescape>
+      {{ data | pipe }}
+    </code></pre>
+  </section>
+</section>
+
+<section data-min="20"><h1>Built-in Pipes</h1></section>
+<section><h2>Built-in Pipes</h2>
+  <section><h3><code>lowercase</code></h3>
+    <p>Transforms a string into a lower-case string</p>
+    <pre><code rel="Syntax" class="bash" data-noescape>
+      {{ 'string' | lowercase }}
+    </code></pre>
+    <pre><code rel="HTML" class="html">
+      <p>Lowercase: {{'Ada Byron' | lowercase}}</p>
+    </code></pre>
+    <pre><code rel="Output" class="text">
+      Lowercase: ada byron
+    </code></pre>
+  </section>
+  <section><h3><code>uppercase</code></h3>
+    <p>Transforms a string into a upper-case string</p>
+    <pre><code rel="Syntax" class="bash" data-noescape>
+      {{ 'string' | uppercase }}
+    </code></pre>
+    <pre><code rel="HTML" class="html">
+      <p>Uppercase: {{'Ada Byron' | uppercase}}</p>
+    </code></pre>
+    <pre><code rel="Output" class="text">
+      Uppercase: ADA BYRON
+    </code></pre>
+  </section>
+  <section><h3><code>currency</code></h3>
+    <p>Adds currency info to a number</p>
+    <pre><code rel="Syntax" class="bash" data-noescape>
+      {{ value | currency [ : currencyCode [ : display [ : digitsInfo [ : locale ] ] ] ] }}
+    </code></pre>
+    <pre><code rel="HTML" class="html">
+      <p>Currency: {{ 23.55 | currency }}</p>
+    </code></pre>
+    <pre><code rel="Output" class="text">
+      Currency: $23.55
+    </code></pre>
+    <p>More on <a href="https://angular.io/api/common/CurrencyPipe">CurrencyPipe</a> @angular docs</p>
+  </section>
+  <section><h3><code>percent</code></h3>
+    <p>Transforms a number into a percent</p>
+    <pre><code rel="Syntax" class="bash" data-noescape>
+      {{ 'string' | percent }}
+    </code></pre>
+    <pre><code rel="HTML" class="html">
+      <p>Percentage: {{ 0.5 | percent }}</p>
+    </code></pre>
+    <pre><code rel="Output" class="text">
+      Percentage: 50%
+    </code></pre>
+  </section>
+  <section><h3><code>date</code></h3>
+    <dl class="fa">
+      <dt>Transforms a datetime object or string representing a date into a date formated string</dt>
+      <dt><a href="https://angular.io/api/common/DatePipe">DatePipe</a> @angular docs</dt>
+    </dl>
+    <pre><code rel="Syntax" class="bash" data-noescape>
+      {{ value | date [ : format [ : timezone [ : locale ] ] ] }}
+    </code></pre>
+    <pre><code rel="HTML" class="html">
+      <p>Date: {{ '2018-01-15T09:03:01+0900' | date }}</p>
+      <p>Date: {{ '2018-01-15T09:03:01+0900' | date:'y MMMM - EEEE d' }}</p>
+    </code></pre>
+    <pre><code rel="Output" class="text">
+
+    </code></pre>
+  </section>
+</section>
+
+<section data-min="20"><h1>Custom Pipes</h1></section>
+<section><h2>Custom Pipes</h2>
+  <section><h3>Create custom pipes</h3>
+    <dl class="fa">
+      <dt>You can use the CLI:</dt>
+      <pre><code rel="Terminal" class="bash" data-noescape>
+        ng generate pipe pipeName
+      </code></pre>
+      <dt>Or, you can create your own class with @Pipe annotation and:</dt>
+      <dd>the class must implement the PipeTransform interface</dd>
+      <dd>imports the Pipe and PipeTransform</dd>
+    </dl>
+  </section>
+  <section><h3>example</h3>
+    <pre><code rel="TS" class="typescript">
+      import { Pipe, PipeTransform } from '@angular/core';
+
+      @Pipe({
+        name: 'testPipe'
+      })
+      export class TestPipePipe implements PipeTransform {
+
+        transform(value: any, args?: any): any {
+          return null;
+        }
+
+      }
+    </code></pre>
+  </section>
+</section>
+
+
+<section data-min="1"><h1>References</h1></section>
+<section><h2>References</h2>
+  <section><h3>Readings</h3>
+    <dl class="fa">
+      <dt><a href="https://github.com/angular/angular-cli/wiki">Angular CLI wiki</a></dt>
+      <dt><a href="https://www.sitepoint.com/ultimate-angular-cli-reference/">The Ultimate Angular CLI Reference Guide</a></dt>
+    </dl>
+  </section>
+</section>
+
+
+<section id="hw" data-min="4"><h1>Exercises</h1></section>
+<section><h2>Task1: Task1Title</h2>
+  <section><h3>The Task</h3>
+    <dl class="fa">
+      <dt></dt>
+    </dl>
+  </section>
+</section>
+
+<section><h3>Submission</h3>
+  <dl class="fa">
+    <dt>PLease, prefix your filenames/archive with your name initials, before sending.</dt>
+    <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+    <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=_Pipes_">ProgressBG.WWW.Courses@gmail.com</a></dt>
+  </dl>
+</section>
+
+
+<section class="disclaimer" data-background="/BKA-Angular/outfit/images/for_slides/the_end_on_sand.jpg">
+  <p>These slides are based on</p>
+  <p>customised version of </p>
+  <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+   <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+    </div>
+  </div>
+  <!-- Custom processing -->
+  <script src="/BKA-Angular/outfit/js/slides.js"></script>
+  <!-- external scripts -->
+  <script src="/BKA-Angular/lib/reveal.js/lib/js/head.min.js"></script>
+  <script src="/BKA-Angular/lib/reveal.js/js/reveal.js"></script>
+
+  <!-- init reveal -->
+  <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    var highlightjsTabSize = '  ';
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      keyboard: true,
+      history: true,
+
+      // display control
+      // center: true,
+      // width: '100%',
+      // height: '100%',
+      // // Factor of the display size that should remain empty around the content
+      // margin: 0.1,
+
+      // The "normal" size of the presentation, aspect ratio will be preserved
+      // when the presentation is scaled to fit different resolutions. Can be
+      // specified using percentage units.
+      width: 960,
+      height: 700,
+
+      // Factor of the display size that should remain empty around the content
+      margin: 0.1,
+
+      // Bounds for smallest/largest possible scale to apply to content
+      minScale: 0.2,
+      maxScale: 1.5,
+
+      // slide transition
+      transition: 'concave', // none/fade/slide/convex/concave/zoom
+      // shift+maous click to zoom in/out element
+      zoomKey: 'ctrl',
+      // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      // transition: Reveal.getQueryHash().transition || 'default'
+      // Optional reveal.js plugins
+      dependencies: [
+        { src: '/BKA-Angular/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/notes/notes.js', async: true }
+      ]
+    });
+  </script>
+  <!-- linkedin badge -->
+  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+</body>
+</html>
