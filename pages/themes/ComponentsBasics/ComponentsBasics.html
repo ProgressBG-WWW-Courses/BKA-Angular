@@ -165,16 +165,85 @@
   <section><h3>Interpolation <code>{﻿{...}}</code></h3>
 
   </section>
-  <section><h3>Template Reference Variables </h3></section>
+  <section><h3>Template Reference Variables</h3>
+    <dl class="fa">
+      <dt>A template reference variable is often a reference to a DOM element within a template</dt>
+      <dt>It can also be a reference to an <em>Angular component</em> or <em>directive</em> or a <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">web component</a>.</dt>
+      <dt>A template reference variable is declared by prefixing the variable with <code>#</code>.</dt>
+      <dt>It can be accessed anywhere in the entire template.</dt>
+    </dl>
+  </section>
+  <section><h3>Template Reference Variables - examples</h3>
+    <pre><code rel="components.component.html" class="html">
+      &lt;section&gt;
+        &lt;h2&gt;Template reference variables&lt;/h2&gt;
+        &lt;input #userName placeholder=&quot;enter a user name&quot;&gt;
+        &lt;button (click)=&quot;getUserName(userName.value)&quot;&gt;Get UserName&lt;/button&gt;
+      &lt;/section&gt;
+    </code></pre>
+    <pre><code rel="components.component.ts" class="typescript">
+      import { Component, OnInit } from '@angular/core';
+
+      @Component({
+        selector: 'app-components',
+        templateUrl: './components.component.html',
+        styleUrls: ['./components.component.css']
+      })
+      export class ComponentsComponent implements OnInit {
+
+        constructor() { }
+
+        ngOnInit() {
+        }
+
+        getUserName(data) {
+          console.log(data);
+        }
+      }
+    </code></pre>
+  </section>
 </section>
 
 
 <section data-min="15"><h1>Create the Components of BookStore</h1></section>
-<!-- <section><h2>Create the Components of BookStore</h2>
-  <section>
+<section><h2>Create the Components of BookStore</h2>
+  <section><h3>create main components files</h3>
+    <p>For now, we do not need the *.component.spec.ts file, which is used to for test cases. That's wh, we'll instruct Angular CLI to not create the spec file per component:</p>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      # the header:
+      ng g c header --spec==false
 
+      # the footer:
+      ng g c footer --spec==false
+
+      # the main:
+      ng g c main --spec==false
+    </code></pre>
   </section>
-</section> -->
+  <section>
+    <p>Our project tree should look like:</p>
+    <pre><code rel="Output" class="bash" data-noescape>
+      app/
+      ├── app.component.css
+      ├── app.component.html
+      ├── app.component.spec.ts
+      ├── app.component.ts
+      ├── app.module.ts
+      ├── footer
+      │   ├── footer.component.css
+      │   ├── footer.component.html
+      │   └── footer.component.ts
+      ├── header
+      │   ├── header.component.css
+      │   ├── header.component.html
+      │   └── header.component.ts
+      └── main
+          ├── main.component.css
+          ├── main.component.html
+          └── main.component.ts
+    </code></pre>
+  </section>
+</section>
 
 <!--
 <section id="hw" data-min="4"><h1>Exercises</h1></section>
