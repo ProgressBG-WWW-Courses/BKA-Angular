@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DataBinding</title>
+  <link rel="shortcut icon" href="/BKA-Angular/favicon.ico">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <!-- css & themes include -->
+  <link rel="stylesheet" href="/BKA-Angular/lib/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="/BKA-Angular/outfit/css/themes/projector.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/BKA-Angular/lib/reveal.js/css/print/pdf.css' : '/BKA-Angular/lib/reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <!-- CUSTOM -->
+  <base target="_blank">
+</head>
+<body>
+  <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+    <div class="top_links">
+      <a class="home_link" href="/index.html#DataBinding" target="_top"><i class="fa fa-home"></i></a>
+      <span class="help_link" href="#"><i class="fa fa-question"></i></span>
+      <div class="help_text">
+        <div><span>N/Space</span><span>Next Slide</span></div>
+        <div><span>P</span><span>Previous Slide</span></div>
+        <div><span>O</span><span>Slides Overview</span></div>
+        <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+      </div>
+    </div>
+    <div class="footer theme_switch">
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/dark.css'); return false;">Dark</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/light.css'); return false;">Light</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/projector.css'); return false;">Projector</a>
+    </div>
+    <div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section data-min-total="240"><h1>Data and Events Bindings</h1></section>
+<section data-transition="zoom">
+  <div class="copyright">
+    <div class="note">
+      <p>Created for</p>
+    </div>
+    <div class="company">
+      <a href="http://progressbg.net/kurs-po-web-design/">
+      <img style="height:80%" src="/BKA-Angular/outfit/images/logos/ProgressBG_logo_529_127.png">
+      </a>
+    </div>
+    <div class="author">
+      <span>Iva E. Popova, 2016-2018,</span>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+    </div>
+  </div>
+</section>
+
+<section data-min="1"><h1>Overview</h1></section>
+<section><h2>Overview</h2>
+  <section>
+    <dl class="fa" style="font-size: .8em">
+      <dt><span class="note">data binding</span> == synchronization between elements of the component UI (<em>view</em>) and the data in the component class (<em>model</em>), and vice versa.</dt>
+    </dl>
+    <a href="images/AngularDataBinding_MY.png"><img src="images/AngularDataBinding_MY.png"></a>
+  </section>
+  <section>
+    <dl class="fa">
+      <dt>Data binding can control every aspect of the user interface:</dt>
+      <dd>hiding elements, showing results, closing things, accepting user input, and more</dd>
+      <dt>Data bindings are expressions embedded into templates and are evaluated to produce dynamic content in the HTML document.</dt>
+      <dt>Data bindings are applied as attributes on HTML elements or as special sequences of characters in strings</dt>
+      <dt>Data bindings contain simple JavaScript expressions.</dt>
+    </dl>
+  </section>
+  <section><h3>binding flows</h3>
+    <dl class="fa">
+      <dt class="note">One-way <b>data binding</b>:</dt>
+      <dd>data model => component class => (data binding expression) => template</dd>
+      <dt class="note">One-way <b>event binding</b>:</dt>
+      <dd>template => component class => data model</dd>
+      <dt class="note">Two-way data binding</dt>
+      <dd>data and event flows in both directions</dd>
+    </dl>
+  </section>
+  <section><h3>Data Binding Anatomy</h3>
+    <a href="images/AngularDataBindingAnatomy.png"><img src="images/AngularDataBindingAnatomy.png"></a>
+  </section>
+  <section><h3>Data Binding Anatomy</h3>
+    <dl class="fa" style="font-size: .8em">
+      <dt><span class="note">Host Element</span> - the HTML element that the binding will affect, by changing its appearance, content, or behaviour.</dt>
+      <dt><span class="note">Target</span> - specifies what the binding will do. There are two different types of target: a directive or a property binding.</dt>
+      <dt><span class="note">Expression</span> - a fragment of JavaScript code that is evaluated using the template’s component to provide context, i.e. the component’s property and methods can be included in the expression</dt>
+      <dt class="note">Expressions should be as simple as possible, as they can not be unit tested or easily debugged, thus are a source for potential bugs.</dt>
+    </dl>
+  </section>
+</section>
+
+<section data-min="10"><h1>Angular Template Syntax</h1></section>
+<section><h2>Angular Template Syntax</h2>
+  <section>
+    <dl class="fa">
+      <dt>Almost all valid HTML markup is available in the Template.</dt>
+      <dt>There are few exceptions</dt>
+      <dd><span class="note">script</span> element is not allowed.</dd>
+      <dd><span class="note">html</span>, <span class="note">body</span> and <span class="note">base</span> elements are just ignored.</dd>
+      <dt>The HTML vocabulary of the templates can be extended with components and directives that appear as new elements and attributes.</dt>
+    </dl>
+  </section>
+  <section><h3>Template Expression Interpolation</h3>
+    <pre><code rel="Syntax" class="javascript" data-noescape>
+      {{class_data}} or {{expression}}
+    </code></pre>
+    <pre style="font-size: .5em"><code rel="one-way-data-binding.component.html" class="HTML">
+      <ul>
+        <li>interpolate simple expression --->{{1+2*2}}</li>
+        <li>interpolate class value as HTML content: --->{{name.toUpperCase()}}</li>
+        <li class="{{note}}">interpolate class value as HTML attribute</li>
+      </ul>
+    </code></pre>
+  </section>
+  <section><h3>Template Expression notes</h3>
+    <dl class="fa">
+      <dt>A template expression must produces a value.</dt>
+      <dt>Template expression is written inside <code>{{}}</code> or for <em>property binding</em> - inside quotes <code>""</code> on the right side of <code>[property]="expression"</code></dt>
+      <dt>Angular executes template expressions after every change detection cycle.</dt>
+      <dt>A template expression should not change any application state other than the value of the target property/element.</dt>
+    </dl>
+  </section>
+  <section><h3>Template Statement Interpolation</h3>
+    <dl class="fa">
+      <dt>A template statement responds to an <b>event</b> raised by a binding element, component, or directive.</dt>
+      <dt>They are used in <em>event binding</em> (discussed further) as the right side of <code>(event)="statement"</code></dt>
+      <dt>Template Statements can have a side effects - i.e. the application state can be freely changed</dt>
+    </dl>
+  </section>
+  <section><h3>Different kind of Brackets</h3>
+    <table>
+      <tr><th>Name</th><th>Description</th></tr>
+      <tr><td class="note">{{expression}}</td><td>string interpolation binding</td></tr>
+      <tr><td class="note">[target]="expr"</td><td>a one-way <span class="note">data</span> binding</td></tr>
+      <tr><td class="note">(target) ="expr"</td><td>a one-way <span class="note">event</span> binding</td></tr>
+      <tr><td class="note">[(target)] ="expr"</td><td><em>the banana-in-a-box</em> brackets specify a two-way data binding</td></tr>
+    </table>
+  </section>
+  <section><h3>Resources</h3>
+    <dl class="fa">
+      <dt>More on <a href="https://angular.io/guide/template-syntax#template-syntax">Template Syntax</a>@angular docs.</dt>
+    </dl>
+  </section>
+</section>
+
+
+<section data-min="10"><h1>Property Binding</h1></section>
+<section><h2>Property Binding</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt>If <span class="note">binding target</span> is not a directive, then Angular checks to see whether the target can be used to create a property binding.</dt>
+      <dt>There are several different types of property binding</dt>
+    </dl>
+  </section>
+  <section><h3>Property binding types</h3>
+    <table style="font-size: .8em">
+      <tr><th>Name</th><th>Description</th></tr>
+      <tr><td class="note">[property]</td><td>set a property on the JavaScript object that represents the host element in the DOM</td></tr>
+      <tr><td class="note">[attr.name]</td><td>set the value of attributes on the host HTML element for which there are no DOM properties.</td></tr>
+      <tr><td class="note">[class.name]</td><td>configure class membership of the host element</td></tr>
+      <tr><td class="note">[style.name]</td><td>configure style settings of the host element</td></tr>
+    </table>
+  </section>
+  <section><h3>Standard Property Binding</h3>
+    <dl class="fa">
+      <dt>With standard property binding we can set the value (using the result of an expression) of a <span class="note">DOM property</span> for the object that represents the host element</dt>
+    </dl>
+  </section>
+  <section><h3>Attributes vs DOM Properties</h3>
+    <dl class="fa">
+      <dt class="note">Attributes initialize DOM properties!</dt>
+      <dt class="note">Attributes can not change</dt>
+      <dt class="note">Property values can change</dt>
+      <dt>The difference - live demo</dt>
+      <dt>More on <a href="https://angular.io/guide/template-syntax#html-attribute-vs-dom-property">HTML attribute vs. DOM property</a>@angular docs</dt>
+    </dl>
+  </section>
+</section>
+
+<section data-min="10"><h1>Class Binding</h1></section>
+<section><h2>Class Binding</h2>
+  <section>
+
+  </section>
+
+  <section><h3>Apply class conditionaly</h3></section>
+
+  <section><h3>ngClass Directive</h3></section>
+</section>
+
+<section data-min="10"><h1>Styles Binding</h1></section>
+<section><h2>Styles Binding</h2>
+  <section>
+
+  </section>
+</section>
+
+<section data-min="10"><h1>Notes on Two-Way Data Binding and Angular5</h1></section>
+<section><h2>Notes on Two-Way Data Binding and Angular5</h2>
+  <section>
+
+  </section>
+</section>
+
+<section data-min="30"><h1>Events Binding</h1></section>
+<section><h2>Events Binding</h2>
+  <section>
+
+  </section>
+</section>
+
+<section data-min="40"><h1>Hands on the Demo Project</h1></section>
+<section><h2>Hands on the Demo Project</h2>
+  <section>
+
+  </section>
+</section>
+
+
+
+<!-- <section data-min="1"><h1>References</h1></section>
+<section><h2>References</h2>
+  <section><h3>Readings</h3>
+    <dl class="fa">
+      <dt><a href="https://github.com/angular/angular-cli/wiki">Angular CLI wiki</a></dt>
+      <dt><a href="https://www.sitepoint.com/ultimate-angular-cli-reference/">The Ultimate Angular CLI Reference Guide</a></dt>
+    </dl>
+  </section>
+</section>
+
+
+<section id="hw" data-min="4"><h1>Exercises</h1></section>
+<section><h2>Task1: Task1Title</h2>
+  <section><h3>The Task</h3>
+    <dl class="fa">
+      <dt></dt>
+    </dl>
+  </section>
+</section>
+
+<section><h3>Submission</h3>
+  <dl class="fa">
+    <dt>PLease, prefix your filenames/archive with your name initials, before sending.</dt>
+    <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+    <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=_DataBinding_">ProgressBG.WWW.Courses@gmail.com</a></dt>
+  </dl>
+</section> -->
+
+
+<section class="disclaimer" data-background="/BKA-Angular/outfit/images/for_slides/the_end_on_sand.jpg">
+  <p>These slides are based on</p>
+  <p>customised version of </p>
+  <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+   <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+    </div>
+  </div>
+  <!-- Custom processing -->
+  <script src="/BKA-Angular/outfit/js/slides.js"></script>
+  <!-- external scripts -->
+  <script src="/BKA-Angular/lib/reveal.js/lib/js/head.min.js"></script>
+  <script src="/BKA-Angular/lib/reveal.js/js/reveal.js"></script>
+
+  <!-- init reveal -->
+  <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    var highlightjsTabSize = '  ';
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      keyboard: true,
+      history: true,
+
+      // display control
+      // center: true,
+      // width: '100%',
+      // height: '100%',
+      // // Factor of the display size that should remain empty around the content
+      // margin: 0.1,
+
+      // The "normal" size of the presentation, aspect ratio will be preserved
+      // when the presentation is scaled to fit different resolutions. Can be
+      // specified using percentage units.
+      width: 960,
+      height: 700,
+
+      // Factor of the display size that should remain empty around the content
+      margin: 0.1,
+
+      // Bounds for smallest/largest possible scale to apply to content
+      minScale: 0.2,
+      maxScale: 1.5,
+
+      // slide transition
+      transition: 'concave', // none/fade/slide/convex/concave/zoom
+      // shift+maous click to zoom in/out element
+      zoomKey: 'ctrl',
+      // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      // transition: Reveal.getQueryHash().transition || 'default'
+      // Optional reveal.js plugins
+      dependencies: [
+        { src: '/BKA-Angular/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/notes/notes.js', async: true }
+      ]
+    });
+  </script>
+  <!-- linkedin badge -->
+  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+</body>
+</html>
