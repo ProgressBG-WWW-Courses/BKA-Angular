@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ComponentsInteraction</title>
+  <link rel="shortcut icon" href="/BKA-Angular/favicon.ico">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <!-- css & themes include -->
+  <link rel="stylesheet" href="/BKA-Angular/lib/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="/BKA-Angular/outfit/css/themes/projector.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/BKA-Angular/lib/reveal.js/css/print/pdf.css' : '/BKA-Angular/lib/reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <!-- CUSTOM -->
+  <base target="_blank">
+</head>
+<body>
+  <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+    <div class="top_links">
+      <a class="home_link" href="/index.html#ComponentsInteraction" target="_top"><i class="fa fa-home"></i></a>
+      <span class="help_link" href="#"><i class="fa fa-question"></i></span>
+      <div class="help_text">
+        <div><span>N/Space</span><span>Next Slide</span></div>
+        <div><span>P</span><span>Previous Slide</span></div>
+        <div><span>O</span><span>Slides Overview</span></div>
+        <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+      </div>
+    </div>
+    <div class="footer theme_switch">
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/dark.css'); return false;">Dark</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/light.css'); return false;">Light</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/projector.css'); return false;">Projector</a>
+    </div>
+    <div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section data-min-total="160"><h1>Component Interaction</h1></section>
+<section data-transition="zoom">
+  <div class="copyright">
+    <div class="note">
+      <p>Created for</p>
+    </div>
+    <div class="company">
+      <a href="http://progressbg.net/kurs-po-web-design/">
+      <img style="height:80%" src="/BKA-Angular/outfit/images/logos/ProgressBG_logo_529_127.png">
+      </a>
+    </div>
+    <div class="author">
+      <span>Iva E. Popova, 2016-2018,</span>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+    </div>
+  </div>
+</section>
+
+<section data-min="10"><h1>Overview</h1></section>
+<section><h2>Overview</h2>
+  <section><h3>Component Composition</h3>
+    <dl class="fa">
+      <dt>An Angular App is a hierarchy of Components</dt>
+      <dd>Components can contain other components</dd>
+      <dd>This is known as <span class="note">component composition</span></dd>
+    </dl>
+    <img src="images/lego_blocks.jpg" style="height: 30vh">
+  </section>
+</section>
+
+
+<section data-min="20"><h1>Data Flow</h1></section>
+<section><h2>Data Flow</h2>
+ <!--  <section>
+    <a href="images/parent-child-components_interaction.png"><img src="images/parent-child-components_interaction.png"></a>
+  </section> -->
+  <section><h3>Data flow</h3>
+    <dl class="fa">
+      <dt>The data flow between components <span class="note">should flow downwards</span></dt>
+      <dd>i.e. from parent components to child components</dd>
+      <dt>A data received outside from a component should be marked explicitly as input data</dt>
+      <dd>done with <code>@input</code> decorator</dd>
+      <dd>the <code>@input</code> decorator should be imported in the components from <code>@angular/core</code></dd>
+    </dl>
+  </section>
+  <section><h3>Data flow - main steps in Parent</h3>
+    <dl class="fa">
+      <dt>In Parent Component</dt>
+      <dd>send data to the Child</dd>
+      <dd>could be done with property binding</dd>
+      <pre><code rel="Parent Template" class="html">
+        &lt;app-child [parentData]=&quot;name&quot;&gt;&lt;app-child&gt;
+      </code></pre>
+    </dl>
+  </section>
+  <section style="font-size: .8em"><h3>Data flow - main steps in Child</h3>
+    <dl class="fa">
+      <dt>In Child Component</dt>
+      <dd>import the Input decorator from @angular/core</dd>
+      <pre><code rel="TS" class="typescript">
+        import { Component, OnInit,Input } from '@angular/core'
+      </code></pre>
+      <dd>Declare the parent data to be received as class property with  @Input() decorator</dd>
+      <pre><code rel="TS" class="bash" data-noescape>
+        @Input() parentData: string
+      </code></pre>
+      <dd>bind the parent data into the template</dd>
+      <pre><code rel="template" class="html" data-noescape>
+        &lt;span&gt;parent name: {{parentData}}&lt;/span&gt;
+      </code></pre>
+    </dl>
+  </section>
+  <section><h3>Aliases</h3>
+    <dl class="fa">
+      <dt>We can give alias to the input data with</dt>
+      <pre><code rel="TS" class="typescript">
+        @Input('parentData') userName : string
+      </code></pre>
+      <dl class="fa">
+        <dt><code>parentData</code> is the property name in the Parent Component</dt>
+        <dt><code>userName</code> is the alias we give to it</dt>
+      </dl>
+    </dl>
+  </section>
+</section>
+
+<section><h1>Data Flow examples</h1></section>
+<section><h2>Data Flow examples</h2>
+  <section><h3>the Parent Component</h3>
+    <pre><code rel="TS" class="typescript">
+      import { Component, OnInit } from '@angular/core';
+
+      @Component({
+        selector: 'app-parent',
+        template: `
+          <h2>parent component</h2>
+          <app-child [parentData]="name"><app-child>
+        `,
+        styleUrls:['./parent.component.css']
+      })
+      export class ParentComponent implements OnInit {
+        // the data which will be sent to Child  as parentData property binding
+        public name="ParentComponent"
+
+        constructor() { }
+
+        ngOnInit() {
+        }
+      }
+    </code></pre>
+  </section>
+  <section><h3>the Child Component</h3>
+    <pre><code rel="TS" class="typescript">
+      import { Component, OnInit,Input } from '@angular/core';
+
+      @Component({
+        selector: 'app-child',
+        template: `
+          <h2>child component</h2>
+          <span>parent name: {{parentData}}</span>
+        `,
+        styleUrls:['./child.component.css']
+      })
+      export class ChildComponent implements OnInit {
+        //mark  parentData as input data
+        @Input() parentData: string
+
+        constructor() { }
+
+        ngOnInit() {
+        }
+
+      }
+
+    </code></pre>
+  </section>
+</section>
+
+
+<section data-min="20"><h1>Emitting Output</h1></section>
+<section><h2>Emitting Output</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt>Usually Parent component needs to respond to things (events) happening on its child components</dt>
+      <dt>In Angular <span class="note">events should flow upwards</span>:</dt>
+      <dd>Children <span class="note">emits</span> an event</dd>
+      <dd>Parents responds, i.e.process the event</dd>
+      <dd>The events being emitted are declared with <code>@Output()</code> decorator as instances of <code>EventEmitter</code> class in the Child Component</dd>
+    </dl>
+  </section>
+  <section style="font-size: .8em"><h3>Emitting Output - steps in Child</h3>
+    <dl class="fa">
+      <dt>In Child Component</dt>
+      <dd>Import the EventEmitter class and Output decorator from @angular/core</dd>
+      <pre><code rel="TS" class="typescript">
+        import { Component, OnInit,Input,Output, EventEmitter } from '@angular/core';
+      </code></pre>
+      <dd>Declare the event</dd>
+      <pre><code rel="TS" class="typescript">
+        @Output() childEvent=new EventEmitter()
+      </code></pre>
+      <dd>Emit the event</dd>
+      <pre><code rel="HTML" class="html">
+        &lt;button (click)=&quot;this.childEvent.emit()&quot;&gt;Emit Event&lt;/button&gt;
+      </code></pre>
+    </dl>
+  </section>
+  <section style="font-size: .8em"><h3>Emitting Output - steps in Parent</h3>
+    <dl class="fa">
+      <dt>In Parent Component</dt>
+      <dd>capture the emitted Child Event using the event binding syntax</dd>
+      <dd><span class="note">the <code>$event</code> object for EventEmitter events stores the emitted value.</span> In contrast to DOM events, where <code>$event</code> stores the DOM event object</dd>
+      <pre><code rel="Parent tempate" class="html">
+        <app-child (childEvent)="respondToEvent($event)"></app-child>
+      </code></pre>
+      <pre><code rel="Parent Classs" class="typescript">
+        respondToEvent(msg){
+          // do something with emmited event message
+        }
+      </code></pre>
+    </dl>
+  </section>
+</section>
+
+<section data-min="30"><h1>Component Class Lifecycle</h1></section>
+<section><h2>Component Class Lifecycle</h2>
+  <section><h3></h3>
+    <table style="font-size: .6em">
+      <tr><th>Interface</th><th>Method</th><th>Description</th></tr>
+      <tr><td>OnChanges</td><td>ngOnChanges</td><td>Called when an input or output binding value changes</td></tr>
+      <tr><td>OnInit</td><td>ngOnInit</td><td>After the first ngOnChanges</td></tr>
+      <tr><td>DoCheck</td><td>ngDoCheck</td><td>Developer’s custom change detection</td></tr>
+      <tr><td>AfterContentInit</td><td>ngAfterContentInit</td><td>After component content initialized</td></tr>
+      <tr><td>AfterContentChecked</td><td>ngAfterContentChecked</td><td>After every check of component content</td></tr>
+      <tr><td>AfterViewInit</td><td>ngAfterViewInit</td><td>After component's view(s) are initialized</td></tr>
+      <tr><td>AfterViewChecked</td><td>ngAfterViewChecked</td><td>After every check of a component's view(s)</td></tr>
+      <tr><td>OnDestroy</td><td>ngOnDestroy</td><td>Just before the directive is destroyed</td></tr>
+    </table>
+  </section>
+</section>
+
+
+<section data-min="40"><h1>Hands on the Demo Project</h1></section>
+<section><h2>Hands on the Demo Project</h2>
+  <section><h3>The Components</h3>
+    <dl class="fa">
+      <dt><code class="note">productList</code> component which will display the list of products</dt>
+      <dt><code class="note">product</code> component - responsible for one product of productList </dt>
+    </dl>
+  </section>
+  <section><h3>Sample data</h3>
+    <pre><code rel="TS" class="typescript">
+      products = [
+          {
+            "name": "apples",
+            "price": 2.50
+          },
+          {
+            "name": "oranges",
+            "price": 1.80
+          },
+          {
+            "name": "bananas",
+            "price": 2.00
+          }
+        ]
+    </code></pre>
+  </section>
+</section>
+
+<!-- <section data-min="1"><h1>References</h1></section>
+<section><h2>References</h2>
+  <section><h3>Readings</h3>
+    <dl class="fa">
+      <dt><a href="https://github.com/angular/angular-cli/wiki">Angular CLI wiki</a></dt>
+      <dt><a href="https://www.sitepoint.com/ultimate-angular-cli-reference/">The Ultimate Angular CLI Reference Guide</a></dt>
+    </dl>
+  </section>
+</section>
+
+
+<section id="hw" data-min="4"><h1>Exercises</h1></section>
+<section><h2>Task1: Task1Title</h2>
+  <section><h3>The Task</h3>
+    <dl class="fa">
+      <dt></dt>
+    </dl>
+  </section>
+</section>
+
+<section><h3>Submission</h3>
+  <dl class="fa">
+    <dt>PLease, prefix your filenames/archive with your name initials, before sending.</dt>
+    <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+    <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=_ComponentsInteraction_">ProgressBG.WWW.Courses@gmail.com</a></dt>
+  </dl>
+</section> -->
+
+
+<section class="disclaimer" data-background="/BKA-Angular/outfit/images/for_slides/the_end_on_sand.jpg">
+  <p>These slides are based on</p>
+  <p>customised version of </p>
+  <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+   <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+    </div>
+  </div>
+  <!-- Custom processing -->
+  <script src="/BKA-Angular/outfit/js/slides.js"></script>
+  <!-- external scripts -->
+  <script src="/BKA-Angular/lib/reveal.js/lib/js/head.min.js"></script>
+  <script src="/BKA-Angular/lib/reveal.js/js/reveal.js"></script>
+
+  <!-- init reveal -->
+  <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    var highlightjsTabSize = '  ';
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      keyboard: true,
+      history: true,
+
+      // display control
+      // center: true,
+      // width: '100%',
+      // height: '100%',
+      // // Factor of the display size that should remain empty around the content
+      // margin: 0.1,
+
+      // The "normal" size of the presentation, aspect ratio will be preserved
+      // when the presentation is scaled to fit different resolutions. Can be
+      // specified using percentage units.
+      width: 960,
+      height: 700,
+
+      // Factor of the display size that should remain empty around the content
+      margin: 0.1,
+
+      // Bounds for smallest/largest possible scale to apply to content
+      minScale: 0.2,
+      maxScale: 1.5,
+
+      // slide transition
+      transition: 'concave', // none/fade/slide/convex/concave/zoom
+      // shift+maous click to zoom in/out element
+      zoomKey: 'ctrl',
+      // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      // transition: Reveal.getQueryHash().transition || 'default'
+      // Optional reveal.js plugins
+      dependencies: [
+        { src: '/BKA-Angular/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/notes/notes.js', async: true }
+      ]
+    });
+  </script>
+  <!-- linkedin badge -->
+  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+</body>
+</html>
