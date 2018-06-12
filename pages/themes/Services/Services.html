@@ -55,11 +55,7 @@
     </div>
     <div class="company">
       <a href="http://progressbg.net/kurs-po-web-design/">
-      <img style="height:80%" src<li>Overview</li>
-            <li>Creating a Service</li>
-            <li>the Service File</li>
-            <li>Share Services between Components</li>
-            <li>Hands on the Demo Project</li>="/BKA-Angular/outfit/images/logos/ProgressBG_logo_529_127.png">
+      <img style="height:80%" src="/BKA-Angular/outfit/images/logos/ProgressBG_logo_529_127.png">
       </a>
     </div>
     <div class="author">
@@ -70,39 +66,244 @@
 </section>
 
 
-<section data-min="10"><h1>Overview</h1></section>
-<section><h2>Overview</h2>
+<section data-min="10"><h1>What is a service</h1></section>
+<section><h2>What is a service?</h2>
   <section>
     <dl class="fa">
-      <dt>A class with a specific purpose</dt>
+      <dt><span class="note">A class</span> with specific purpose, like:</dt>
       <dd>Share data between components</dd>
       <dd>Get data from external resources</dd>
       <dd>Implements application logic</dd>
       <dt>Naming conventions:</dt>
-      <dd><code>sname.service.ts</code></dd>
+      <dd><code>serviceName.service.ts</code></dd>
     </dl>
-
   </section>
 </section>
 
 <section data-min="20"><h1>Creating a Service</h1></section>
 <section><h2>Creating a Service</h2>
-  <section>
+  <section><h3>Basic Steps</h3>
+    <dl class="fa">
+      <dt><span class="note">Define</span> the Service Class</dt>
+      <dt><span class="note">Register</span> the service (with an Angular dependency injector.)</dt>
+      <dt>Declare the service as dependency, i.e. "<span class="note">Inject</span>" the service, where it is needed </dt>
+    </dl>
+  </section>
+  <section><h3>Create the Service Class File</h3>
+      <dl class="fa">
+        <dt>Generate the service file template with Angular CLI:</dt>
+        <pre><code rel="Syntax" class="bash" data-noescape>
+          ng generate service {ServiceName}
+          # or shortly:
+          ng g s {ServiceName}
+        </code></pre>
+      </dl>
+  </section>
+  <section><h3>Create the Service Class File - Exmaple</h3>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      ng g s Products
+    </code></pre>
+    <p>This results in file:</p>
+    <pre><code rel="src/app/products.service.ts" class="typescript">
+      import { Injectable } from '@angular/core';
 
+      @Injectable({
+        providedIn: 'root'
+      })
+      export class ProductsService {
+        constructor() { }
+
+      }
+    </code></pre>
+    <dl class="fa">
+      <dt><span class="note">Note, that Angular CLI named the service class as </span> <code>ProductsService</code></dt>
+    </dl>
+  </section>
+  <section><h3>Define the Service Class</h3>
+    <dl class="fa">
+      <dt>Write the code you need the service to perform</dt>
+    </dl>
+    <pre><code rel="TS" class="typescript">
+      import { Injectable } from '@angular/core';
+
+      @Injectable({
+        providedIn: 'root'
+      })
+      export class ProductsService {
+        constructor() { }
+
+        // method to return the products data
+        getProducts(){
+          return [
+            {
+              'name': 'apples',
+              'price': 2.50
+            },
+            {
+              'name': 'oranges',
+              'price': 1.80
+            },
+            {
+              'name': 'bananas',
+              'price': 2.00
+            }
+          ];
+        }
+      }
+    </code></pre>
+  </section>
+  <section><h3>Register the service</h3>
+    <dl class="fa">
+      <dt>We have to register the Service, otherwise it will be just an ordinary class</dt>
+      <dt>We can register our service in different levels of our app hierarchy.</dt>
+      <dd>More on that will be discussed in <a href="/BKA-Angular/pages/themes/DependencyInjection/DependencyInjection.html">Dependency Injection</a> theme.</dd>
+      <dd>For now, we will use the default place, i.e  the root (<code class="note">app.module.ts</code>), as specified in the "providedIn" property of the <code>@Injectable</code> decorator</dd>
+    </dl>
+  </section>
+  <section><h3>Register the service</h3>
+    <dl class="fa">
+      <dt>We have to add our Service Class in the <code>providers</code> metadata array, and of course, to import the Services Class</dt>
+    </dl>
+    <pre><code rel="app.module.ts" class="typescript">
+      import { BrowserModule } from '@angular/platform-browser';
+      //...
+      // we have to import the Service Class file
+      import { ProductsService } from './products.service';
+
+      @NgModule({
+        declarations: [
+          // ...
+        ],
+        imports: [
+          BrowserModule
+        ],
+        // register the Service in the 'providers' array
+        providers: [ProductsService],
+        bootstrap: [AppComponent]
+      })
+      export class AppModule { }
+
+    </code></pre>
+  </section>
+  <section><h3>Inject the service</h3>
+    <dl class="fa">
+      <dt>In the component, which needs to use the service we have to:</dt>
+      <dd>Import the service class definition</dd>
+      <dd>Create an instance object of the service class</dd>
+      <dd>Use the service</dd>
+    </dl>
+  </section>
+  <section><h3>Inject the service</h3>
+    import { Component, OnInit } from '@angular/core';
+    // Import the service class definition
+    import { ProductsService } from '../shared/products.service';
+
+    @Component({
+      selector: 'app-products',
+      template: `...`,
+      styleUrls: ['./products.component.css']
+    })
+    export class ProductsComponent implements OnInit {
+      products = [];
+
+      // create an instance object of the service class
+      constructor(private _products: ProductsService) { }
+
+      // use the service:
+      ngOnInit() {
+        this.products = this._products.getProducts();
+      }
+    }
   </section>
 </section>
 
-<section data-min="20"><h1>the Service File</h1></section>
-<section><h2>the Service File</h2>
+<section data-min="10"><h1>Parameter properties shorthand in TypeScript</h1></section>
+<section><h2>Parameter properties in TypeScript</h2>
   <section>
+    <dl class="fa">
+      <dt>We can use the "Parameter Properties" TypeScript's shorthand to automatically create properties in our class from the constructor definition</dt>
+    </dl>
+  </section>
+  <section>
+    <dl class="fa">
+      <dt>Consider this very common OOP pattern</dt>
+      <pre><code rel="long.ts" class="typescript">
+        class A {
+            private x: number;
 
+            constructor(x: number) {
+                this.x = x;
+            }
+        }
+      </code></pre>
+      <dt>Using the shorthand notation:</dt>
+      <pre><code rel="short.ts" class="typescript">
+        class A{
+          constructor(private x:number){}
+        }
+      </code></pre>
+      </dl>
+      <dt class="note">Both files are compiled to identical JS code!</dt>
+    </dl>
+  </section>
+</section>
+
+<section data-min="10"><h1>The Service File</h1></section>
+<section><h2>The Service File</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt>It is a TypeScript class, which defines methods and data, usually to be shared with other components</dt>
+      <dt>Usually service methods are defined for:</dt>
+      <dd>fetching data</dd>
+      <dd>add/remove/edit data</dd>
+      <dt>Defining services in separate files helps to follow best practices as</dt>
+      <dd><a href="https://en.wikipedia.org/wiki/Separation_of_concerns">Separation of concerns</a></dd>
+      <dd><a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY (Do not Repeat Yourself) principle</a></dd>
+    </dl>
+  </section>
+  <section><h3><code>@Injectable</code> decorator</h3>
+    <dl class="fa">
+      <dt>It is used by TypeScript to emit metadata about our service</dt>
+      <dd>this metadata are used by Angular to inject other dependencies into this service</dd>
+      <dt>If our service will not receive other dependencies, we can skip the <code>@Injectable</code> decorator, but that is not recommended.</dt>
+    </dl>
+  </section>
+  <section><h3><code>@Injectable</code> decorator</h3>
+    <dl class="fa">
+      <dt><span class="note">New in Angular 6: </span> Instead of declaring service in the providers array of a component, we can specify in the service itself in which component/module it should be provided, using the <code>providedIn</code> property of @Injectable decorator.</dt>
+    </dl>
+  </section>
+  <section><h3><code>providedIn</code> property - example</h3>
+    <pre><code rel="service-x.service.ts" class="typescript">
+      import { Injectable } from '@angular/core';
+
+      @Injectable({
+        providedIn: 'root'
+      })
+      export class ServiceXService {
+        storeName = "ServiceXService Test"
+      }
+    </code></pre>
+    <p class="note">We do not need to declare ServiceXService as a provider in the app.module.ts, neither to import it there.</p>
   </section>
 </section>
 
 <section data-min="20"><h1>Share Services between Components</h1></section>
 <section><h2>Share Services between Components</h2>
-  <section>
+  <section><h3>Use a service</h3>
+    <dl class="fa">
+      <dt>The component, into which we'll inject the service, usually has the form:</dt>
+    </dl>
+    <pre><code rel="TS" class="typescript">
+      import { ServiceXClass } from '/path/to/servicex.service';
 
+      @Component({
+        providers: [ServiceX]
+      })
+      export class AppComponent {
+        constructor(private _serviceX:ServiceX) { }
+      }
+    </code></pre>
   </section>
 </section>
 
@@ -113,7 +314,7 @@
   </section>
 </section>
 
-
+<!--
 <section data-min="1"><h1>References</h1></section>
 <section><h2>References</h2>
   <section><h3>Readings</h3>
@@ -141,7 +342,7 @@
     <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=___title___">ProgressBG.WWW.Courses@gmail.com</a></dt>
   </dl>
 </section>
-
+ -->
 
 <section class="disclaimer" data-background="/BKA-Angular/outfit/images/for_slides/the_end_on_sand.jpg">
   <p>These slides are based on</p>

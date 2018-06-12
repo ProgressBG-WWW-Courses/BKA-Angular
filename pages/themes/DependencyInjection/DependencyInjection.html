@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>__title__</title>
+  <title>DependencyInjection</title>
   <link rel="shortcut icon" href="/BKA-Angular/favicon.ico">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -27,7 +27,7 @@
 <body>
   <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
     <div class="top_links">
-      <a class="home_link" href="/index.html#__title__" target="_top"><i class="fa fa-home"></i></a>
+      <a class="home_link" href="/index.html#DependencyInjection" target="_top"><i class="fa fa-home"></i></a>
       <span class="help_link" href="#"><i class="fa fa-question"></i></span>
       <div class="help_text">
         <div><span>N/Space</span><span>Next Slide</span></div>
@@ -47,7 +47,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section data-min-total="__X__"><h1>___PresentationTitile___</h1></section>
+<section data-min-total="80"><h1>Dependency Injection</h1></section>
 <section data-transition="zoom">
   <div class="copyright">
     <div class="note">
@@ -65,14 +65,46 @@
   </div>
 </section>
 
-
-<section data-min="__Y__"><h1>___MainSectionTitle___</h1></section>
-<section><h2>___MainSectionTitle___</h2>
+<section data-min="10"><h1>Providers and Services</h1></section>
+<section><h2>Providers and Services</h2>
   <section><h3>___SubSectionTitle___</h3>
 
   </section>
 </section>
 
+<section data-min="20"><h1>How dependency injection works in Angular</h1></section>
+<section><h2>How dependency injection works in Angular</h2>
+  <section><h3>___SubSectionTitle___</h3>
+
+  </section>
+</section>
+
+<section data-min="10"><h1>Injecting dependencies across the component tree</h1></section>
+<section><h2>Injecting dependencies across the component tree</h2>
+  <section>
+    <dl class="fa">
+      <dt>Services declared inside the providers array of a parent component are available to child components out of the box</dt>
+      <dt>Child components do not need to declare the services again in their providers array</dt>
+      <dt>If a child component declares a service again in its providers array, which is already declared in its parent component providers array, Angular will create a new instance of service for the child component, and it will not use the parent component's service</dt>
+      <dt>A service instance created at a child component is accessible only to itself and its child components</dt>
+    </dl>
+
+  </section>
+</section>
+
+<section data-min="10"><h1>Overriding providers</h1></section>
+<section><h2>Overriding providers</h2>
+  <section><h3>___SubSectionTitle___</h3>
+
+  </section>
+</section>
+
+<section data-min="10"><h1>Hands on the Demo Project</h1></section>
+<section><h2>Hands on the Demo Project</h2>
+  <section><h3>___SubSectionTitle___</h3>
+
+  </section>
+</section>
 
 <!-- <section data-min="1"><h1>References</h1></section>
 <section><h2>References</h2>
@@ -97,7 +129,7 @@
   <dl class="fa">
     <dt>PLease, prefix your filenames/archive with your name initials, before sending.</dt>
     <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
-    <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=___title___">ProgressBG.WWW.Courses@gmail.com</a></dt>
+    <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=_DependencyInjection_">ProgressBG.WWW.Courses@gmail.com</a></dt>
   </dl>
 </section> -->
 
