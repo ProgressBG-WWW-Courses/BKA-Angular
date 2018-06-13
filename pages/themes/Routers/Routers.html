@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Routers</title>
+  <link rel="shortcut icon" href="/BKA-Angular/favicon.ico">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <!-- css & themes include -->
+  <link rel="stylesheet" href="/BKA-Angular/lib/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="/BKA-Angular/outfit/css/themes/projector.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/BKA-Angular/lib/reveal.js/css/print/pdf.css' : '/BKA-Angular/lib/reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <!-- CUSTOM -->
+  <base target="_blank">
+</head>
+<body>
+  <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+    <div class="top_links">
+      <a class="home_link" href="/index.html#Routers" target="_top"><i class="fa fa-home"></i></a>
+      <span class="help_link" href="#"><i class="fa fa-question"></i></span>
+      <div class="help_text">
+        <div><span>N/Space</span><span>Next Slide</span></div>
+        <div><span>P</span><span>Previous Slide</span></div>
+        <div><span>O</span><span>Slides Overview</span></div>
+        <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+      </div>
+    </div>
+    <div class="footer theme_switch">
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/dark.css'); return false;">Dark</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/light.css'); return false;">Light</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/projector.css'); return false;">Projector</a>
+    </div>
+    <div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section data-min-total="240"><h1>Routers</h1></section>
+<section data-transition="zoom">
+  <div class="copyright">
+    <div class="note">
+      <p>Created for</p>
+    </div>
+    <div class="company">
+      <a href="http://progressbg.net/kurs-po-web-design/">
+      <img style="height:80%" src="/BKA-Angular/outfit/images/logos/ProgressBG_logo_529_127.png">
+      </a>
+    </div>
+    <div class="author">
+      <span>Iva E. Popova, 2016-2018,</span>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+    </div>
+  </div>
+</section>
+
+<section data-min="5"><h1>Prepare the Demo Project</h1></section>
+<section><h2>Prepare the Demo Project</h2>
+  <section><h3>Create the Demo App</h3>
+    <dl class="fa">
+      <dt>In next slides the examples will based in for a project with next components:</dt>
+      <dd><span class="note">Nav</span> - to represent the Navigation menu view</dd>
+      <dd><span class="note">Home</span> - to represent the Home view</dd>
+      <dd><span class="note">About</span> - to represent the About view</dd>
+      <dd><span class="note">Contacts</span> - to represent the Contacts view</dd>
+    </dl>
+  </section>
+  <section><h3>Create the Demo App</h3>
+    <dl class="fa">
+      <dt>You can download the basic app as zip: <a href="examples/labs/basicRouter.zip">basicRouter.zip</a></dt>
+      <dt>Or create the app with next components:</dt>
+    </dl>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      ng g c -t --spec false Nav
+      ng g c -t --spec false Home
+      ng g c -t --spec false About
+      ng g c -t --spec false Contacts
+    </code></pre>
+  </section>
+</section>
+
+<section data-min="10"><h1>Routing in Angular - Overview</h1></section>
+<section><h2>Routing - basic concepts</h2>
+  <section><h3>What and Why?</h3>
+    <dl class="fa" style="font-size: .8em">
+      <dt>Routing is the mechanism by which we can map a URL to certain component/view of our application.</dt>
+      <dt>In SPA we want a certain part of our page to display different components/view without the whole page reload.</dt>
+      <dt>Angular provides its own Routing mechanism, which allows the structure of an application to be kept apart from the components and templates in the application.</dt>
+      <dt>*ngIf and *ngSwithch directive can be used to provide similar to Routing effects, but for complex applications the Routing mechanism is the preferred way.</dt>
+    </dl>
+  </section>
+  <section style="font-size: .8em"><h3>A separate module for Routing</h3>
+    <dl class="fa">
+      <dt>A best practice is to configure and load the router in a separate, top-level module concerned only to routing.</dt>
+      <dt>By convention, the module name is <code>app-routing.module.ts</code>:</dt>
+    </dl>
+    <pre><code rel="app-routing.module.ts" class="bash" data-noescape>
+      import { NgModule } from '@angular/core';
+      import { Routes, RouterModule } from '@angular/router';
+
+      const routes: Routes = [];
+
+      @NgModule({
+        imports: [RouterModule.forRoot(routes)],
+        exports: [RouterModule]
+      })
+      export class AppRoutingModule { }
+    </code></pre>
+    <dl class="fa">
+      <dt>Of course, we need to import the <code>app-routing.module.ts</code> into our app.module.ts</dt>
+    </dl>
+  </section>
+  <section><h3>Configuring Routes</h3>
+      <dl class="fa">
+        <dt>As Route is a mapping between a URL and a component, a typical Angular Route has two properties </dt>
+        <dd><span class="note">path</span>: a string that matches the URL in the browser address bar.</dd>
+        <dd><span class="note">component</span>: the component that the router should create when navigating to this route.</dd>
+      </dl>
+    </section>
+    <section><h3>Configuring Routes</h3>
+      <pre><code rel="app-routing.module.ts" class="typescript">
+        const routes: Routes = [
+          { path: 'about', component: AboutComponent },
+          { path: 'contacts', component: ContactsComponent },
+          { path: 'home', component: HomeComponent },
+        ];
+      </code></pre>
+      <dl class="fa">
+        <dt>And we need to import each component, as well</dt>
+      </dl>
+    </section>
+    <section><h3>Optimize the imports</h3>
+        <dl class="fa" style="font-size: .8em">
+          <dt>We can prevent the repeating of imports for components which will be routed, by importing them only in <code>app-routing.module.ts</code> and exporting them as an array to <code>app.module.ts</code></dt>
+        </dl>
+        <pre><code rel="app-routing.module.ts" class="typescript">
+          export class AppRoutingModule { }
+          export const routingComponents = [
+            AboutComponent,
+            ContactsComponent,
+            HomeComponent
+          ]
+        </code></pre>
+        <pre><code rel="app.module.ts" class="typescript">
+          import { AppRoutingModule, routingComponents } from './app-routing.module';
+        </code></pre>
+    </section>
+    <section><h3>The RouterOutlet</h3>
+      <dl class="fa">
+        <dt>The <code>&lt;router-outlet&gt;</code> is a router directive that tells the Router where to display routed views</dt>
+        <dt>Each component which is mapped to a URL will be displayed in the <code>&lt;router-outlet&gt;</code> after the URL is activated.</dt>
+      </dl>
+      <pre><code rel="app.component.html" class="html" data-noescape>
+        &lt;app-nav&gt;&lt;/app-nav&gt;
+        &lt;router-outlet&gt;&lt;/router-outlet&gt;
+      </code></pre>
+    </section>
+    <section><h3>The navigation links</h3>
+      <dl class="fa">
+        <dt>In order to set the links to our routing components, we use the <code>routerLink:</code> </dt>
+      </dl>
+      <pre><code rel="nav.component.ts" class="typescript">
+        @Component({
+          selector: 'app-nav',
+          template: `
+          <nav>
+            <a routerLink="/home">Home</a>
+            <a routerLink="/about">About</a>
+            <a routerLink="/contacts">Contacts</a>
+          </nav>
+          `,
+          styleUrls: ['nav.component.css']
+        })
+      </code></pre>
+      <p>The Nav should work now!</p>
+    </section>
+</section>
+
+<section data-min="20"><h1>Route Matching</h1></section>
+<section><h2>Route Matching</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt></dt>
+    </dl>
+  </section>
+</section>
+
+<!--
+The Router Module
+Passing and fetching Router parameters
+Extract Data from Router
+Route Configuration
+Redirecting and Wildcard Routes
+Protecting Routes
+Controlling Navigation
+Hands on the Demo Project -->
+
+
+<!-- <section data-min="1"><h1>References</h1></section>
+<section><h2>References</h2>
+  <section><h3>Readings</h3>
+    <dl class="fa">
+      <dt></dt>
+    </dl>
+  </section>
+</section>
+
+
+<section id="hw" data-min="4"><h1>Exercises</h1></section>
+<section><h2>Task1: Task1Title</h2>
+  <section><h3>The Task</h3>
+    <dl class="fa">
+      <dt></dt>
+    </dl>
+  </section>
+</section>
+
+<section><h3>Submission</h3>
+  <dl class="fa">
+    <dt>PLease, prefix your filenames/archive with your name initials, before sending.</dt>
+    <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+    <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=_Routers_">ProgressBG.WWW.Courses@gmail.com</a></dt>
+  </dl>
+</section> -->
+
+
+<section class="disclaimer" data-background="/BKA-Angular/outfit/images/for_slides/the_end_on_sand.jpg">
+  <p>These slides are based on</p>
+  <p>customised version of </p>
+  <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+   <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+    </div>
+  </div>
+  <!-- Custom processing -->
+  <script src="/BKA-Angular/outfit/js/slides.js"></script>
+  <!-- external scripts -->
+  <script src="/BKA-Angular/lib/reveal.js/lib/js/head.min.js"></script>
+  <script src="/BKA-Angular/lib/reveal.js/js/reveal.js"></script>
+
+  <!-- init reveal -->
+  <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    var highlightjsTabSize = '  ';
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      keyboard: true,
+      history: true,
+
+      // display control
+      // center: true,
+      // width: '100%',
+      // height: '100%',
+      // // Factor of the display size that should remain empty around the content
+      // margin: 0.1,
+
+      // The "normal" size of the presentation, aspect ratio will be preserved
+      // when the presentation is scaled to fit different resolutions. Can be
+      // specified using percentage units.
+      width: 960,
+      height: 700,
+
+      // Factor of the display size that should remain empty around the content
+      margin: 0.1,
+
+      // Bounds for smallest/largest possible scale to apply to content
+      minScale: 0.2,
+      maxScale: 1.5,
+
+      // slide transition
+      transition: 'concave', // none/fade/slide/convex/concave/zoom
+      // shift+maous click to zoom in/out element
+      zoomKey: 'ctrl',
+      // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      // transition: Reveal.getQueryHash().transition || 'default'
+      // Optional reveal.js plugins
+      dependencies: [
+        { src: '/BKA-Angular/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/notes/notes.js', async: true }
+      ]
+    });
+  </script>
+  <!-- linkedin badge -->
+  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+</body>
+</html>
