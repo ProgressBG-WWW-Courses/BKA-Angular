@@ -189,10 +189,167 @@
 
 <section data-min="20"><h1>Route Matching</h1></section>
 <section><h2>Route Matching</h2>
-  <section><h3>Overview</h3>
+  <section><h3>Default Route</h3>
     <dl class="fa">
-      <dt></dt>
+      <dt>We need to have a route for "empty" path, in order to match URLs like <a href="#">http://localhost:4200/</a></dt>
     </dl>
+    <pre><code rel="TS" class="typescript">
+      { path: '', redirectTo: '/home', pathMatch: 'full' },
+    </code></pre>
+  </section>
+  <section><h3>Route for "Page not found" - the wildcard matching</h3>
+    <dl class="fa">
+      <dt>Any URLs which do not match a route have to point to the "Page not found" component</dt>
+      <dt>First, we need to create the "page-not-found" component</dt>
+      <pre><code rel="Terminal" class="bash" data-noescape>
+        ng g c -t --spec false PageNotFound
+      </code></pre>
+      <dt>And then specify the path to match "**"</dt>
+    </dl>
+    <pre><code rel="TS" class="typescript">
+      { path: '**', component: PageNotFoundComponent },
+    </code></pre>
+  </section>
+  <section><h3>Route for "Page not found" - the wildcard matching</h3>
+    <dl class="fa">
+      <dt class="note">The ** matches any URL, including child paths.</dt>
+      <dd>It should be the <span class="note">last</span> route, specified in routes list, otherwise "Page not found" component will be displayed for any route!</dd>
+    </dl>
+  </section>
+  <section><h3>Angular Router Matching</h3>
+    <dl class="fa">
+      <dt>Angular Router starts matching URLs to routes, starting from the first route in the list</dt>
+      <dt>If it fines a match, it stops the matching process</dt>
+      <dt class="note">We have to order our routes <span class="note">from most specific to least specific</span></dt>
+    </dl>
+  </section>
+</section>
+
+<section data-min="10"><h1>Route params</h1></section>
+<section><h2>Route params</h2>
+  <section><h3>The List => Detail relation</h3>
+    <dl class="fa">
+      <dt>We can pass values when navigating from one component to the other.</dt>
+      <dt>We need that, when we have components related as List => Detail</dt>
+      <dt>Let's make the 2 components:</dt>
+    </dl>
+    <pre><code rel="TS" class="typescript">
+      ng g c -t --spec false BooksList
+      ng g c -t --spec false BookDetails
+    </code></pre>
+  </section>
+  <section><h3>The List Component Template</h3>
+    <pre><code rel="book-list.component.ts" class="typescript">
+      template: `
+        <ol>
+          <li *ngFor="let book of books">
+            <a routerLink="/book/{{book.id}}">
+              <span>{{book.name}}</span>
+            </a>
+          </li>
+        </ol>
+      `,
+    </code></pre>
+  </section>
+  <section><h3>Add the List => Detail Routes</h3>
+    <pre><code rel="app-routing.module.ts" class="typescript">
+      { path: 'books', component: BookListComponent },
+      { path: 'book/:id', component: BookDetailComponent },
+    </code></pre>
+  </section>
+  <section><h3>Pass the id route parameter from List to Detail</h3>
+    <pre><code rel="JS" class="js">
+      import { Component, OnInit } from '@angular/core';
+      import { Router } from '@angular/router'
+
+      @Component({
+        selector: 'app-book-list',
+        template: `
+          <ol>
+            <li *ngFor="let book of books" (click)="onBookClick(book)">
+              <a routerLink="/book/{{book.id}}">
+                <span>{{book.name}}</span>
+              </a>
+            </li>
+          </ol>
+        `,
+        styleUrls: ['./book-list.component.css']
+      })
+      export class BookListComponent implements OnInit {
+        books = [
+          {id: 1, name: "Player Piano"}
+          {id: 2, name: "God Bless You, Mr. Rosewater"}
+          {id: 3, name: "The Sirens of Titan"}
+          {id: 4, name: "Cat's Cradle"}
+          {id: 5, name: "Mother Night"}
+        ]
+
+        // inject the router object:
+        constructor(private router: Router) { }
+
+        ngOnInit() {
+        }
+        onBookClick(book){
+          this.router.navigate(['/books', book.id])
+        }
+
+      }
+    </code></pre>
+  </section>
+  <section><h3>Extract the id route parameter</h3>
+    <pre><code rel="TS" class="typescript">
+      import { ActivatedRoute } from '@angular/router';
+      import { Location } from '@angular/common';
+      import { Component, OnInit } from '@angular/core';
+
+
+      @Component({
+        selector: 'app-book-detail',
+        template: `
+          <p>
+            book-detail for {{bookId}}!
+          </p>
+        `,
+        styleUrls: ['./book-detail.component.css']
+      })
+      export class BookDetailComponent implements OnInit {
+        bookId;
+
+        constructor(private route:ActivatedRoute) { }
+
+        ngOnInit() {
+          this.bookId = parseInt(this.route.snapshot.paramMap.get('id'));
+        }
+
+      }
+    </code></pre>
+  </section>
+</section>
+
+<section data-min="10"><h1>More on RouterOutlet</h1></section>
+<section><h2>More on RouterOutlet</h2>
+  <section><h3>Named RouterOutlet</h3>
+    <dl class="fa">
+      <dt>We can use named outlets to load multiple components side by side instead of nesting them.</dt>
+      <dt>Named outlet is created by specifying the name attribute on the RouterOutlet directive.</dt>
+    </dl>
+    <pre><code rel="app.component.html" class="html">
+      <app-nav></app-nav>
+      <router-outlet></router-outlet>
+      <router-outlet name="secondary"></router-outlet>
+    </code></pre>
+  </section>
+  <section><h3>Output to a named Router Outlet</h3>
+    <dl class="fa">
+      <dt>We can specify the router outlet name as routes parameter:</dt>
+    </dl>
+    <pre><code rel="TS" class="typescript">
+      {
+         path: 'book-detail',
+         component: BookDetailComponent,
+         outlet: 'bookList'
+      },
+    </code></pre>
   </section>
 </section>
 
