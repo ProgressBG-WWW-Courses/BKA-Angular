@@ -258,20 +258,20 @@
     </code></pre>
   </section>
   <section><h3>Pass the id route parameter from List to Detail</h3>
-    <pre><code rel="JS" class="js">
+    <pre><code rel="JS" class="js" >
       import { Component, OnInit } from '@angular/core';
       import { Router } from '@angular/router'
 
       @Component({
         selector: 'app-book-list',
         template: `
-          <ol>
-            <li *ngFor="let book of books" (click)="onBookClick(book)">
-              <a routerLink="/book/{{book.id}}">
-                <span>{{book.name}}</span>
-              </a>
-            </li>
-          </ol>
+          &lt;ol&gt;
+            &lt;li *ngFor=&quot;let book of books&quot; (click)=&quot;onBookClick(book)&quot;&gt;
+              &lt;a routerLink=&quot;/book/{{book.id}}&quot;&gt;
+                &lt;span&gt;{{book.name}}&lt;/span&gt;
+              &lt;/a&gt;
+            &lt;/li&gt;
+          &lt;/ol&gt;
         `,
         styleUrls: ['./book-list.component.css']
       })
