@@ -1,2 +1,5 @@
 /home/nemsys/projects/courses/ProgressBG/BKA-Angular-Code/projects/ComponentsAndDirectives/src/app/directives-test/directives-test.component.html - check why not work with var
 ng
+
+
+check why pathMatch: 'prefix' do not works....
