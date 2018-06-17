@@ -8,6 +8,7 @@
 		}
 	],
 	"settings": {
-		"workbench.colorTheme": "Solarized Light"
+		"workbench.colorTheme": "Solarized Light",
+		"git.ignoreLimitWarning": true
 	}
 }
