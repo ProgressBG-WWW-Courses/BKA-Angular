@@ -241,13 +241,13 @@
   <section><h3>The List Component Template</h3>
     <pre><code rel="book-list.component.ts" class="typescript">
       template: `
-        <ol>
-          <li *ngFor="let book of books">
-            <a routerLink="/book/{{book.id}}">
-              <span>{{book.name}}</span>
-            </a>
-          </li>
-        </ol>
+        &lt;ol&gt;
+          &lt;li *ngFor=&quot;let book of books&quot;&gt;
+            &lt;a routerLink=&quot;/book/{{book.id}}&quot;&gt;
+              &lt;span&gt;{{book.name}}&lt;/span&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ol&gt;
       `,
     </code></pre>
   </section>
@@ -292,12 +292,14 @@
         onBookClick(book){
           this.router.navigate(['/books', book.id])
         }
-
       }
     </code></pre>
   </section>
   <section><h3>Extract the id route parameter</h3>
-    <pre><code rel="TS" class="typescript">
+    <dl class="fa">
+      <dt>The route path and parameters are available through an injected router service: <a href="https://angular.io/api/router/ActivatedRoute">ActivatedRoute</a>.</dt>
+    </dl>
+    <pre><code rel="book-details.component.ts" class="typescript">
       import { ActivatedRoute } from '@angular/router';
       import { Location } from '@angular/common';
       import { Component, OnInit } from '@angular/core';
