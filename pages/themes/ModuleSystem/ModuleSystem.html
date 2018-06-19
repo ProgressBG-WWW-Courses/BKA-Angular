@@ -187,6 +187,29 @@
       </code></pre>
     </dl>
   </section>
+  <section>
+    <pre><code rel="Terminal" class="typescript">
+      ng g module lazy --flat
+
+      ng g c lazy-parent --module lazy
+      ng g c lazy-child --module lazy
+    </code></pre>
+    <dl class="fa">
+      <dt>Create the routes for LazyParentComponent</dt>
+      <dt>import as <code>RouterModule.forChild(routes)</code></dt>
+      <dt>Point the app router to the new modules:</dt>
+      <pre><code rel="TS" class="typescript">
+        const routes: Routes = [
+          path: 'lazy', loadChildren: './lazy.module#LazyModule'
+        ];
+
+        @NgModule({
+          imports: [RouterModule.forRoot(routes)],
+          exports: [RouterModule]
+        })
+      </code></pre>
+    </dl>
+  </section>
 </section>
 
 <section data-min="20"><h1>Modularizing our Products App - Live Demo</h1></section>
