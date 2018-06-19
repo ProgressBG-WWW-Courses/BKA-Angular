@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>HTTPRequests</title>
+  <link rel="shortcut icon" href="/BKA-Angular/favicon.ico">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <!-- css & themes include -->
+  <link rel="stylesheet" href="/BKA-Angular/lib/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="/BKA-Angular/outfit/css/themes/projector.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/BKA-Angular/lib/reveal.js/css/print/pdf.css' : '/BKA-Angular/lib/reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <!-- CUSTOM -->
+  <base target="_blank">
+</head>
+<body>
+  <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+    <div class="top_links">
+      <a class="home_link" href="/index.html#HTTPRequests" target="_top"><i class="fa fa-home"></i></a>
+      <span class="help_link" href="#"><i class="fa fa-question"></i></span>
+      <div class="help_text">
+        <div><span>N/Space</span><span>Next Slide</span></div>
+        <div><span>P</span><span>Previous Slide</span></div>
+        <div><span>O</span><span>Slides Overview</span></div>
+        <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+      </div>
+    </div>
+    <div class="footer theme_switch">
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/dark.css'); return false;">Dark</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/light.css'); return false;">Light</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/projector.css'); return false;">Projector</a>
+    </div>
+    <div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section data-min-total="160"><h1>Http Requests with Angular5</h1></section>
+<section data-transition="zoom">
+  <div class="copyright">
+    <div class="note">
+      <p>Created for</p>
+    </div>
+    <div class="company">
+      <a href="http://progressbg.net/kurs-po-web-design/">
+      <img style="height:80%" src="/BKA-Angular/outfit/images/logos/ProgressBG_logo_529_127.png">
+      </a>
+    </div>
+    <div class="author">
+      <span>Iva E. Popova, 2016-2018,</span>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+    </div>
+  </div>
+</section>
+
+<section data-min="20"><h1>Angular HttpClientModule</h1></section>
+<section><h2>Angular HttpClientModule</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt>Angular 4.3 introduced a new HttpClient service module.</dt>
+      <dt>The older Http service still works, but it's deprecated in Angular 5</dt>
+      <dd class="note">And it is removed from Angular6</dd>
+      <dt>The HttpClient service uses Observables (from RxJS) to emit data</dt>
+    </dl>
+  </section>
+</section>
+
+<section data-min="30"><h1>Getting Started with HttpClient</h1></section>
+<section><h2>Getting Started with HttpClient</h2>
+  <section><h3>Importing HttpClient module and the Http service</h3>
+    <dl class="fa">
+      <dt>By simply importing HttpClientModule into our main module we can use the provided http service without the need to explicitly registering it as provider.</dt>
+    </dl>
+  </section>
+  <section><h3>HttpClient module and the Http service - code</h3>
+    <pre><code rel="app.module.ts" class="typescript">
+      import { BrowserModule } from '@angular/platform-browser';
+      import { NgModule } from '@angular/core';
+      import { HttpClientModule } from '@angular/common/http';
+
+      import { AppComponent } from './app.component';
+
+      @NgModule({
+        declarations: [
+          AppComponent
+        ],
+        imports: [
+          BrowserModule,
+          HttpClientModule
+        ],
+        providers: [],
+        bootstrap: [AppComponent]
+      })
+      export class AppModule { }
+    </code></pre>
+  </section>
+  <section><h3>Using Http into our service</h3>
+    <dl class="fa">
+      <dt>Crete the Books Service</dt>
+    </dl>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      ng g s Books --spec false
+    </code></pre>
+    <dl class="fa">
+      <dt>Inject the http service into Books Service</dt>
+    </dl>
+    <pre><code rel="books.service.ts" class="typescript">
+      import { Injectable } from '@angular/core';
+      import { HttpClient } from '@angular/common/http';
+
+      @Injectable({
+        providedIn: 'root'
+      })
+      export class BooksService {
+        constructor(private http: HttpClient) { }
+      }
+    </code></pre>
+  </section>
+  <section><h3>Demo data</h3>
+    <dl class="fa" style="font-size: .8em;">
+      <dt>In following examples these simple JSON data will be used:</dt>
+      <pre><code rel="books.json" class="js">
+        [
+            {
+                "title":"Player Piano",
+                "author": "Kurt Vonnegut",
+                "price": 2.45
+            },
+            {
+                "title":"Cat's Cradle",
+                "author": "Kurt Vonnegut",
+                "price": 3.25
+            },
+            {
+                "title":"Steppenwolf",
+                "author": "Hermann Hesse",
+                "price": 5.20
+            },
+            {
+                "title":"Siddhartha",
+                "author": "Hermann Hesse",
+                "price": 4.60
+            }
+        ]
+
+      </code></pre>
+    </dl>
+    <p style="font-size: .6em;">URL: <a href="https://raw.githubusercontent.com/ProgressBG-WWW-Courses/BKA-Angular-Code/RequestsAndObsevables/RequestsAndObsevables/src/assets/data/books.json">https://raw.githubusercontent.com/ProgressBG-WWW-Courses/BKA-Angular-Code/RequestsAndObsevables/RequestsAndObsevables/src/assets/data/books.json</a></p>
+  </section>
+  <section><h3>The HttpClient.get() Method</h3>
+    <dl class="fa">
+      <dt>Constructs an Observable which, when subscribed, will cause the configured GET request to be executed on the server</dt>
+    </dl>
+  </section>
+  <section><h3>Use HttpClient.get() Method</h3>
+    <pre><code rel="books.service.ts" class="typescript">
+      import { Injectable } from '@angular/core';
+      import { HttpClient } from '@angular/common/http';
+
+      @Injectable({
+        providedIn: 'root'
+      })
+      export class BooksService {
+        booksURL = 'https://raw.githubusercontent.com/ProgressBG-WWW-Courses/BKA-Angular-Code/RequestsAndObsevables/RequestsAndObsevables/src/assets/data/books.json';
+
+        constructor(private http: HttpClient) { }
+
+        fetchBooks() {
+          return this.http.get(this.booksURL)
+        }
+      }
+    </code></pre>
+  </section>
+  <section><h3>Cast the retrieved Observable into Books array</h3>
+    <dl class="fa">
+      <dt>We need to create a Book Interface, in order to have a type the Observable to be casted to</dt>
+      <dd>Just make an app/books.ts file</dd>
+    </dl>
+    <pre><code rel="app/books.ts" class="typescript">
+      export interface IBook{
+          title:string,
+          author: string,
+          price: number
+      }
+    </code></pre>
+  </section>
+  <section><h3>Cast the retrieved Observable into Books array</h3>
+    <dl class="fa">
+      <dt>Now, we can use the IBook Interface in our BooksService</dt>
+    </dl>
+    <pre><code rel="books.service.ts" class="typescript">
+      // other imports...
+      import { Observable } from 'rxjs';
+      import { IBook } from './books';
+
+      @Injectable({
+        providedIn: 'root'
+      })
+      export class BooksService {
+        // other code...
+
+        // type cast the Observable to IBook
+        fetchBooks():Observable&lt;IBook[]&gt; {
+          return this.http.get&lt;IBook[]&gt;(this.booksURL)
+        }
+      }
+    </code></pre>
+  </section>
+  <section><h3>Subscribe to the Books Data</h3>
+    <dl class="fa">
+      <dt>We can use the data retrieved by fetchBooks method in any component we injected the BooksService</dt>
+      <dt>Lets make a BooksList Component</dt>
+      <pre><code rel="Terminal" class="bash" data-noescape>
+        ng g c -t -s --spec false BooksList
+      </code></pre>
+    </dl>
+  </section>
+  <section><h3>Subscribe to the Books Data</h3>
+    <pre><code rel="books-list.component.ts" class="typescript">
+      export class BooksListComponent implements OnInit {
+        books = [];
+
+        constructor(private _booksService:BooksService) { }
+
+        ngOnInit() {
+          this._booksService.fetchBooks()
+            .subscribe( data=> this.books = data)
+        }
+      }
+    </code></pre>
+  </section>
+  <section><h3>Sorting the BooksList by price</h3>
+    <pre><code rel="books-list.component.ts" class="typescript">
+      export class BooksListComponent implements OnInit {
+        books = [];
+
+        compareByPrice(a,b) {
+          if (a.price < b.price)
+            return -1;
+          if (a.price > b.price)
+            return 1;
+          return 0;
+        }
+
+        constructor(private _booksService:BooksService) { }
+
+        ngOnInit() {
+          this._booksService.fetchBooks()
+            .pipe(map(things => things.sort(this.compareByPrice)))
+            .subscribe( data=> this.books = data)
+        }
+      }
+    </code></pre>
+  </section>
+</section>
+
+
+<section data-min="30"><h1>Hands on the Demo Project</h1></section>
+<!-- <section><h2>Hands on the Demo Project</h2>
+  <section><h3>___SubSectionTitle___</h3>
+
+  </section>
+</section> -->
+
+
+
+<!-- <section data-min="1"><h1>References</h1></section>
+<section><h2>References</h2>
+  <section><h3>Readings</h3>
+    <dl class="fa">
+      <dt></dt>
+    </dl>
+  </section>
+</section>
+
+
+<section id="hw" data-min="4"><h1>Exercises</h1></section>
+<section><h2>Task1: Task1Title</h2>
+  <section><h3>The Task</h3>
+    <dl class="fa">
+      <dt></dt>
+    </dl>
+  </section>
+</section>
+
+<section><h3>Submission</h3>
+  <dl class="fa">
+    <dt>PLease, prefix your filenames/archive with your name initials, before sending.</dt>
+    <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+    <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=_HTTPRequests_">ProgressBG.WWW.Courses@gmail.com</a></dt>
+  </dl>
+</section> -->
+
+
+<section class="disclaimer" data-background="/BKA-Angular/outfit/images/for_slides/the_end_on_sand.jpg">
+  <p>These slides are based on</p>
+  <p>customised version of </p>
+  <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+   <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+    </div>
+  </div>
+  <!-- Custom processing -->
+  <script src="/BKA-Angular/outfit/js/slides.js"></script>
+  <!-- external scripts -->
+  <script src="/BKA-Angular/lib/reveal.js/lib/js/head.min.js"></script>
+  <script src="/BKA-Angular/lib/reveal.js/js/reveal.js"></script>
+
+  <!-- init reveal -->
+  <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    var highlightjsTabSize = '  ';
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      keyboard: true,
+      history: true,
+
+      // display control
+      // center: true,
+      // width: '100%',
+      // height: '100%',
+      // // Factor of the display size that should remain empty around the content
+      // margin: 0.1,
+
+      // The "normal" size of the presentation, aspect ratio will be preserved
+      // when the presentation is scaled to fit different resolutions. Can be
+      // specified using percentage units.
+      width: 960,
+      height: 700,
+
+      // Factor of the display size that should remain empty around the content
+      margin: 0.1,
+
+      // Bounds for smallest/largest possible scale to apply to content
+      minScale: 0.2,
+      maxScale: 1.5,
+
+      // slide transition
+      transition: 'concave', // none/fade/slide/convex/concave/zoom
+      // shift+maous click to zoom in/out element
+      zoomKey: 'ctrl',
+      // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      // transition: Reveal.getQueryHash().transition || 'default'
+      // Optional reveal.js plugins
+      dependencies: [
+        { src: '/BKA-Angular/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/notes/notes.js', async: true }
+      ]
+    });
+  </script>
+  <!-- linkedin badge -->
+  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+</body>
+</html>

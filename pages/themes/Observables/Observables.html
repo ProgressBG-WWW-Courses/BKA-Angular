@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Observables</title>
+  <link rel="shortcut icon" href="/BKA-Angular/favicon.ico">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <!-- css & themes include -->
+  <link rel="stylesheet" href="/BKA-Angular/lib/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="/BKA-Angular/outfit/css/themes/projector.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/BKA-Angular/lib/reveal.js/css/print/pdf.css' : '/BKA-Angular/lib/reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <!-- CUSTOM -->
+  <base target="_blank">
+</head>
+<body>
+  <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+    <div class="top_links">
+      <a class="home_link" href="/index.html#Observables" target="_top"><i class="fa fa-home"></i></a>
+      <span class="help_link" href="#"><i class="fa fa-question"></i></span>
+      <div class="help_text">
+        <div><span>N/Space</span><span>Next Slide</span></div>
+        <div><span>P</span><span>Previous Slide</span></div>
+        <div><span>O</span><span>Slides Overview</span></div>
+        <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+      </div>
+    </div>
+    <div class="footer theme_switch">
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/dark.css'); return false;">Dark</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/light.css'); return false;">Light</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/projector.css'); return false;">Projector</a>
+    </div>
+    <div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section data-min-total="240"><h1>Observables</h1></section>
+<section data-transition="zoom">
+  <div class="copyright">
+    <div class="note">
+      <p>Created for</p>
+    </div>
+    <div class="company">
+      <a href="http://progressbg.net/kurs-po-web-design/">
+      <img style="height:80%" src="/BKA-Angular/outfit/images/logos/ProgressBG_logo_529_127.png">
+      </a>
+    </div>
+    <div class="author">
+      <span>Iva E. Popova, 2016-2018,</span>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+    </div>
+  </div>
+</section>
+
+
+<section data-min="__Y__"><h1>Asynchronous data streams and Reactive Programming</h1></section>
+<section><h2>Asynchronous data streams and Reactive Programming</h2>
+  <section><h3>Overview</h3>
+    <blockquote cite="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">
+        <p>Reactive programming is programming with asynchronous data streams.</p>
+    </blockquote>
+    <div>From <a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">The introduction to Reactive Programming you've been missing</a> by <a href="https://twitter.com/andrestaltz">@andrestaltz</a></div>
+  </section>
+  <section><h3>Synchronous Programming/IO</h3>
+    <dl class="fa">
+      <dt>Things happen one at a time</dt>
+      <dt>Data coming one after another, as we have requested them.</dt>
+    </dl>
+    <pre><code rel="JS" class="js">
+      // command 1
+      data_1 = synchronous_get_data(url1);
+
+      // log will happen only AFTER the data1 are retrieved
+      // i.e. the program is blocked while data are retrieved
+      console.log("Data data_1 is ready");
+    </code></pre>
+  </section>
+  <section><h3>Asynchronous programming/IO</h3>
+    <dl class="fa">
+      <dt>Asynchronous model allows multiple things to happen at the same time</dt>
+      <dd>We start an async command and the program continues with next command</dd>
+      <dd>When the async action finished, the program is informed and gets access to the result</dd>
+    </dl>
+  </section>
+  <section><h3>Asynchronous programming in JS</h3>
+    <dl class="fa">
+      <dt>Callbacks</dt>
+      <dt>Promise</dt>
+      <dt>Observable</dt>
+    </dl>
+  </section>
+</section>
+
+
+<section data-min="20"><h1>Observables</h1></section>
+<section><h2>Observables</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt><span class="note">Observable</span> represent (wraps) a stream of data (can be synchronous, but most often - asynchronous)</dt>
+      <dt>The <span class="note">Observer</span> <b>subscribes</b> for the Observable, implementing these methods:</dt>
+      <dd><code>next()</code></dd>
+      <dd><code>error()</code></dd>
+      <dd><code>complete()</code></dd>
+      <dt>The <span class="note">Observable</span> is responsive to <b>invoke</b> the next()/complete()/error() methods of the Observer.</dt>
+    </dl>
+  </section>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt>Observer subscribes for Observable</dt>
+      <dt>Observable notifies(on next/error/complete) the Observer</dt>
+    </dl>
+  </section>
+</section>
+<section data-min="20"><h1>Reactive Programming and RxJS</h1></section>
+<section><h2>Reactive Programming and RxJS</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt>RxJS is a library for reactive programming using Observables, to make it easier to compose asynchronous or callback-based code.</dt>
+      <dt><a href="https://github.com/ReactiveX/rxjs">https://github.com/ReactiveX/rxjs</a></dt>
+      <dt>Official <a href="https://rxjs-dev.firebaseapp.com/api">API List</a></dt>
+      <dt><a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html">Observable class</a> <a href="http://reactivex.io">@reactivex.io</a></dt>
+    </dl>
+  </section>
+  <section><h3>Observable, Observer, Subscribe - example</h3>
+    <p>In next examples more temporary variables are used than needed, just to depict how things works</p>
+    <pre style="width: 110%;"><code rel="JS" class="js">
+      &lt;script type=&quot;text/javascript&quot; src=&quot;https://unpkg.com/rxjs@6.2.1/bundles/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+      &lt;script type=&quot;text/javascript&quot;&gt;
+        const { Observable, Subject, ReplaySubject, from, of, range,pipe } = rxjs;
+        const { map, filter, switchMap } = rxjs.operators;
+
+        // create an observer object:
+        let rangeObserver = {
+          next: value=&gt;console.log(`Next ${value}`),
+          error: error=&gt;console.log(`An error: ${error} occured`),
+          complete: ()=&gt;console.log(`Complete`),
+        }
+
+        // create the observable and make some transformation on data:
+        let rangeObservable$ = from([1,2,3,4,5])
+        .pipe(
+            filter(x =&gt; x % 2 === 0),
+            map(x =&gt; x * x)
+        )
+
+        // subscribe Observer to Observable:
+        rangeObservable$.subscribe(rangeObserver);
+      &lt;/script&gt;
+    </code></pre>
+  </section>
+  <section><h3>Create Observable fromEvent - example</h3>
+    <pre style="width: 110%;"><code rel="demo.html" class="html">
+      &lt;body&gt;
+        &lt;button&gt;Click&lt;/button&gt;
+      &lt;/body&gt;
+      &lt;script type=&quot;text/javascript&quot; src=&quot;https://unpkg.com/rxjs@6.2.1/bundles/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+      &lt;script type=&quot;text/javascript&quot;&gt;
+        const { fromEvent } = rxjs;
+        const { scan } = rxjs.operators;
+
+        const button = document.querySelector('button');
+
+        // create the observable:
+        let clickObservable$ = fromEvent(button, 'click').pipe(
+          scan(count =&gt; count + 1, 0)
+        )
+
+        // subscribe to the accumulated data
+        clickObservable$.subscribe(count =&gt; console.log(`Clicked ${count} times`));
+
+      &lt;/script&gt;
+    </code></pre>
+  </section>
+  <section><h3>Create Observable from range - example</h3>
+    <pre><code rel="HTML" class="html">
+      &lt;script type=&quot;text/javascript&quot; src=&quot;https://unpkg.com/rxjs@6.2.1/bundles/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+      &lt;script type=&quot;text/javascript&quot;&gt;
+        const { Observable, Subject, ReplaySubject, from, of, range,pipe } = rxjs;
+        const { map, filter, switchMap } = rxjs.operators;
+
+        // create the observable:
+        let source$ = range(1, 10);
+
+        // transform data using RxJS operators
+        let transformedSource$ = source$.pipe(
+            filter(x =&gt; x % 2 === 0),
+            map(x =&gt; x * x)
+        )
+
+        // subscribe to the transformed data
+        transformedSource$
+        .subscribe(x =&gt; console.log(x));
+      &lt;/script&gt;
+    </code></pre>
+  </section>
+  <section><h3>Unsubscribing</h3>
+    <dl class="fa">
+      <dt>Sometimes, in order to free resource, we may want to unsubscribe from a subscription</dt>
+      <dt>The <code>subscribe()</code> method returns a <code>subscription</code> object, which has its own <code>unsubscribe()</code> method</dt>
+    </dl>
+  </section>
+  <section><h3>Unsubscribing - example</h3>
+    <pre style="width: 110%"><code rel="HTML" class="html">
+      &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+      &lt;script type=&quot;text/javascript&quot;&gt;
+        const { Observable, Subject, ReplaySubject, from, of, range,pipe } = rxjs;
+        const { map, filter, switchMap } = rxjs.operators;
+
+        // create an observer object:
+        let rangeObserver = {
+          next: value=&gt;console.log(`Next ${value}`),
+          error: error=&gt;console.log(`An error: ${error} occured`),
+          complete: ()=&gt;console.log(`Complete`),
+        }
+
+        // create the observable and make some transformation on data:
+        let rangeObservable$ = Observable.create(function(observer){
+          for(let i = 0; i&lt;10; i++){
+            setTimeout(function(){
+              observer.next(i);
+            }, 1000*i)
+          }
+        })
+
+        // subscribe Observer to Observable:
+        let subscription = rangeObservable$.subscribe(rangeObserver);
+
+        // unsubscribe on button click
+        btn = document.querySelector(&quot;button&quot;);
+        btn.addEventListener(&quot;click&quot;, function(){
+          subscription.unsubscribe();
+        })
+      &lt;/script&gt;
+    </code></pre>
+  </section>
+</section>
+
+
+
+
+
+
+
+
+
+<!-- <section data-min="1"><h1>References</h1></section>
+<section><h2>References</h2>
+  <section><h3>Readings</h3>
+    <dl class="fa">
+      <dt></dt>
+    </dl>
+  </section>
+</section>
+
+
+<section id="hw" data-min="4"><h1>Exercises</h1></section>
+<section><h2>Task1: Task1Title</h2>
+  <section><h3>The Task</h3>
+    <dl class="fa">
+      <dt></dt>
+    </dl>
+  </section>
+</section>
+
+<section><h3>Submission</h3>
+  <dl class="fa">
+    <dt>PLease, prefix your filenames/archive with your name initials, before sending.</dt>
+    <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+    <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=_Observables_">ProgressBG.WWW.Courses@gmail.com</a></dt>
+  </dl>
+</section> -->
+
+
+<section class="disclaimer" data-background="/BKA-Angular/outfit/images/for_slides/the_end_on_sand.jpg">
+  <p>These slides are based on</p>
+  <p>customised version of </p>
+  <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+   <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+    </div>
+  </div>
+  <!-- Custom processing -->
+  <script src="/BKA-Angular/outfit/js/slides.js"></script>
+  <!-- external scripts -->
+  <script src="/BKA-Angular/lib/reveal.js/lib/js/head.min.js"></script>
+  <script src="/BKA-Angular/lib/reveal.js/js/reveal.js"></script>
+
+  <!-- init reveal -->
+  <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    var highlightjsTabSize = '  ';
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      keyboard: true,
+      history: true,
+
+      // display control
+      // center: true,
+      // width: '100%',
+      // height: '100%',
+      // // Factor of the display size that should remain empty around the content
+      // margin: 0.1,
+
+      // The "normal" size of the presentation, aspect ratio will be preserved
+      // when the presentation is scaled to fit different resolutions. Can be
+      // specified using percentage units.
+      width: 960,
+      height: 700,
+
+      // Factor of the display size that should remain empty around the content
+      margin: 0.1,
+
+      // Bounds for smallest/largest possible scale to apply to content
+      minScale: 0.2,
+      maxScale: 1.5,
+
+      // slide transition
+      transition: 'concave', // none/fade/slide/convex/concave/zoom
+      // shift+maous click to zoom in/out element
+      zoomKey: 'ctrl',
+      // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      // transition: Reveal.getQueryHash().transition || 'default'
+      // Optional reveal.js plugins
+      dependencies: [
+        { src: '/BKA-Angular/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/notes/notes.js', async: true }
+      ]
+    });
+  </script>
+  <!-- linkedin badge -->
+  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+</body>
+</html>

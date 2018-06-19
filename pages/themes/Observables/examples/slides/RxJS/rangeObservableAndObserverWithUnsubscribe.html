@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>rangeObservable</title>
+</head>
+<body>
+	<button>Stop rangeObserver</button>
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js"></script>
+<script type="text/javascript">
+	const { Observable, Subject, ReplaySubject, from, of, range,pipe } = rxjs;
+	const { map, filter, switchMap } = rxjs.operators;
+
+	// create an observer object:
+	let rangeObserver = {
+		next: value=>console.log(`Next ${value}`),
+		error: error=>console.log(`An error: ${error} occured`),
+		complete: ()=>console.log(`Complete`),
+	}
+
+	// create the observable and make some transformation on data:
+	let rangeObservable$ = Observable.create(function(observer){
+		for(let i = 0; i<10; i++){
+			setTimeout(function(){
+				observer.next(i);
+			}, 1000*i)
+		}
+	})
+
+  // subscribe Observer to Observable:
+	let subscription = rangeObservable$.subscribe(rangeObserver);
+
+	// unsubscribe on button click
+	btn = document.querySelector("button");
+	btn.addEventListener("click", function(){
+		subscription.unsubscribe();
+	})
+</script>
+</html>

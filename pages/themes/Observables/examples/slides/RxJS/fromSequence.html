@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>fromSequence</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js"></script>
+<script type="text/javascript">
+	const { from } = rxjs;
+	const { filter, map, scan, startWith } = rxjs.operators;
+
+	const source$ = from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+	source$
+	  .filter(x => x % 2)
+	  .map(x => x * 2)
+	  .scan((acc, next) => acc + next, 0)
+	  .startWith(0)
+	  .subscribe(console.log)
+
+</script>
+</html>
