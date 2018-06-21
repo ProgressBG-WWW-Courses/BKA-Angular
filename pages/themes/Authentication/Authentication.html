@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Authentication</title>
+  <link rel="shortcut icon" href="/BKA-Angular/favicon.ico">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <!-- css & themes include -->
+  <link rel="stylesheet" href="/BKA-Angular/lib/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="/BKA-Angular/outfit/css/themes/projector.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/BKA-Angular/lib/reveal.js/css/print/pdf.css' : '/BKA-Angular/lib/reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <!-- CUSTOM -->
+  <base target="_blank">
+</head>
+<body>
+  <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+    <div class="top_links">
+      <a class="home_link" href="/index.html#Authentication" target="_top"><i class="fa fa-home"></i></a>
+      <span class="help_link" href="#"><i class="fa fa-question"></i></span>
+      <div class="help_text">
+        <div><span>N/Space</span><span>Next Slide</span></div>
+        <div><span>P</span><span>Previous Slide</span></div>
+        <div><span>O</span><span>Slides Overview</span></div>
+        <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+      </div>
+    </div>
+    <div class="footer theme_switch">
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/dark.css'); return false;">Dark</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/light.css'); return false;">Light</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/projector.css'); return false;">Projector</a>
+    </div>
+    <div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section data-min-total="160"><h1>Authentication with Angular5</h1></section>
+<section data-transition="zoom">
+  <div class="copyright">
+    <div class="note">
+      <p>Created for</p>
+    </div>
+    <div class="company">
+      <a href="http://progressbg.net/kurs-po-web-design/">
+      <img style="height:80%" src="/BKA-Angular/outfit/images/logos/ProgressBG_logo_529_127.png">
+      </a>
+    </div>
+    <div class="author">
+      <span>Iva E. Popova, 2016-2018,</span>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+    </div>
+  </div>
+</section>
+
+
+<section data-min="30"><h1>JSON Web Tokens (JWT) Authentication - the modern approach</h1></section>
+<section><h2>JSON Web Tokens (JWT) Authentication - the modern approach</h2>
+  <section><h3>What are JWT?</h3>
+    <blockquote style="font-size: .8em; width: 100%">
+      <dl class="fa">
+        <dt>JSON Web Token (JWT) is an <span class="note">open standard</span> that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.</dt>
+        <dt>This information can be verified and trusted because it is <span class="note">digitally signed</span>.</dt>
+        <dt class="note">JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA or ECDSA</dt>
+      </dl>
+    </blockquote>
+    <div>From: <a href="https://jwt.io/introduction/">jwt.io</a></div>
+  </section>
+  <section><h3>How it works?</h3>
+    <a href="images/jwt-diagram.png"><img src="images/jwt-diagram.png"></a>
+  </section>
+  <section><h3>How it works?</h3>
+    <dl class="fa" style="font-size: .8em">
+      <dt>User enters her login credentials</dt>
+      <dt>Server verifies the credentials and returns a (signed) token</dt>
+      <dt>The token is stored at client-side</dt>
+      <dd style="font-size: .8em">in local storage, or session storage or as a cookie</dd>
+      <dt>Subsequent requests to the server include this token</dt>
+      <dd style="font-size: .8em">as Authorization header, or in the body of POST request, or as query param</dd>
+      <dt>The server decodes the JWT and if the token is valid processes the request</dt>
+      <dt>On user logout, the token is destroyed on client-side</dt>
+      <dd style="font-size: .8em">no other interaction with the server is necessary</dd>
+    </dl>
+  </section>
+  <section><h3>How it looks?</h3>
+    <dl class="fa">
+      <dt>An example of valid JWT is given bellow.</dt>
+      <dt>You can decode it at <a href="https://jwt.io/#debugger-io">debbuger - jwt.io</a></dt>
+    </dl>
+    <pre><code rel="Terminal" class="bash" data-noescape>
+      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0IiwibmFtZSI6Ikl2YSBQb3BvdmEiLCJpYXQiOjE1MTYyMzkwMjJ9.I1ABtJQP988q649fzJOWYB7PfMHGgagdJdi5Al8lVL4
+    </code></pre>
+  </section>
+  <section><h3>JWT vs. Traditional Cookie-Based Authentication</h3>
+    <dl class="fa">
+      <dt>JWT is Stateless</dt>
+      <dd>The server will generate the token, but will not need to store it -  all of the user metadata is encoded into the token itself.</dd>
+      <dt>Cookie-Based is Stateful</dt>
+      <dd>Session identifiers must be stored somewhere on the client and server side.</dd>
+    </dl>
+  </section>
+  <section><h3>JWT vs. Traditional Cookie-Based Authentication</h3>
+    <dl class="fa">
+      <dt>Cookies work well with singular domains and sub-domains, but it can get hairy when Cross Domain and CORS are involved</dt>
+      <dt>CORS enabled token-based approach makes it trivial to expose APIs to different services and domains, since the JWT is required and checked with every call to the back-end</dt>
+    </dl>
+  </section>
+  <section><h3>JWT vs. Traditional Cookie-Based Authentication</h3>
+    <dl class="fa">
+      <dt>With a cookie based approach only the session id is stored in a cookie.</dt>
+      <dt>JWT allows you to store any type of metadata, as long as it's valid JSON.</dt>
+      <dd>JWT defines several claims, such as user data, to be represented in a secure manner (<a href="https://tools.ietf.org/html/rfc7519#page-8">JWT Claims @RFC7519</a>)</dd>
+    </dl>
+  </section>
+  <section><h3>Readings</h3>
+    <dl class="fa">
+      <dt><a href="https://blog.angular-university.io/angular-jwt/">JWT: The Complete Guide to JSON Web Tokens</a> @angular-university.io</dt>
+      <dt><a href="https://demey.io/jwt-tokens-for-distributed-authentication/">JWT Tokens for distributed authentication</a> by Michiel De Mey</dt>
+    </dl>
+  </section>
+</section>
+
+<section data-min="40"><h1>Using JWT Authentication in Angular</h1></section>
+<section><h2>Using JWT Authentication in Angular</h2>
+  <section><h3>___SubSectionTitle___</h3>
+
+  </section>
+</section>
+
+<section data-min="20"><h1>Setting up the simple server</h1></section>
+<section><h2>Setting up the simple server</h2>
+  <section><h3>Express</h3>
+    <dl class="fa">
+      <dt></dt>
+    </dl>
+    <pre><code rel="TS" class="typescript">
+      # create a package.json file (--yes: skip questionnaire)
+      npm init --yes
+
+      # install dependencies
+      install express body-parser --save
+
+    </code></pre>
+  </section>
+</section>
+
+<section data-min="5"><h1>Using auth0.com service</h1></section>
+<section><h2>Using auth0.com service</h2>
+  <section>
+    <dl class="fa">
+      <dt>Free signup: <a href="https://auth0.com/signup">auth0.com/signup</a></dt>
+    </dl>
+  </section>
+</section>
+
+
+<!-- <section data-min="1"><h1>References</h1></section>
+<section><h2>References</h2>
+  <section><h3>Readings</h3>
+    <dl class="fa">
+      <dt></dt>
+    </dl>
+  </section>
+</section>
+
+
+<section id="hw" data-min="4"><h1>Exercises</h1></section>
+<section><h2>Task1: Task1Title</h2>
+  <section><h3>The Task</h3>
+    <dl class="fa">
+      <dt></dt>
+    </dl>
+  </section>
+</section>
+
+<section><h3>Submission</h3>
+  <dl class="fa">
+    <dt>PLease, prefix your filenames/archive with your name initials, before sending.</dt>
+    <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+    <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=_Authentication_">ProgressBG.WWW.Courses@gmail.com</a></dt>
+  </dl>
+</section> -->
+
+
+<section class="disclaimer" data-background="/BKA-Angular/outfit/images/for_slides/the_end_on_sand.jpg">
+  <p>These slides are based on</p>
+  <p>customised version of </p>
+  <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+   <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+    </div>
+  </div>
+  <!-- Custom processing -->
+  <script src="/BKA-Angular/outfit/js/slides.js"></script>
+  <!-- external scripts -->
+  <script src="/BKA-Angular/lib/reveal.js/lib/js/head.min.js"></script>
+  <script src="/BKA-Angular/lib/reveal.js/js/reveal.js"></script>
+
+  <!-- init reveal -->
+  <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    var highlightjsTabSize = '  ';
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      keyboard: true,
+      history: true,
+
+      // display control
+      // center: true,
+      // width: '100%',
+      // height: '100%',
+      // // Factor of the display size that should remain empty around the content
+      // margin: 0.1,
+
+      // The "normal" size of the presentation, aspect ratio will be preserved
+      // when the presentation is scaled to fit different resolutions. Can be
+      // specified using percentage units.
+      width: 960,
+      height: 700,
+
+      // Factor of the display size that should remain empty around the content
+      margin: 0.1,
+
+      // Bounds for smallest/largest possible scale to apply to content
+      minScale: 0.2,
+      maxScale: 1.5,
+
+      // slide transition
+      transition: 'concave', // none/fade/slide/convex/concave/zoom
+      // shift+maous click to zoom in/out element
+      zoomKey: 'ctrl',
+      // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      // transition: Reveal.getQueryHash().transition || 'default'
+      // Optional reveal.js plugins
+      dependencies: [
+        { src: '/BKA-Angular/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/notes/notes.js', async: true }
+      ]
+    });
+  </script>
+  <!-- linkedin badge -->
+  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<body>
+  <button>Click</button>
+</body>
+
+<script type="text/javascript" src="https://unpkg.com/rxjs@6.2.1/bundles/rxjs.umd.min.js"></script>
+
+<script type="text/javascript">
+
+  const { fromEvent } = rxjs;
+  const { scan } = rxjs.operators;
+
+  const button = document.querySelector('button');
+
+  // create the observable:
+  let clickObservable$ = fromEvent(button, 'click').pipe(
+    scan(count => count + 1, 0)
+  )
+
+  // subscribe to the accumulated data
+  clickObservable$.subscribe(count => console.log(`Clicked ${count} times`));
+
+</script>
