@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>handlingForms</title>
+  <link rel="shortcut icon" href="/BKA-Angular/favicon.ico">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <!-- css & themes include -->
+  <link rel="stylesheet" href="/BKA-Angular/lib/reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="/BKA-Angular/outfit/css/themes/projector.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '/BKA-Angular/lib/reveal.js/css/print/pdf.css' : '/BKA-Angular/lib/reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <!-- CUSTOM -->
+  <base target="_blank">
+</head>
+<body>
+  <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+    <div class="top_links">
+      <a class="home_link" href="/index.html#handlingForms" target="_top"><i class="fa fa-home"></i></a>
+      <span class="help_link" href="#"><i class="fa fa-question"></i></span>
+      <div class="help_text">
+        <div><span>N/Space</span><span>Next Slide</span></div>
+        <div><span>P</span><span>Previous Slide</span></div>
+        <div><span>O</span><span>Slides Overview</span></div>
+        <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+      </div>
+    </div>
+    <div class="footer theme_switch">
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/dark.css'); return false;">Dark</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/light.css'); return false;">Light</a>
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href','/BKA-Angular/outfit/css/themes/projector.css'); return false;">Projector</a>
+    </div>
+    <div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section data-min-total="160"><h1>Handling Forms in Angular Apps</h1></section>
+<section data-transition="zoom">
+  <div class="copyright">
+    <div class="note">
+      <p>Created for</p>
+    </div>
+    <div class="company">
+      <a href="http://progressbg.net/kurs-po-web-design/">
+      <img style="height:80%" src="/BKA-Angular/outfit/images/logos/ProgressBG_logo_529_127.png">
+      </a>
+    </div>
+    <div class="author">
+      <span>Iva E. Popova, 2016-2018,</span>
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+    </div>
+  </div>
+</section>
+
+
+<section data-min="5"><h1>Angular Forms Basics</h1></section>
+<section><h2>Angular Forms Basics</h2>
+  <section><h3>Overview</h3>
+    <a href="images/angularFormsOverview1.png"><img src="images/angularFormsOverview1.png"></a>
+  </section>
+  <section><h3>The two ways</h3>
+    <dl class="fa">
+      <dt class="note">Template Driven Forms (TDF)</dt>
+      <dd>mostly on the template side</dd>
+      <dt class="note">Reactive Forms (RF)</dt>
+      <dd>mostly on the class side</dd>
+    </dl>
+  </section>
+</section>
+
+
+<section data-min="20"><h1>Template Driven Forms</h1></section>
+<section><h2>Template Driven Forms</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt>Template driven forms (TDF) follows the approach for working with forms similar in Angular 1.x</dt>
+      <dt>As the names suggest, most of the logic, like creating form controls, forms, and defining validations is written inside the template in a declarative manner.</dt>
+    </dl>
+  </section>
+  <section><h3>The steps</h3>
+    <dl class="fa">
+      <dt>Add the form HTML</dt>
+      <dt>Bind the data</dt>
+      <dt>Track state and validity</dt>
+      <dt>Provide visual feedback</dt>
+      <dt>Display error messages</dt>
+      <dt>Post data to the server</dt>
+    </dl>
+  </section>
+</section>
+
+<section data-min="10"><h1>The HTML and style of the form</h1></section>
+<section><h2>Styling forms</h2>
+  <section><h3>With Bootstrap4</h3>
+    <dl class="fa">
+      <dt><a href="https://getbootstrap.com/docs/4.0/components/forms/">Forms @bootsrap4</a></dt>
+    </dl>
+    <pre><code rel="HTML" class="html">
+      &lt;form&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label for=&quot;exampleInputEmail1&quot;&gt;Email address&lt;/label&gt;
+          &lt;input type=&quot;email&quot; class=&quot;form-control&quot; id=&quot;exampleInputEmail1&quot; aria-describedby=&quot;emailHelp&quot; placeholder=&quot;Enter email&quot;&gt;
+          &lt;small id=&quot;emailHelp&quot; class=&quot;form-text text-muted&quot;&gt;We'll never share your email with anyone else.&lt;/small&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label for=&quot;exampleInputPassword1&quot;&gt;Password&lt;/label&gt;
+          &lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;exampleInputPassword1&quot; placeholder=&quot;Password&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-check&quot;&gt;
+          &lt;input type=&quot;checkbox&quot; class=&quot;form-check-input&quot; id=&quot;exampleCheck1&quot;&gt;
+          &lt;label class=&quot;form-check-label&quot; for=&quot;exampleCheck1&quot;&gt;Check me out&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Submit&lt;/button&gt;
+      &lt;/form&gt;
+    </code></pre>
+  </section>
+  <section><h3>With Angular Material</h3>
+    <dl class="fa">
+      <dt><a href="https://material.angular.io/components/categories/forms">Form Controls</a> <a href="https://material.angular.io/">@Angular Material</a></dt>
+    </dl>
+  </section>
+</section>
+
+<section data-min="10"><h1>Binding form data</h1></section>
+<section><h2>Binding form data</h2>
+  <section><h3>The FormsModule</h3>
+    <dl class="fa">
+      <dt>Import the Angular's form module</dt>
+    </dl>
+    <pre><code rel="app.module.ts" class="js">
+      import { FormsModule} from '@angular/forms'
+      ...
+      @NgModule({
+        declarations: [
+         ...
+        ],
+        imports: [
+          BrowserModule,
+          FormsModule
+        ],
+    </code></pre>
+  </section>
+  <section><h3>ngForm Directive</h3>
+    <dl class="fa">
+      <dt>After importing the FormsModule in our application, angular will implicitly attach an <code class="note">ngForm</code> directive to each HTML <code>form</code> element</dt>
+      <dt>That directive gives access to the values of the form control</dt>
+    </dl>
+    <pre><code rel="HTML" class="angular">
+      &lt;h1&gt;Demo form&lt;/h1&gt;
+      &lt;form #demoForm=&quot;ngForm&quot;&gt;
+        &lt;input type=&quot;text&quot;
+      &lt;/form&gt;
+      &lt;!-- just for debug/demo purpose --&gt;
+      &lt;h2&gt;Trace&lt;/h2&gt;
+      {{demoForm.value|json}}
+    </code></pre>
+  </section>
+  <section><h3>ngModel Directive</h3>
+    <dl class="fa">
+      <dt>Only the controls with <code>ngModel</code> directive will be accessible to our code!</dt>
+      <dd>For each control with ngModel, Angular creates a respective <code>FormControl</code> objects under the hood.</dd>
+      <dt>And each of controls with ngModel directive must have a name attribute, to prevent the error:</dt>
+      <dd style="font-size: .6em; color:red">Error: If ngModel is used within a form tag, either the name attribute must be set or the form
+      control must be defined as 'standalone' in ngModelOptions</dd>
+    </dl>
+  </section>
+  <section><h3></h3>
+    <pre><code rel="HTML" class="angular">
+      &lt;h1&gt;Demo form&lt;/h1&gt;
+      &lt;form #demoForm=&quot;ngForm&quot;&gt;
+        &lt;input name=&quot;userName&quot; type=&quot;text&quot; ngModel&gt;
+      &lt;/form&gt;
+      &lt;!-- just for debug/demo purpose --&gt;
+      &lt;h2&gt;Trace&lt;/h2&gt;
+      {{demoForm.value|json}}
+    </code></pre>
+  </section>
+  <section><h3>ngModelGroup Directive</h3>
+    <dl class="fa">
+      <dt>We can group form's controls with ngModelGroup directive:</dt>
+      <pre><code rel="HTML" class="html">
+        &lt;form #demoForm=&quot;ngForm&quot;&gt;
+          &lt;div ngModelGroup=&quot;userData&quot;&gt;
+            &lt;label for=&quot;&quot;&gt;name: &lt;input name=&quot;userName&quot; type=&quot;text&quot; ngModel&gt;&lt;/label&gt;
+            &lt;label for=&quot;&quot;&gt;email:&lt;input name=&quot;userEmail&quot; type=&quot;mail&quot; ngModel&gt;&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+      </code></pre>
+    </dl>
+  </section>
+</section>
+
+<section data-min="20"><h1>Binding data to model</h1></section>
+<section><h2>Binding data to model</h2>
+  <section><h3>Generate the model</h3>
+    <dl class="fa">
+      <dt>Let's make a separate class for the model</dt>
+      <pre><code rel="TS" class="typescript">
+        ng g class demoModel
+      </code></pre>
+      <dt>Define the class:</dt>
+      <pre><code rel="demo-model.ts" class="js">
+        export class DemoModel {
+            constructor(
+                public userName:string,
+                public userEmail:string
+            ){}
+        }
+      </code></pre>
+    </dl>
+  </section>
+  <section><h3>Generate the model</h3>
+    <dl class="fa">
+      <dt>And make an instance of it in the component class</dt>
+      <pre><code rel="demo-tdf.component" class="typescript">
+        import { Component, OnInit } from '@angular/core';
+        import { DemoModel } from './../demo-model';
+
+        @Component({
+          selector: 'app-demo-tdf',
+          templateUrl: './demo-tdf.component.html',
+          styleUrls: ['./demo-tdf.component.css']
+        })
+        export class DemoTDFComponent {
+          demoModel1 = new DemoModel("Maria", "123")
+        }
+      </code></pre>
+    </dl>
+  </section>
+  <section><h3>Use the model</h3>
+    <dl class="fa">
+      <dt>We can use the model to update the template with predefined values</dt>
+      <dt>We need to bind each model property to the respective ngModel property</dt>
+      <pre><code rel="demo-tdf.component.html" class="html">
+        ...
+        &lt;label&gt;name: &lt;input name=&quot;userName&quot; type=&quot;text&quot;
+            [ngModel]=&quot;demoModel1.userName&quot;&gt;
+        &lt;/label&gt;
+        ...
+      </code></pre>
+    </dl>
+  </section>
+  <section><h3>Use the model</h3>
+    <dl class="fa">
+      <dt>We can update the model, after the form control values are changed (i.e. to capture form data) by using two way data binding:</dt>
+      <pre><code rel="HTML" class="html">
+        ...
+        &lt;label for=&quot;&quot;&gt;name: &lt;input name=&quot;userName&quot; type=&quot;text&quot;
+          [(ngModel)]=&quot;demoModel1.userName&quot;&gt;
+        &lt;/label&gt;
+        ...
+      </code></pre>
+      <dt>And we can just send them to the server</dt>
+      <dt class="note">But for better user experience, we have to do some validation work before that</dt>
+    </dl>
+  </section>
+</section>
+
+<section data-min="10"><h1>Form validation in TDF</h1></section>
+<section><h2>Form validation in TDF</h2>
+  <section><h3></h3>
+    <dl class="fa">
+      <dt>Angular can track the state of a component and use the HTML validation attributes (required, pattern and so on...) </dt>
+      <dt>In each component change, Angular attach a validation class, depending of the state of the component</dt>
+    </dl>
+  </section>
+  <section><h3>Control states</h3>
+    <table style="font-size: .9em">
+      <tr><th>State</th><th>Class if True</th><th>Class if False</th></tr>
+      <tr><td>The control has been visited</td><td>ng-touched</td><td>ng-untouched</td></tr>
+      <tr><td>The control value has changed</td><td>ng-dirty</td><td>ng-pristine</td></tr>
+      <tr><td>The control value is valid</td><td>ng-valid</td><td>ng-invalid</td></tr>
+    </table>
+  </section>
+  <section><h3>Accessing control state</h3>
+    <dl class="fa">
+      <dt>We can inspect the control's state by exporting ngModel to a local template variable</dt>
+    </dl>
+    <pre><code rel="demo-tdf.component.html" class="html">
+      ...
+      &lt;div ngModelGroup=&quot;userData&quot;&gt;
+        &lt;label for=&quot;&quot;&gt;name: &lt;input
+          #userName
+          name=&quot;userName&quot;
+          type=&quot;text&quot;
+          [(ngModel)]=&quot;demoModel1.userName&quot;&gt;
+        &lt;/label&gt;
+        &lt;label for=&quot;&quot;&gt;email:&lt;input name=&quot;userEmail&quot; type=&quot;mail&quot; ngModel&gt;&lt;/label&gt;
+      &lt;/div&gt;
+      ...
+      &lt;!-- just for debug/demo purpose --&gt;
+      &lt;h2&gt;Trace&lt;/h2&gt;
+      &lt;div&gt;
+        &lt;b&gt;userName state:&lt;/b&gt;
+        {{userName.className|json}}
+      &lt;/div&gt;
+    </code></pre>
+  </section>
+  <section><h3>Accessing control state - ngModel Properties</h3>
+    <dl class="fa">
+      <dt>For each validation class ANgular provides an associated property of the ngModel</dt>
+    </dl>
+    <table>
+      <tr><th>Class</th><th>Property</th></tr>
+      <tr><td>ng-touched</td><td>touched</tr>
+      <tr><td>ng-untouched</td><td>untouched</tr>
+      <tr><td>ng-dirty</td><td>dirty</tr>
+      <tr><td>ng-pristine</td><td>pristine</tr>
+        <tr><td>ng-invalid</td><td>invalid</tr>
+    </table>
+  </section>
+  <section><h3>Accessing ngModel Properties</h3>
+    <dl class="fa">
+      <dt>By default, the template reference variable points to the element's DOM object.</dt>
+      <dt>We can assign to it a value of "ngModel" and it will point to the ngModel of that element</dt>
+    </dl>
+  </section>
+  <section><h3>Validation with Visual Feedback</h3>
+    <dl class="fa">
+      <dt>We can use the ngModel properties to apply conditionally a css class for invalid field</dt>
+    </dl>
+    <pre><code rel="demo-tdf.component.html" class="html">
+      &lt;label for=&quot;&quot;&gt;name: &lt;input
+        #userName=&quot;ngModel&quot;
+        [class.is-invalid]=&quot;userName.invalid &amp;&amp; userName.touched&quot;
+        required
+        name=&quot;userName&quot;
+        type=&quot;text&quot;
+        [(ngModel)]=&quot;demoModel1.userName&quot;&gt;
+      &lt;/label&gt;
+    </code></pre>
+  </section>
+  <section><h3>Error messages</h3>
+    <dl class="fa">
+      <dt>We can also show conditionally error messages</dt>
+      <pre><code rel="demo-tdf.component.html" class="html">
+        <div *ngIf="userName.invalid && userName.touched">ERROR!</div>
+      </code></pre>
+    </dl>
+  </section>
+  <section><h3>Live Demo</h3>
+    <dl class="fa">
+      <dt>Angular sets the ngModel.errors property to the errors respecting the different HTML5 form validation attributes</dt>
+      <dt><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation">Constraint validation @mdn</a></dt>
+    </dl>
+  </section>
+</section>
+
+<section data-min="20"><h1>Reactive Forms with Material Design</h1></section>
+<section><h2>Reactive Form</h2>
+  <section><h3>Overview</h3>
+    <dl class="fa">
+      <dt>Reactive forms offer the ease of using reactive patterns, testing, and validation.</dt>
+    </dl>
+  </section>
+  <section><h3>Installing Material Design</h3>
+    <dl class="fa">
+      <dt>Angular 6 introduced the new cli command: <code>ng add</code> whichh allows for easily installing modules</dt>
+      <pre><code rel="TS" class="typescript">
+        ng add @angular/material
+      </code></pre>
+      <dt>And then just use its components</dt>
+      <pre><code rel="TS" class="typescript">
+        import {MatButtonModule} from '@angular/material';
+      </code></pre>
+    </dl>
+  </section>
+  <section><h3>Using Material Design</h3>
+    <dl class="fa">
+      <dt>You can even generate a Material Design component with the CLI:</dt>
+      <pre><code rel="TS" class="typescript">
+        ng generate @angular/material:material-nav  --name=main-nav
+      </code></pre>
+    </dl>
+  </section>
+</section>
+
+
+<!-- <section data-min="1"><h1>References</h1></section>
+<section><h2>References</h2>
+  <section><h3>Readings</h3>
+    <dl class="fa">
+      <dt></dt>
+    </dl>
+  </section>
+</section>
+
+
+<section id="hw" data-min="4"><h1>Exercises</h1></section>
+<section><h2>Task1: Task1Title</h2>
+  <section><h3>The Task</h3>
+    <dl class="fa">
+      <dt></dt>
+    </dl>
+  </section>
+</section>
+
+<section><h3>Submission</h3>
+  <dl class="fa">
+    <dt>PLease, prefix your filenames/archive with your name initials, before sending.</dt>
+    <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+    <dt>Send files to <a href="mailto:ProgressBG.WWW.Courses@gmail.com?Subject=_handlingForms_">ProgressBG.WWW.Courses@gmail.com</a></dt>
+  </dl>
+</section> -->
+
+
+<section class="disclaimer" data-background="/BKA-Angular/outfit/images/for_slides/the_end_on_sand.jpg">
+  <p>These slides are based on</p>
+  <p>customised version of </p>
+  <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+   <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+    </div>
+  </div>
+  <!-- Custom processing -->
+  <script src="/BKA-Angular/outfit/js/slides.js"></script>
+  <!-- external scripts -->
+  <script src="/BKA-Angular/lib/reveal.js/lib/js/head.min.js"></script>
+  <script src="/BKA-Angular/lib/reveal.js/js/reveal.js"></script>
+
+  <!-- init reveal -->
+  <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    var highlightjsTabSize = '  ';
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      keyboard: true,
+      history: true,
+
+      // display control
+      // center: true,
+      // width: '100%',
+      // height: '100%',
+      // // Factor of the display size that should remain empty around the content
+      // margin: 0.1,
+
+      // The "normal" size of the presentation, aspect ratio will be preserved
+      // when the presentation is scaled to fit different resolutions. Can be
+      // specified using percentage units.
+      width: 960,
+      height: 700,
+
+      // Factor of the display size that should remain empty around the content
+      margin: 0.1,
+
+      // Bounds for smallest/largest possible scale to apply to content
+      minScale: 0.2,
+      maxScale: 1.5,
+
+      // slide transition
+      transition: 'concave', // none/fade/slide/convex/concave/zoom
+      // shift+maous click to zoom in/out element
+      zoomKey: 'ctrl',
+      // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      // transition: Reveal.getQueryHash().transition || 'default'
+      // Optional reveal.js plugins
+      dependencies: [
+        { src: '/BKA-Angular/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+        { src: '/BKA-Angular/lib/reveal.js/plugin/notes/notes.js', async: true }
+      ]
+    });
+  </script>
+  <!-- linkedin badge -->
+  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+</body>
+</html>
