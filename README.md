@@ -1,1 +1,1 @@
-Angular5 for BKA course at Progress Educational Centre
+Angular5 for БОРИКА АД team course at Progress Educational Centre
